@@ -13,9 +13,6 @@ in lib.mkMerge [
       {
         EDITOR = "vim";
       }
-      (lib.mkIf options.gpg.sshEnable {
-        SSH_AUTH_SOCK = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
-      })
       (lib.mkIf (!options.isNixOS) {
         NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
       })
