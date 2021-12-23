@@ -6,6 +6,8 @@
   emailAddress = "tris@tris.fyi";
   homeDirectory = "/home/tris";
 
+  isNixOS = true;
+
   loc.lat = 34.7;
   loc.lon = -86.6;
 
@@ -19,6 +21,7 @@
 
   graphicalEnvironment = {
     enable = true;
+    useXScreensaver = true;
 
     i3Modifier = "Mod4";
 

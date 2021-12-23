@@ -43,13 +43,16 @@
       "${modifier}+Shift+k" = "move up";
       "${modifier}+Shift+l" = "move right";
 
-      "${modifier}+Shift+z" = "exec \"xscreensaver-command -lock\"";
+      "${modifier}+Shift+z" = if options.graphicalEnvironment.useXScreensaver then
+        "exec \"xscreensaver-command -lock\""
+      else
+        "exec \"i3lock\"";
     };
 
     bars = [{
       statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
       fonts = {
-        names = ["Comic Mono"];
+        names = ["Comic Mono" "Hack"];
         style = "Normal";
         size = 12.0;
       };
