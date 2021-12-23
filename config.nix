@@ -1,0 +1,5 @@
+{ pkgs, ... }:
+
+{
+  allowUnfree = true;
+}
