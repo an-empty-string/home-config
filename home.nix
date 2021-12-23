@@ -45,6 +45,7 @@ in lib.mkMerge [
     programs.zsh = localCallPackage home/programs/zsh.nix;
     programs.ssh = localCallPackage home/programs/ssh.nix;
     programs.git = localCallPackage home/programs/git.nix;
+    programs.tmux = localCallPackage home/programs/tmux.nix;
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
