@@ -8,9 +8,15 @@ in lib.mkMerge [
     home.username = options.username;
     home.homeDirectory = options.homeDirectory;
     home.stateVersion = "21.05";
-    home.sessionVariables = {
-      EDITOR = "vim";
-    };
+
+    home.sessionVariables = lib.mkMerge [
+      {
+        EDITOR = "vim";
+      }
+      (lib.mkIf options.gpg.sshEnable {
+        SSH_AUTH_SOCK = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
+      })
+    ];
 
     nixpkgs.overlays = [ (import ./overlay) ];
 
@@ -43,7 +49,11 @@ in lib.mkMerge [
 
     programs.vim = localCallPackage home/programs/vim.nix;
     programs.zsh = localCallPackage home/programs/zsh.nix;
+
+    programs.gpg = localCallPackage home/programs/gpg.nix;
+    services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
   }
+
 
   (lib.mkIf options.graphicalEnvironment.enable {
     fonts.fontconfig.enable = true;
