@@ -76,7 +76,10 @@ in lib.mkMerge [
     };
     systemd.user.services.xscreensaver.Service.Environment = "PATH=%h/.nix-profile/bin";
 
-    home.file.volumeicon = localCallPackage home/files/volumeicon.nix;
+    home.file.volumeicon = {
+      target = ".config/volumeicon/volumeicon";
+      source = home/files/volumeicon.conf;
+    };
   })
 
   options.additionalConfig
