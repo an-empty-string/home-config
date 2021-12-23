@@ -11,6 +11,9 @@
     (lib.mkIf options.graphicalEnvironment.enable {
       TERM = "xterm-256color";
     })
+    (lib.mkIf options.gpg.sshEnable {
+      SSH_AUTH_SOCK = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
+    })
   ];
 
   autocd = true;
