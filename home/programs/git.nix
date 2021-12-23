@@ -5,8 +5,7 @@
   userName = options.displayName;
   userEmail = options.emailAddress;
 
-  extraConfig = ''
-    [pull]
-    rebase=true
-  '';
+  extraConfig = {
+    pull.rebase = true;
+  };
 }
