@@ -33,12 +33,6 @@ in lib.mkMerge [
 
     programs.home-manager.enable = true;
 
-    programs.git = {
-      enable = true;
-      userName = options.displayName;
-      userEmail = options.emailAddress;
-    };
-
     home.file.nixconf = {
       text = ''
         experimental-features = nix-command flakes
@@ -49,15 +43,11 @@ in lib.mkMerge [
 
     programs.vim = localCallPackage home/programs/vim.nix;
     programs.zsh = localCallPackage home/programs/zsh.nix;
+    programs.ssh = localCallPackage home/programs/ssh.nix;
+    programs.git = localCallPackage home/programs/git.nix;
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
-
-    programs.ssh = {
-      enable = true;
-      controlMaster = if options.ssh.useControlMaster then "auto" else "no";
-      includes = [ "config.d/*" ];
-    };
   }
 
   (lib.mkIf options.graphicalEnvironment.enable {
