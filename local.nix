@@ -35,6 +35,10 @@
     ];
   };
 
+  ssh = {
+    useControlMaster = true;
+  };
+
   additionalConfig = {
   };
 }

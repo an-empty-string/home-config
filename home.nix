@@ -52,8 +52,13 @@ in lib.mkMerge [
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
-  }
 
+    programs.ssh = {
+      enable = true;
+      controlMaster = if options.ssh.useControlMaster then "auto" else "no";
+      includes = [ "config.d/*" ];
+    };
+  }
 
   (lib.mkIf options.graphicalEnvironment.enable {
     fonts.fontconfig.enable = true;
