@@ -83,5 +83,7 @@
     pkgs.vimPlugins.vim-airline-themes
 
     pkgs.vimPlugins.vim-python-pep8-indent
+
+    pkgs.vimPlugins.vim-terraform
   ];
 }
