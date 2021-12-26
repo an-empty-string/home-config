@@ -16,9 +16,11 @@
     package = pkgs.python39;
 
     additionalPythonPackages = (p: with p; [
+      cryptography
     ]);
   };
 
+  developmentEnvironment.enable = true;
   graphicalEnvironment = {
     enable = true;
     useXScreensaver = false;

@@ -16,6 +16,10 @@
     })
   ];
 
+  initExtra = ''
+    eval "$(direnv hook zsh)"
+  '';
+
   autocd = true;
   defaultKeymap = "viins";
   enableVteIntegration = true;

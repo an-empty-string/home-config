@@ -6,6 +6,7 @@
   userEmail = options.emailAddress;
 
   extraConfig = {
+    init.defaultBranch = "main";
     pull.rebase = true;
   };
 }

@@ -1,6 +1,4 @@
-{ options, pkgs, ... }:
-
-if options.graphicalEnvironment.enable then with pkgs; [
+{ pkgs, ... }: with pkgs; [
     brightnessctl
     comic-mono-font
     discord
@@ -9,6 +7,7 @@ if options.graphicalEnvironment.enable then with pkgs; [
     font-awesome_5
     gimp-with-plugins
     hack-font
+    lagrange
     networkmanagerapplet
     pavucontrol
     playerctl
@@ -18,4 +17,5 @@ if options.graphicalEnvironment.enable then with pkgs; [
     spotify
     termite
     volumeicon
-] else []
+    vscode
+]

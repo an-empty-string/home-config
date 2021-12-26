@@ -22,14 +22,16 @@ in lib.mkMerge [
 
     home.packages = with pkgs; [
       ag
+      aspell
+      aspellDicts.en
       bind        # dig
       inetutils   # traceroute
       mosh
+      openssl
       picocom
       sipcalc
-    ]
-    ++ localCallPackage home/package-sets/python.nix
-    ++ localCallPackage home/package-sets/graphicalEnvironment.nix;
+      sshfs
+    ];
 
     programs.home-manager.enable = true;
 
@@ -45,13 +47,26 @@ in lib.mkMerge [
     programs.zsh = localCallPackage home/programs/zsh.nix;
     programs.ssh = localCallPackage home/programs/ssh.nix;
     programs.git = localCallPackage home/programs/git.nix;
+    programs.tmux = localCallPackage home/programs/tmux.nix;
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
   }
 
+  (lib.mkIf options.developmentEnvironment.enable {
+    home.packages = with pkgs; [
+      direnv
+      niv
+      nix-prefetch
+    ];
+
+    services.lorri.enable = true;
+  })
+
   (lib.mkIf options.graphicalEnvironment.enable (lib.mkMerge [
     {
+      home.packages = localCallPackage home/package-sets/graphicalEnvironment.nix;
+
       fonts.fontconfig.enable = true;
 
       xsession.enable = true;
@@ -81,6 +96,17 @@ in lib.mkMerge [
       systemd.user.services.xscreensaver.Service.Environment = "PATH=%h/.nix-profile/bin";
     })
   ]))
+
+  (lib.mkIf options.python.enable {
+    home.packages = [
+      (
+        options.python.package.withPackages (p: with p; [
+          requests
+          ipython
+        ] ++ (options.python.additionalPythonPackages p))
+      )
+    ];
+  })
 
   options.additionalConfig
 ]
