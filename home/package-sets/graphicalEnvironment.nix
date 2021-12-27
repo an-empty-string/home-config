@@ -16,6 +16,7 @@
     signal-desktop
     spotify
     termite
+    thunderbird
     volumeicon
     vscode
 ]
