@@ -35,14 +35,6 @@ in lib.mkMerge [
 
     programs.home-manager.enable = true;
 
-    home.file.nixconf = {
-      text = ''
-        experimental-features = nix-command flakes
-      '';
-
-      target = ".config/nix/nix.conf";
-    };
-
     programs.vim = localCallPackage home/programs/vim.nix;
     programs.zsh = localCallPackage home/programs/zsh.nix;
     programs.ssh = localCallPackage home/programs/ssh.nix;
@@ -52,6 +44,16 @@ in lib.mkMerge [
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
   }
+
+  (lib.mkIf options.isNixOSUnstable {
+    home.file.nixconf = {
+      text = ''
+        experimental-features = nix-command flakes
+      '';
+
+      target = ".config/nix/nix.conf";
+    };
+  })
 
   (lib.mkIf options.developmentEnvironment.enable {
     home.packages = with pkgs; [

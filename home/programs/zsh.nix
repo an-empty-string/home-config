@@ -5,7 +5,7 @@
 
   sessionVariables = lib.mkMerge [
     {
-      PROMPT = "%F{green}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
+      PROMPT = "%F{\${promptColor}}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
       RPROMPT = "";
     }
     (lib.mkIf options.graphicalEnvironment.enable {
@@ -16,8 +16,16 @@
     })
   ];
 
+  initExtraFirst = ''
+    promptColor="green"
+    if [ -n "$SSH_CLIENT" ]; then
+      promptColor="yellow"
+    fi
+  '';
+
   initExtra = ''
     eval "$(direnv hook zsh)"
+    alias ls="ls --color=auto"
   '';
 
   autocd = true;
