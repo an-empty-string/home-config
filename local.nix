@@ -7,6 +7,7 @@
   homeDirectory = "/home/tris";
 
   isNixOS = true;
+  isNixOSUnstable = true;
 
   loc.lat = 34.7;
   loc.lon = -86.6;
