@@ -7,6 +7,7 @@
   homeDirectory = "/home/tris";
 
   isNixOS = true;
+  isNixOSUnstable = false;
 
   loc.lat = 34.7;
   loc.lon = -86.6;
@@ -21,18 +22,10 @@
   };
 
   developmentEnvironment.enable = true;
-  graphicalEnvironment = {
-    enable = true;
-    useXScreensaver = true;
-
-    i3Modifier = "Mod4";
-
-    colorTemperature.day = 5500;
-    colorTemperature.night = 3700;
-  };
+  graphicalEnvironment.enable = false;
 
   gpg = {
-    sshEnable = true;
+    sshEnable = false;
     sshKeys = [ "6AC01B8D7C9C5F6006DC3C0D551030E83ECDE32C" ];
 
     publicKeys = [
