@@ -5,9 +5,12 @@
     emojione
     feh
     font-awesome_5
+    gajim
     gimp-with-plugins
     hack-font
     lagrange
+    libnotify
+    maim
     networkmanagerapplet
     pavucontrol
     playerctl
@@ -19,4 +22,5 @@
     thunderbird
     volumeicon
     vscode
+    xclip
 ]
