@@ -1,4 +1,4 @@
-{ options, lib, ... }:
+{ options, lib, pkgs, ... }:
 
 {
   enable = true;
@@ -31,6 +31,8 @@
       "XF86AudioPrev" = "exec playerctl previous";
 
       "${modifier}+d" = "exec \"rofi -modi drun,run -show drun\"";
+      "${modifier}+Shift+w" = "exec \"rofi -modi window -show window\"";
+
       "${modifier}+g" = "split h";
 
       "${modifier}+h" = "focus left";
@@ -47,6 +49,9 @@
         "exec \"xscreensaver-command -lock\""
       else
         "exec \"i3lock\"";
+
+      "${modifier}+Shift+s" = "exec ${pkgs.tris-upload-utils}/bin/upload-helper screenshot";
+      "${modifier}+Shift+p" = "exec ${pkgs.tris-upload-utils}/bin/upload-helper pastebin";
     };
 
     bars = [{
