@@ -20,6 +20,7 @@
     spotify
     termite
     thunderbird
+    tris-upload-utils
     volumeicon
     vscode
     xclip

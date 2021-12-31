@@ -32,7 +32,6 @@ in lib.mkMerge [
       picocom
       sipcalc
       sshfs
-      tris-upload-utils
     ];
 
     programs.home-manager.enable = true;
