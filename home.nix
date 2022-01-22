@@ -25,6 +25,8 @@ in lib.mkMerge [
       aspell
       aspellDicts.en
       bind        # dig
+      fzf
+      htop
       inetutils   # traceroute
       mosh
       nmap

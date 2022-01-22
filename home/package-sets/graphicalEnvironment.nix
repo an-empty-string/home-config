@@ -24,4 +24,5 @@
     volumeicon
     vscode
     xclip
+    zoom-us
 ]

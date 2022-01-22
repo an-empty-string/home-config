@@ -17,6 +17,7 @@
     package = pkgs.python39;
 
     additionalPythonPackages = (p: with p; [
+      arrow
       cryptography
     ]);
   };
