@@ -34,6 +34,7 @@ in lib.mkMerge [
       picocom
       sipcalc
       sshfs
+      timewarrior
     ];
 
     programs.home-manager.enable = true;
@@ -46,6 +47,10 @@ in lib.mkMerge [
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
+
+    programs.taskwarrior = {
+      enable = true;
+    };
   }
 
   (lib.mkIf options.isNixOSUnstable {
