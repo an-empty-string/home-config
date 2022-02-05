@@ -12,6 +12,7 @@
     libnotify
     maim
     networkmanagerapplet
+    pamixer
     pavucontrol
     playerctl
     rofi

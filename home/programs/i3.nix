@@ -16,7 +16,6 @@
     workspaceAutoBackAndForth = true;
 
     startup = [
-      { command = "volumeicon"; }
       { command = "nm-applet"; }
       { command = "feh --bg-scale ~/.background.png"; always = true; }
     ];
@@ -29,6 +28,9 @@
       "XF86AudioPlay" = "exec playerctl play-pause";
       "XF86AudioNext" = "exec playerctl next";
       "XF86AudioPrev" = "exec playerctl previous";
+
+      "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+      "XF86AudioLowerVolume" = "exec pamixer -d 5";
 
       "${modifier}+d" = "exec \"rofi -modi drun,run -show drun\"";
       "${modifier}+Shift+w" = "exec \"rofi -modi window -show window\"";
