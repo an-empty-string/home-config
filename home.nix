@@ -85,10 +85,10 @@ in lib.mkMerge [
       services.dunst.enable = true;
       services.redshift = localCallPackage home/programs/redshift.nix;
 
-      home.file.volumeicon = {
-        target = ".config/volumeicon/volumeicon";
-        source = home/files/volumeicon.conf;
-      };
+      services.pasystray.enable = true;
+      systemd.user.services.pasystray.Service.ExecStart = lib.mkForce "${pkgs.pasystray}/bin/pasystray --notify=all";
+
+      services.mpris-proxy.enable = true;
     }
 
     (lib.mkIf options.graphicalEnvironment.useXScreensaver {
