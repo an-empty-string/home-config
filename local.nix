@@ -45,5 +45,8 @@
   };
 
   additionalConfig = {
+    home.packages = [
+      pkgs.musescore
+    ];
   };
 }
