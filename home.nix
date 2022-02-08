@@ -113,8 +113,14 @@ in lib.mkMerge [
     home.packages = [
       (
         options.python.package.withPackages (p: with p; [
-          requests
+          arrow
+          black
+          cryptography
+          flake8
           ipython
+          mypy
+          pytest
+          requests
         ] ++ (options.python.additionalPythonPackages p))
       )
     ];
