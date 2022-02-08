@@ -20,6 +20,7 @@
     ]);
   };
 
+  productivityTools.enable = true;
   developmentEnvironment.enable = true;
   graphicalEnvironment = {
     enable = true;
