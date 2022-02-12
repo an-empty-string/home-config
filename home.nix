@@ -22,6 +22,7 @@ in lib.mkMerge [
 
     home.packages = with pkgs; [
       ag
+      asciinema
       aspell
       aspellDicts.en
       bind        # dig
