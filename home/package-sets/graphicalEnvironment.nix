@@ -1,4 +1,5 @@
 { pkgs, ... }: with pkgs; [
+    arandr
     brightnessctl
     comic-mono-font
     discord
