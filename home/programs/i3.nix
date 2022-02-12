@@ -32,6 +32,9 @@
       "XF86AudioRaiseVolume" = "exec pamixer -i 5";
       "XF86AudioLowerVolume" = "exec pamixer -d 5";
 
+      "${modifier}+grave" = "exec nvidia-settings -a :0/DigitalVibrance=-1024";
+      "${modifier}+Shift+grave" = "exec nvidia-settings -a :0/DigitalVibrance=0";
+
       "${modifier}+d" = "exec \"rofi -modi drun,run -show drun\"";
       "${modifier}+Shift+w" = "exec \"rofi -modi window -show window\"";
 
