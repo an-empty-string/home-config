@@ -6,10 +6,11 @@
       default.command = "simple";
 
       report.simple = {
-        description = "Open tasks by project";
+        description = "Unblocked tasks by project";
         columns = "id,project,priority,description,due.relative";
         labels = "ID,Proj,Pri,Desc,Due";
         sort = "project+/,priority,entry+";
+        filter = "status:pending -WAITING -BLOCKED";
       };
 
       context.prod.read = "project!=personal.book and project!=personal.code";
