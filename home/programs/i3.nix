@@ -21,8 +21,8 @@
     ];
 
     keybindings = let modifier = options.graphicalEnvironment.i3Modifier; in lib.mkOptionDefault {
-      "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
-      "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+      "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
+      "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
 
       "XF86AudioPause" = "exec playerctl play-pause";
       "XF86AudioPlay" = "exec playerctl play-pause";
@@ -31,6 +31,9 @@
 
       "XF86AudioRaiseVolume" = "exec pamixer -i 5";
       "XF86AudioLowerVolume" = "exec pamixer -d 5";
+
+      "button6" = "focus left";
+      "button7" = "focus right";
 
       "${modifier}+grave" = "exec nvidia-settings -a :0/DigitalVibrance=-1024";
       "${modifier}+Shift+grave" = "exec nvidia-settings -a :0/DigitalVibrance=0";

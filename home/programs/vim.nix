@@ -70,13 +70,15 @@
 
     " Maps
     nmap <silent> <leader>h :set nohlsearch<CR>
-    nmap <silent> <leader>sv :source ~/.vimrc<CR>
+    nmap <silent> <leader>tf :Pytest file<CR>
 
     colorscheme gruvbox
   '';
 
   plugins = with pkgs.vimPlugins; [
     gruvbox
+    vimwiki
+
     vim-unimpaired
 
     vim-airline

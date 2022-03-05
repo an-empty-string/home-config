@@ -1,7 +1,9 @@
 { pkgs, ... }: with pkgs; [
     arandr
     brightnessctl
+    chromium
     comic-mono-font
+    ddcutil
     discord
     emojione
     feh
@@ -9,10 +11,13 @@
     gajim
     gimp-with-plugins
     hack-font
+    keepassxc
     lagrange
     libnotify
     maim
+    mupdf
     networkmanagerapplet
+    obs-studio
     pamixer
     pavucontrol
     playerctl
@@ -23,8 +28,10 @@
     termite
     thunderbird
     tris-upload-utils
+    vlc
     volumeicon
     vscode
+    xorg.xbacklight
     xclip
     zoom-us
 ]

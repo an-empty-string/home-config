@@ -14,6 +14,9 @@
       };
 
       context.prod.read = "project!=personal.book and project!=personal.code";
+      context.cyburity = let
+        ctx = "proj:work.cyburity";
+      in { read = ctx; write = ctx; };
     };
   };
 

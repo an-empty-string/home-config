@@ -29,12 +29,16 @@ in lib.mkMerge [
       fzf
       htop
       inetutils   # traceroute
+      jq
       mosh
       nmap
       openssl
       picocom
+      pwgen
       sipcalc
       sshfs
+      step-cli
+      unzip
     ];
 
     programs.home-manager.enable = true;
@@ -48,7 +52,13 @@ in lib.mkMerge [
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
 
+    programs.gitui.enable = true;
     programs.password-store.enable = true;
+
+    systemd.user.services.inhibit-lid-sleep = {
+      Unit.Description = "Prevent lid switch from suspending the system";
+      Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${options.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
+    };
   }
 
   (lib.mkIf options.productivityTools.enable (
