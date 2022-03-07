@@ -21,6 +21,13 @@
   };
 
   productivityTools.enable = true;
+  productivityTools.taskd = {
+    certificate = "/home/tris/.task/keys/public.cert";
+    key = "/home/tris/.task/keys/private.key";
+    ca = "/home/tris/.task/keys/ca.cert";
+    credentials = "trisfyi/tris/00000000-0000-0000-0000-000000000000";
+  };
+
   developmentEnvironment.enable = true;
   graphicalEnvironment = {
     enable = true;

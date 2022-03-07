@@ -52,7 +52,6 @@ in lib.mkMerge [
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
 
-    programs.gitui.enable = true;
     programs.password-store.enable = true;
 
     systemd.user.services.inhibit-lid-sleep = {

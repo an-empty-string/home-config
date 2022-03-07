@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, options, ... }: {
   programs.taskwarrior = {
     enable = true;
     config = {
@@ -17,6 +17,8 @@
       context.cyburity = let
         ctx = "proj:work.cyburity";
       in { read = ctx; write = ctx; };
+
+      taskd = options.productivityTools.taskd;
     };
   };
 
