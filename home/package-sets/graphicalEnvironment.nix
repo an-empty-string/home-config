@@ -1,37 +1,39 @@
 { pkgs, ... }: with pkgs; [
-    arandr
     brightnessctl
     chromium
     comic-mono-font
     ddcutil
     discord
     emojione
-    feh
     font-awesome_5
     gajim
     gimp-with-plugins
+    grim
     hack-font
+    imv
     keepassxc
     lagrange
     libnotify
     maim
-    mupdf
-    networkmanagerapplet
     obs-studio
     pamixer
     pavucontrol
     playerctl
-    rofi
+    polymc
     sct
     signal-desktop
+    slurp
     spotify
-    termite
+    swayidle
     thunderbird
     tris-upload-utils
     vlc
     volumeicon
     vscode
-    xorg.xbacklight
-    xclip
+    wdisplays
+    wl-clipboard
+    wofi
+    xdg-desktop-portal-wlr
+    zathura
     zoom-us
 ]

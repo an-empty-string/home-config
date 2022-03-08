@@ -3,6 +3,9 @@
 let
   localCallPackage = path: ((import path) { inherit lib options pkgs; } );
   options = localCallPackage ./local.nix;
+
+  waylandOverlayUrl = "https://github.com/nix-community/nixpkgs-wayland/archive/master.tar.gz";
+  waylandOverlay = (import "${builtins.fetchTarball waylandOverlayUrl}/overlay.nix");
 in lib.mkMerge [
   {
     home.username = options.username;
@@ -12,16 +15,20 @@ in lib.mkMerge [
     home.sessionVariables = lib.mkMerge [
       {
         EDITOR = "vim";
+        MOZ_ENABLE_WAYLAND = "1";
+        SDL_VIDEODRIVER = "wayland";
       }
       (lib.mkIf (!options.isNixOS) {
         NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
       })
     ];
 
-    nixpkgs.overlays = [ (import ./overlay) ];
+    nixpkgs.overlays = [
+      (import ./overlay)
+      waylandOverlay
+    ];
 
     home.packages = with pkgs; [
-      ag
       asciinema
       aspell
       aspellDicts.en
@@ -35,6 +42,7 @@ in lib.mkMerge [
       openssl
       picocom
       pwgen
+      silver-searcher
       sipcalc
       sshfs
       step-cli
@@ -89,35 +97,40 @@ in lib.mkMerge [
       home.packages = localCallPackage home/package-sets/graphicalEnvironment.nix;
 
       fonts.fontconfig.enable = true;
-
-      xsession.enable = true;
-      xsession.windowManager.i3 = localCallPackage home/programs/i3.nix;
-
+      programs.alacritty = localCallPackage home/programs/alacritty.nix;
       programs.firefox.enable = true;
-
-      programs.termite = localCallPackage home/programs/termite.nix;
       programs.i3status-rust = localCallPackage home/programs/i3status.nix;
-
-      services.dunst.enable = true;
-      services.redshift = localCallPackage home/programs/redshift.nix;
-
-      services.pasystray.enable = true;
-      systemd.user.services.pasystray.Service.ExecStart = lib.mkForce "${pkgs.pasystray}/bin/pasystray --notify=all";
-
+      programs.mako.enable = true;
+      services.gammastep = localCallPackage home/programs/gammastep.nix;
+      services.kanshi = { enable = true; profiles = options.graphicalEnvironment.kanshiProfiles; };
       services.mpris-proxy.enable = true;
+      wayland.windowManager.sway = localCallPackage home/programs/sway.nix;
     }
 
-    (lib.mkIf options.graphicalEnvironment.useXScreensaver {
-      services.xscreensaver = {
-        enable = true;
-        settings = {
-          fade = false;
-          lock = true;
-        };
+    {
+      home.file.swayidle = let swaylock = "swaylock -lfF -c 282828"; in {
+        text = ''
+          timeout 300 '${swaylock}'
+          before-sleep '${swaylock}'
+        '';
+        target = ".config/swayidle/config";
       };
 
-      systemd.user.services.xscreensaver.Service.Environment = "PATH=%h/.nix-profile/bin";
-    })
+      systemd.user.services.swayidle = {
+        Unit.Description = "swayidle";
+        Service.ExecStart = "${pkgs.swayidle}/bin/swayidle -w";
+      };
+    }
+
+    {
+      home.file.electron-flags = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+        target = ".config/electron-flags.conf";
+      };
+    }
   ]))
 
   (lib.mkIf options.python.enable {

@@ -31,12 +31,17 @@
   developmentEnvironment.enable = true;
   graphicalEnvironment = {
     enable = true;
-    useXScreensaver = true;
 
     i3Modifier = "Mod4";
 
     colorTemperature.day = 5500;
     colorTemperature.night = 3700;
+
+    kanshiProfiles = {
+      undocked = {
+        outputs = [ { criteria = "eDP-1"; } ];
+      };
+    };
   };
 
   gpg = {
