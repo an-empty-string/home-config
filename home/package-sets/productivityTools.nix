@@ -34,4 +34,15 @@
   };
 
   home.activation.writeMutableTaskrc = "echo 'include ~/.config/task/taskrc' > ~/.taskrc";
+
+  systemd.user.services.taskwarrior-sync = {
+    Unit.Description = "Synchronize taskwarrior tasks";
+    Service.ExecStart = "${pkgs.taskwarrior}/bin/task sync";
+  };
+
+  systemd.user.timers.taskwarrior-sync = {
+    Unit.Description = "Synchronize taskwarrior tasks periodically";
+    Timer.OnCalendar = "*:0/10";
+    Install.WantedBy = [ "default.target" ];
+  };
 }
