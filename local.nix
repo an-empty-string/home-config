@@ -38,5 +38,14 @@
   };
 
   additionalConfig = {
+    systemd.user.services.generate-statusline = {
+      Unit.Description = "Generate statusline";
+      Service.ExecStart = "${pkgs.tris-statusline-generator}/bin/generate-statusline";
+    };
+
+    systemd.user.timers.generate-statusline = {
+      Install.WantedBy = [ "timers.target" ];
+      Timer.OnCalendar = "*:00/10";
+    };
   };
 }
