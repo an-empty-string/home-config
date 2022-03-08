@@ -4,10 +4,6 @@
   enable = true;
 
   sessionVariables = lib.mkMerge [
-    {
-      PROMPT = "%F{\${promptColor}}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
-      RPROMPT = "";
-    }
     (lib.mkIf options.graphicalEnvironment.enable {
       TERM = "xterm-256color";
     })
@@ -26,7 +22,13 @@
   initExtra = ''
     eval "$(direnv hook zsh)"
     alias ls="ls --color=auto"
-  '';
+    PROMPT="%F{$promptColor}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
+    RPROMPT="";
+  '' + (if options.graphicalEnvironment.enable then ''
+    if [ "$(tty)" = "/dev/tty1" ]; then
+      exec sway
+    fi
+  '' else "");
 
   autocd = true;
   defaultKeymap = "viins";

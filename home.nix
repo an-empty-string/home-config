@@ -3,6 +3,9 @@
 let
   localCallPackage = path: ((import path) { inherit lib options pkgs; } );
   options = localCallPackage ./local.nix;
+
+  waylandOverlayUrl = "https://github.com/nix-community/nixpkgs-wayland/archive/master.tar.gz";
+  waylandOverlay = (import "${builtins.fetchTarball waylandOverlayUrl}/overlay.nix");
 in lib.mkMerge [
   {
     home.username = options.username;
@@ -12,26 +15,38 @@ in lib.mkMerge [
     home.sessionVariables = lib.mkMerge [
       {
         EDITOR = "vim";
+        MOZ_ENABLE_WAYLAND = "1";
+        SDL_VIDEODRIVER = "wayland";
       }
       (lib.mkIf (!options.isNixOS) {
         NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
       })
     ];
 
-    nixpkgs.overlays = [ (import ./overlay) ];
+    nixpkgs.overlays = [
+      (import ./overlay)
+      waylandOverlay
+    ];
 
     home.packages = with pkgs; [
-      ag
+      asciinema
       aspell
       aspellDicts.en
       bind        # dig
+      fzf
+      htop
       inetutils   # traceroute
+      jq
       mosh
       nmap
       openssl
       picocom
+      pwgen
+      silver-searcher
       sipcalc
       sshfs
+      step-cli
+      unzip
     ];
 
     programs.home-manager.enable = true;
@@ -44,7 +59,18 @@ in lib.mkMerge [
 
     programs.gpg = localCallPackage home/programs/gpg.nix;
     services.gpg-agent = localCallPackage home/programs/gpg-agent.nix;
+
+    programs.password-store.enable = true;
+
+    systemd.user.services.inhibit-lid-sleep = {
+      Unit.Description = "Prevent lid switch from suspending the system";
+      Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${options.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
+    };
   }
+
+  (lib.mkIf options.productivityTools.enable (
+    localCallPackage home/package-sets/productivityTools.nix
+  ))
 
   (lib.mkIf options.isNixOSUnstable {
     home.file.nixconf = {
@@ -71,43 +97,54 @@ in lib.mkMerge [
       home.packages = localCallPackage home/package-sets/graphicalEnvironment.nix;
 
       fonts.fontconfig.enable = true;
-
-      xsession.enable = true;
-      xsession.windowManager.i3 = localCallPackage home/programs/i3.nix;
-
+      programs.alacritty = localCallPackage home/programs/alacritty.nix;
       programs.firefox.enable = true;
-
-      programs.termite = localCallPackage home/programs/termite.nix;
       programs.i3status-rust = localCallPackage home/programs/i3status.nix;
+      programs.mako.enable = true;
+      services.gammastep = localCallPackage home/programs/gammastep.nix;
+      services.kanshi = { enable = true; profiles = options.graphicalEnvironment.kanshiProfiles; };
+      services.mpris-proxy.enable = true;
+      wayland.windowManager.sway = localCallPackage home/programs/sway.nix;
+    }
 
-      services.dunst.enable = true;
-      services.redshift = localCallPackage home/programs/redshift.nix;
+    {
+      home.file.swayidle = let swaylock = "swaylock -lfF -c 282828"; in {
+        text = ''
+          timeout 300 '${swaylock}'
+          before-sleep '${swaylock}'
+        '';
+        target = ".config/swayidle/config";
+      };
 
-      home.file.volumeicon = {
-        target = ".config/volumeicon/volumeicon";
-        source = home/files/volumeicon.conf;
+      systemd.user.services.swayidle = {
+        Unit.Description = "swayidle";
+        Service.ExecStart = "${pkgs.swayidle}/bin/swayidle -w";
       };
     }
 
-    (lib.mkIf options.graphicalEnvironment.useXScreensaver {
-      services.xscreensaver = {
-        enable = true;
-        settings = {
-          fade = false;
-          lock = true;
-        };
+    {
+      home.file.electron-flags = {
+        text = ''
+          --enable-features=UseOzonePlatform
+          --ozone-platform=wayland
+        '';
+        target = ".config/electron-flags.conf";
       };
-
-      systemd.user.services.xscreensaver.Service.Environment = "PATH=%h/.nix-profile/bin";
-    })
+    }
   ]))
 
   (lib.mkIf options.python.enable {
     home.packages = [
       (
         options.python.package.withPackages (p: with p; [
-          requests
+          arrow
+          black
+          cryptography
+          flake8
           ipython
+          mypy
+          pytest
+          requests
         ] ++ (options.python.additionalPythonPackages p))
       )
     ];

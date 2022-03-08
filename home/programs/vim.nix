@@ -70,20 +70,42 @@
 
     " Maps
     nmap <silent> <leader>h :set nohlsearch<CR>
-    nmap <silent> <leader>sv :source ~/.vimrc<CR>
+    nmap <silent> <leader>tf :Pytest file<CR>
 
     colorscheme gruvbox
   '';
 
-  plugins = [
-    pkgs.vimPlugins.gruvbox
-    pkgs.vimPlugins.vim-unimpaired
+  plugins = with pkgs.vimPlugins; [
+    gruvbox
+    vimwiki
 
-    pkgs.vimPlugins.vim-airline
-    pkgs.vimPlugins.vim-airline-themes
+    vim-unimpaired
 
-    pkgs.vimPlugins.vim-python-pep8-indent
+    vim-airline
+    vim-airline-themes
 
-    pkgs.vimPlugins.vim-terraform
+    vim-python-pep8-indent
+
+    vim-terraform
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "black";
+      src = pkgs.fetchFromGitHub {
+        owner = "psf";
+        repo = "black";
+        rev = "d038a24ca200da9dacc1dcb05090c9e5b45b7869";
+        hash = "sha256-n/vwkN6ebgKPze8O4GWyk3NLKyXcvSJqcsf/0mBuLuE=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "pytest";
+      src = pkgs.fetchFromGitHub {
+        owner = "alfredodeza";
+        repo = "pytest.vim";
+        rev = "e7ea3599803cb60861c27ac93f6e00cfe3e54826";
+        hash = "sha256-2I0pdahQIs0q0Gnrn8D5hH0p07qH8t896wq7zh0bF4Y=";
+      };
+    })
   ];
 }
