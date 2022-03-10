@@ -131,6 +131,28 @@ in lib.mkMerge [
         target = ".config/electron-flags.conf";
       };
     }
+
+    {
+      home.file.wofi = {
+        source = home/files/wofi.css;
+        target = ".config/wofi/style.css";
+      };
+    }
+
+    {
+      home.file.networkmanager-dmenu = {
+        text = ''
+          [dmenu]
+          dmenu_command = wofi -d
+          wifi_chars = ▂▄▆█
+
+          [dmenu_passphrase]
+          obscure = True
+        '';
+
+        target = ".config/networkmanager-dmenu/config.ini";
+      };
+    }
   ]))
 
   (lib.mkIf options.python.enable {

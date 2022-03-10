@@ -1,0 +1,46 @@
+* {
+    font-family: 'Comic Mono';
+}
+
+window {
+    background-color: #282828;
+}
+
+img {
+    display: none;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: #282828;
+    color: #ebdbb2;
+}
+
+#inner-box {
+    background-color: #282828;
+
+}
+
+#outer-box {
+    margin: 5px;
+    padding: 20px;
+    background-color: #282828;
+}
+
+#scroll {
+}
+
+#text {
+    padding: 5px;
+    color: white;
+}
+
+#entry:selected {
+    background-color: #458588;
+}
+
+#text:selected {
+}

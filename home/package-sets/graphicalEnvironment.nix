@@ -14,7 +14,7 @@
     keepassxc
     lagrange
     libnotify
-    maim
+    networkmanager_dmenu
     obs-studio
     pamixer
     pavucontrol
