@@ -33,15 +33,18 @@ in lib.mkMerge [
       aspell
       aspellDicts.en
       bind        # dig
+      clang
       fzf
       htop
       inetutils   # traceroute
       jq
       mosh
+      mosquitto
       nmap
       openssl
       picocom
       pwgen
+      rustup
       silver-searcher
       sipcalc
       sshfs
@@ -163,6 +166,7 @@ in lib.mkMerge [
           black
           cryptography
           flake8
+          flask
           ipython
           mypy
           pytest
