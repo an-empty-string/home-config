@@ -16,6 +16,8 @@
       fonts = fonts;
     }];
 
+    focus.newWindow = "urgent";
+
     fonts = fonts;
     modifier = options.graphicalEnvironment.i3Modifier;
     terminal = "alacritty";
@@ -38,6 +40,7 @@
 
         "${mod}+d" = "exec wofi --show drun";
         "${mod}+Shift+z" = "exec swaylock -c 282828";
+        "${mod}+Shift+n" = "exec networkmanager_dmenu";
     };
   };
 }
