@@ -5,11 +5,11 @@
     };
     font = {
       normal.family = "Comic Mono";
-      size = 12;
+      size = 14;
     };
     colors = {
-      primary.backgroud = "0x282828";
-      primary.foreground = "0xd5c4a1";
+      primary.background = "0x262626";
+      primary.foreground = "0xebdbb2";
       cursor.text = "0x282828";
       cursor.cursor = "0xd5c4a1";
       normal = {
