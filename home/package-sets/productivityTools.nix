@@ -25,6 +25,7 @@
   home.packages = with pkgs; [
     timewarrior
     python39Packages.bugwarrior
+    tris-pomodoro
   ];
 
   home.file.timewarriorTaskwarriorHook = {
@@ -43,6 +44,12 @@
   systemd.user.timers.taskwarrior-sync = {
     Unit.Description = "Synchronize taskwarrior tasks periodically";
     Timer.OnCalendar = "*:0/10";
+    Install.WantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services.tris-pomodoro-server = {
+    Unit.Description = "Synchronize taskwarrior tasks";
+    Service.ExecStart = "${pkgs.tris-pomodoro}/bin/pomodoro-server";
     Install.WantedBy = [ "default.target" ];
   };
 }
