@@ -73,7 +73,7 @@
           { button = "right"; cmd = "mosquitto_pub -t pomodoro/command -m reset"; }
         ];
       }
-      { block = "battery"; format = "{percentage} {time}"; device = "BAT0"; }
+      { block = "battery"; format = "$percentage $time"; device = "BAT0"; }
       { block = "time"; format = "%Y-%m-%d %H:%M"; }
     ];
 
