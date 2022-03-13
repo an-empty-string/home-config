@@ -26,6 +26,7 @@ in lib.mkMerge [
     ];
 
     home.packages = with pkgs; [
+      acpi
       asciinema
       aspell
       aspellDicts.en
