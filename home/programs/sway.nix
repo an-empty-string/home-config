@@ -22,6 +22,8 @@
     modifier = options.graphicalEnvironment.i3Modifier;
     terminal = "alacritty";
 
+    window.hideEdgeBorders = "smart";
+
     keybindings =
       let mod = options.graphicalEnvironment.i3Modifier; in
     lib.mkOptionDefault {
@@ -38,9 +40,21 @@
 
         "${mod}+g" = "split h";
 
-        "${mod}+d" = "exec wofi --show drun";
+        "${mod}+d" = "exec rofi -show drun -modi drun,run";
         "${mod}+Shift+z" = "exec swaylock -c 282828";
         "${mod}+Shift+n" = "exec networkmanager_dmenu";
     };
+
+    floating.criteria = [
+      { title = "Firefox — Sharing Indicator"; }
+    ];
+
+    assigns = {
+      "Firefox is sharing" = [{ title = "Firefox — Sharing Indicator"; }];
+    };
+
+    startup = [
+      { command = "systemctl --user restart swayidle.service"; always = true; }
+    ];
   };
 }

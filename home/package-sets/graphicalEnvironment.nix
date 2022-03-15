@@ -20,6 +20,7 @@
     pavucontrol
     playerctl
     polymc
+    rofi
     sct
     signal-desktop
     slurp
@@ -32,7 +33,6 @@
     vscode
     wdisplays
     wl-clipboard
-    wofi
     xdg-desktop-portal-wlr
     zathura
     zoom-us
