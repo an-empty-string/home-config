@@ -1,0 +1,17 @@
+[general]
+targets=github_personal_public
+taskrc=~/.config/task/taskrc
+
+[github_personal_public]
+service = github
+github.description_template = {{project|lower}}#{{githubnumber}}: {{githubtitle}}
+github.project_template = personal.code.{{project|lower}}
+
+github.login = an-empty-string
+github.token = @oracle:eval:pass tokens/github/an-empty-string/bugwarrior-public
+
+github.username = an-empty-string
+
+github.include_user_issues = False
+github.include_user_repos = False
+github.query = assignee:an-empty-string is:open repo:an-empty-string/amethyst

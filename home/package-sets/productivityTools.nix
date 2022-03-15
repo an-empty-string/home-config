@@ -48,8 +48,13 @@
   };
 
   systemd.user.services.tris-pomodoro-server = {
-    Unit.Description = "Synchronize taskwarrior tasks";
+    Unit.Description = "Pomodoro server";
     Service.ExecStart = "${pkgs.tris-pomodoro}/bin/pomodoro-server";
     Install.WantedBy = [ "default.target" ];
+  };
+
+  home.file.bugwarriorrc = {
+    source = ../files/bugwarriorrc;
+    target = ".config/bugwarrior/bugwarriorrc";
   };
 }
