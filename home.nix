@@ -1,11 +1,9 @@
-{ lib, config, pkgs, ... }:
+{lib, config, pkgs, ... }:
 
 let
   localCallPackage = path: ((import path) { inherit lib options pkgs; } );
   options = localCallPackage ./local.nix;
 
-  waylandOverlayUrl = "https://github.com/nix-community/nixpkgs-wayland/archive/master.tar.gz";
-  waylandOverlay = (import "${builtins.fetchTarball waylandOverlayUrl}/overlay.nix");
 in lib.mkMerge [
   {
     home.username = options.username;
@@ -25,15 +23,16 @@ in lib.mkMerge [
 
     nixpkgs.overlays = [
       (import ./overlay)
-      waylandOverlay
     ];
 
     home.packages = with pkgs; [
       asciinema
       aspell
       aspellDicts.en
+      awscli2
       bind        # dig
       clang
+      ffmpeg
       fzf
       htop
       inetutils   # traceroute
@@ -41,9 +40,14 @@ in lib.mkMerge [
       mosh
       mosquitto
       nmap
+      nodejs
+      nodePackages.npm
       openssl
       picocom
+      podman
+      podman-compose
       pwgen
+      rmapi
       rustup
       silver-searcher
       sipcalc
@@ -68,6 +72,19 @@ in lib.mkMerge [
     systemd.user.services.inhibit-lid-sleep = {
       Unit.Description = "Prevent lid switch from suspending the system";
       Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${options.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
+    };
+
+    programs.autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    home.file.container-registries = {
+      text = ''
+        unqualified-search-registries = ['docker.io']
+      '';
+
+      target = ".config/containers/registries.conf";
     };
   }
 
@@ -138,17 +155,10 @@ in lib.mkMerge [
     }
 
     {
-      home.file.wofi = {
-        source = home/files/wofi.css;
-        target = ".config/wofi/style.css";
-      };
-    }
-
-    {
       home.file.networkmanager-dmenu = {
         text = ''
           [dmenu]
-          dmenu_command = wofi -d
+          dmenu_command = rofi -d
           wifi_chars = ▂▄▆█
 
           [dmenu_passphrase]
@@ -158,6 +168,7 @@ in lib.mkMerge [
         target = ".config/networkmanager-dmenu/config.ini";
       };
     }
+
   ]))
 
   (lib.mkIf options.python.enable {
