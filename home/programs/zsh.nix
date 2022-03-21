@@ -22,7 +22,13 @@
   initExtra = ''
     eval "$(direnv hook zsh)"
     alias ls="ls --color=auto"
-    PROMPT="%F{$promptColor}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
+    precmd() {
+      PROMPT="%F{$promptColor}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
+      branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+      if [ $? -eq 0 ]; then
+        PROMPT="%F{magenta}(on $branch) $PROMPT"
+      fi
+    }
     RPROMPT="";
   '' + (if options.graphicalEnvironment.enable then ''
     if [ "$(tty)" = "/dev/tty1" ]; then
