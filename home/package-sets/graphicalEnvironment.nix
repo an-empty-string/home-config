@@ -15,6 +15,7 @@
     lagrange
     libnotify
     networkmanager_dmenu
+    obsidian
     obs-studio
     pamixer
     pavucontrol

@@ -7,24 +7,24 @@
 
       report.simple = {
         description = "Unblocked tasks by project";
-        columns = "id,project,priority,description,due.relative";
-        labels = "ID,Proj,Pri,Desc,Due";
+        columns = "id,project,priority,description,tags,due.relative";
+        labels = "ID,Proj,Pri,Desc,Tags,Due";
         sort = "project+/,priority,entry+";
         filter = "status:pending -WAITING -BLOCKED";
       };
 
       context.prod.read = "project!=personal.book and project!=personal.code";
-      context.cyburity = let
-        ctx = "proj:work.cyburity";
-      in { read = ctx; write = ctx; };
+
+      context.cyburity = let ctx = "proj:work.cyburity"; in { read = ctx; write = ctx; };
+      context.as = let ctx = "proj:work.as"; in { read = ctx; write = ctx; };
 
       taskd = options.productivityTools.taskd;
     };
   };
 
   home.packages = with pkgs; [
-    timewarrior
     python39Packages.bugwarrior
+    timewarrior
     tris-pomodoro
   ];
 

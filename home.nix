@@ -49,6 +49,7 @@ in lib.mkMerge [
       podman-compose
       pwgen
       rmapi
+      ruby
       rustup
       silver-searcher
       sipcalc
