@@ -132,6 +132,21 @@ class App():
             self.load_config()
             return False
 
+        elif command.startswith("time") and command.count(" ") == 1:
+            _, arg = command.split(" ", maxsplit=1)
+            if "/" not in arg:
+                return False
+
+            work_time, break_time = arg.split("/")
+            if not work_time.isnumeric() and break_time.isnumeric():
+                return False
+
+            self.config.work_time = int(work_time) * 60
+            self.config.break_time = int(break_time) * 60
+
+            if self.state == States.WAITING_TO_WORK:
+                return await self.handle_command("reset")
+
     async def handle_internal(self):
         tick_task = None
 
