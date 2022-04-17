@@ -89,6 +89,8 @@ in lib.mkMerge [
 
       target = ".config/containers/registries.conf";
     };
+
+    services.syncthing.enable = true;
   }
 
   (lib.mkIf options.productivityTools.enable (
