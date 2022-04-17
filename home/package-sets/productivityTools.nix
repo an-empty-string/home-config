@@ -23,7 +23,7 @@
   };
 
   home.packages = with pkgs; [
-    python39Packages.bugwarrior
+    # python39Packages.bugwarrior
     timewarrior
     tris-pomodoro
   ];

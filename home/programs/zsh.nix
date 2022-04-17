@@ -30,6 +30,8 @@
       fi
     }
     RPROMPT="";
+
+    export EDITOR="vim"
   '' + (if options.graphicalEnvironment.enable then ''
     if [ "$(tty)" = "/dev/tty1" ]; then
       exec sway

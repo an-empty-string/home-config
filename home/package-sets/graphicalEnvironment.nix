@@ -25,6 +25,7 @@
     sct
     signal-desktop
     slurp
+    speedcrunch
     spotify
     swayidle
     thunderbird
