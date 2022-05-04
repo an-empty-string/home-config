@@ -48,6 +48,7 @@ in lib.mkMerge [
       picocom
       podman
       podman-compose
+      pv
       pwgen
       rmapi
       ruby
@@ -55,8 +56,10 @@ in lib.mkMerge [
       silver-searcher
       sipcalc
       sshfs
+      sshpass
       step-cli
       unzip
+      visidata
     ];
 
     programs.home-manager.enable = true;
@@ -109,6 +112,8 @@ in lib.mkMerge [
 
   (lib.mkIf options.developmentEnvironment.enable {
     home.packages = with pkgs; [
+      chromedriver
+      mariadb
       direnv
       niv
       nix-prefetch
