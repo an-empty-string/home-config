@@ -1,5 +1,6 @@
-{ ... }: {
+{ unstable, ... }: {
   enable = true;
+  package = unstable.legacyPackages.x86_64-linux.alacritty;
   settings = {
     window = {
     };

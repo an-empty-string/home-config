@@ -1,31 +1,31 @@
-{ options, lib, ... }: {
+{ lib, config, ... }: {
   enable = true;
   wrapperFeatures.gtk = true;
 
   extraOptions = [ "--unsupported-gpu" ];
 
   config =
-    let fonts = {
+    let useFonts = {
       names = [ "Comic Mono" "Hack" ];
       style = "Normal";
       size = 12.0;
     }; in
-  {
+  rec {
     bars = [{
       statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
-      fonts = fonts;
+      fonts = useFonts;
     }];
 
     focus.newWindow = "urgent";
 
-    fonts = fonts;
-    modifier = options.graphicalEnvironment.i3Modifier;
+    fonts = useFonts;
+    modifier = "Mod4";
     terminal = "alacritty";
 
     window.hideEdgeBorders = "smart";
 
     keybindings =
-      let mod = options.graphicalEnvironment.i3Modifier; in
+      let mod = config.wayland.windowManager.sway.config.modifier; in
     lib.mkOptionDefault {
         "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";

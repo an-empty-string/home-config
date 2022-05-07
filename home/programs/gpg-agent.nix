@@ -1,9 +1,9 @@
-{ options, ... }:
+{ ... }:
 
 {
   enable = true;
-  pinentryFlavor = if options.graphicalEnvironment.enable then "gtk2" else "curses";
+  pinentryFlavor = "gtk2";
 
-  enableSshSupport = options.gpg.sshEnable;
-  sshKeys = if options.gpg.sshEnable then options.gpg.sshKeys else [];
+  enableSshSupport = true;
+  sshKeys = [ "6AC01B8D7C9C5F6006DC3C0D551030E83ECDE32C" ];
 }

@@ -1,9 +1,9 @@
-{ options, ... }:
+{ ... }:
 
 {
   enable = true;
-  userName = options.displayName;
-  userEmail = options.emailAddress;
+  userName = "Tris Emmy Wilson";
+  userEmail = "tris@tris.fyi";
 
   extraConfig = {
     init.defaultBranch = "main";

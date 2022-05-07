@@ -1,10 +1,12 @@
-{ options, ... }:
+{ ... }:
 
 {
   enable = true;
   mutableKeys = true;
   mutableTrust = true;
-  publicKeys = options.gpg.publicKeys;
+  publicKeys = [
+    { source = ../../trust/gpg/tris.asc; trust = 5; }
+  ];
 
   settings = {
     personal-cipher-preferences = "AES256 AES192 AES";

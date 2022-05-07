@@ -1,0 +1,41 @@
+{ pkgs, unstable, ... }: with pkgs; [
+  acpi
+  asciinema
+  awscli2
+  bind
+  direnv
+  dos2unix
+  ffmpeg
+  htop
+  inetutils
+  jq
+  mosh
+  mosquitto
+  nmap
+  openssl
+  picocom
+  pv
+  pwgen
+  rmapi
+  ruby
+  rustup
+  silver-searcher
+  sipcalc
+  sshfs
+  sshpass
+  step-cli
+  unzip
+  visidata
+
+  (python39.withPackages (p: with p; [
+    arrow
+    black
+    cryptography
+    flake8
+    flask
+    ipython
+    mypy
+    pytest
+    requests
+  ]))
+]

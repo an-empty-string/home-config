@@ -20,7 +20,6 @@
     pamixer
     pavucontrol
     playerctl
-    polymc
     rofi
     sct
     signal-desktop

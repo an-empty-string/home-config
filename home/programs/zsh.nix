@@ -1,21 +1,21 @@
-{ lib, options, ... }:
+{ lib, ... }:
 
 {
   enable = true;
 
-  sessionVariables = lib.mkMerge [
-    (lib.mkIf options.graphicalEnvironment.enable {
-      TERM = "xterm-256color";
-    })
-    (lib.mkIf options.gpg.sshEnable {
-      SSH_AUTH_SOCK = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
-    })
-  ];
+  sessionVariables = {
+    TERM = "xterm-256color";
+  };
 
   initExtraFirst = ''
     promptColor="green"
     if [ -n "$SSH_CLIENT" ]; then
       promptColor="yellow"
+    fi
+
+    authSockCandidate="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+    if [ -e $authSockCandidate ]; then
+      export SSH_AUTH_SOCK=$authSockCandidate
     fi
   '';
 
@@ -32,11 +32,11 @@
     RPROMPT="";
 
     export EDITOR="vim"
-  '' + (if options.graphicalEnvironment.enable then ''
-    if [ "$(tty)" = "/dev/tty1" ]; then
+
+    if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
       exec sway
     fi
-  '' else "");
+  '';
 
   autocd = true;
   defaultKeymap = "viins";

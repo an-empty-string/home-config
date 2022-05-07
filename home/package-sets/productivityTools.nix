@@ -1,4 +1,4 @@
-{ pkgs, options, ... }: {
+{ pkgs, ... }: {
   programs.taskwarrior = {
     enable = true;
     config = {
@@ -17,8 +17,6 @@
 
       context.cyburity = let ctx = "proj:work.cyburity"; in { read = ctx; write = ctx; };
       context.as = let ctx = "proj:work.as"; in { read = ctx; write = ctx; };
-
-      taskd = options.productivityTools.taskd;
     };
   };
 
@@ -34,7 +32,11 @@
     executable = true;
   };
 
-  home.activation.writeMutableTaskrc = "echo 'include ~/.config/task/taskrc' > ~/.taskrc";
+  home.activation.writeMutableTaskrc = ''
+    echo 'include ~/.config/task/taskrc' > ~/.taskrc
+    echo 'include ~/.taskrc-secret' >> ~/.taskrc
+    touch ~/.taskrc-secret
+  '';
 
   systemd.user.services.taskwarrior-sync = {
     Unit.Description = "Synchronize taskwarrior tasks";

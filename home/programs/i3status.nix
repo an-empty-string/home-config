@@ -1,22 +1,22 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 
 {
 
   enable = true;
-  package = pkgs.callPackage ({ lib
-      , rustPlatform
-      , fetchFromGitHub
-      , pkg-config
-      , makeWrapper
-      , dbus
-      , libpulseaudio
-      , notmuch
-      , openssl
-      , ethtool
-      , lm_sensors
-      , iw
-      , iproute2
-    }:
+  package = unstable.legacyPackages.x86_64-linux.callPackage (
+    { lib
+    , rustPlatform
+    , fetchFromGitHub
+    , pkg-config
+    , makeWrapper
+    , dbus
+    , libpulseaudio
+    , notmuch
+    , openssl
+    , ethtool
+    , lm_sensors
+    , iw
+    , iproute2 }:
 
     rustPlatform.buildRustPackage rec {
       pname = "i3status-rust";

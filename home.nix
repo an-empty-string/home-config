@@ -33,6 +33,7 @@ in lib.mkMerge [
       awscli2
       bind        # dig
       clang
+      cloudflared
       dos2unix
       ffmpeg
       fzf
@@ -129,7 +130,6 @@ in lib.mkMerge [
       fonts.fontconfig.enable = true;
       programs.alacritty = localCallPackage home/programs/alacritty.nix;
       programs.firefox.enable = true;
-      # programs.firefox.package = pkgs.firefox-esr;
       programs.i3status-rust = localCallPackage home/programs/i3status.nix;
       programs.mako.enable = true;
       services.gammastep = localCallPackage home/programs/gammastep.nix;
