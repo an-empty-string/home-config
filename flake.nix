@@ -19,7 +19,7 @@
       stateVersion = "21.11";
       mkOptions = attrs: options: attrs // { inherit options; };
       subConfigs = paths: { lib, pkgs, config, ... }: lib.mkMerge (
-        map (path: builtins.trace path (
+        map (path: (
           (import path) ({
             inherit lib pkgs config;
             localCallPackage = p: ((import p) {

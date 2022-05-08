@@ -3,6 +3,7 @@
   wrapperFeatures.gtk = true;
 
   extraOptions = [ "--unsupported-gpu" ];
+  systemdIntegration = true;
 
   config =
     let useFonts = {
@@ -52,9 +53,5 @@
     assigns = {
       "Firefox is sharing" = [{ title = "Firefox — Sharing Indicator"; }];
     };
-
-    startup = [
-      { command = "systemctl --user restart swayidle.service"; always = true; }
-    ];
   };
 }

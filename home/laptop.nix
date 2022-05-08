@@ -37,7 +37,7 @@
     Unit.Description = "swayidle";
     Service.ExecStart = "${pkgs.swayidle}/bin/swayidle -w";
     Service.Restart = "always";
-    Install.WantedBy = [ "default.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
   };
 
   home.file.electron-flags = {
