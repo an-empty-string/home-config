@@ -3,9 +3,12 @@
   asciinema
   awscli2
   bind
+  cloudflared
   direnv
   dos2unix
   ffmpeg
+  fzf
+  gcc
   htop
   inetutils
   jq
@@ -26,6 +29,7 @@
   step-cli
   unzip
   visidata
+  zip
 
   (python39.withPackages (p: with p; [
     arrow

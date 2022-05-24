@@ -1,4 +1,4 @@
-{ unstable, ... }: {
+{ ... }: {
   enable = true;
   settings = {
     window = {
