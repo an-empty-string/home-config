@@ -15,6 +15,7 @@
   mosh
   mosquitto
   nmap
+  nodejs
   openssl
   picocom
   pv
