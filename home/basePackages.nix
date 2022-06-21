@@ -40,6 +40,7 @@
     flask
     ipython
     mypy
+    pygame
     pytest
     requests
   ]))
