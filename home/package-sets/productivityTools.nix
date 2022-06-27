@@ -9,9 +9,11 @@
         description = "Unblocked tasks by project";
         columns = "id,project,priority,description,tags,due.relative";
         labels = "ID,Proj,Pri,Desc,Tags,Due";
-        sort = "project+/,priority,entry+";
+        sort = "project+/,priority-,entry+";
         filter = "status:pending -WAITING -BLOCKED";
       };
+
+      uda.priority.values = "N,H,M,,L,S";
 
       context.prod.read = "project!=personal.book and project!=personal.code";
 

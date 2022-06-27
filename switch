@@ -1,3 +1,4 @@
 #!/bin/sh
-nix build ".#homeConfigurations.${1}.activationPackage"
+export NIXPKGS_ALLOW_UNFREE=1
+nix build --impure ".#homeConfigurations.${1}.activationPackage"
 result/activate
