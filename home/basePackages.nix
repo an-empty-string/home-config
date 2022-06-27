@@ -43,6 +43,7 @@
     cryptography
     flake8
     flask
+    httpx
     ipython
     mypy
     pygame

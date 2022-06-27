@@ -1,10 +1,11 @@
 { pkgs, unstable, ... }: with pkgs; [
   anki-bin
+  audacity
   brightnessctl
   chromium
   comic-mono-font
+  ddcutil
   discord
-  emacs
   emojione
   font-awesome_5
   gajim
@@ -34,6 +35,9 @@
   volumeicon
   wdisplays
   wireshark
+  vlc
+  volumeicon
+  wdisplays
   wl-clipboard
   xdg-desktop-portal-wlr
   zathura

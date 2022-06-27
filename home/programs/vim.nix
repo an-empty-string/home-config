@@ -60,6 +60,9 @@
     set list
     set listchars=tab:>.,trail:.,extends:#,precedes:#,nbsp:.
 
+    " Mouse in alacritty
+    set ttymouse=sgr
+
     " Disable relativenumber when leaving normal mode
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
