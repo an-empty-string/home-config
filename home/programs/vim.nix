@@ -72,12 +72,14 @@
     nmap <silent> <leader>h :set nohlsearch<CR>
     nmap <silent> <leader>tf :Pytest file<CR>
 
+    " Mouse fix for alacritty
+    set ttymouse=sgr
+
     colorscheme gruvbox
   '';
 
   plugins = with pkgs.vimPlugins; [
     gruvbox
-    vimwiki
 
     vim-unimpaired
 

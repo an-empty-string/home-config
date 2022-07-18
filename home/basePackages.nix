@@ -3,6 +3,8 @@
   asciinema
   awscli2
   bind
+  binutils
+  binwalk
   cloudflared
   direnv
   dos2unix
@@ -11,6 +13,7 @@
   gcc
   htop
   inetutils
+  jdk
   jq
   mosh
   mosquitto

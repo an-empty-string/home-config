@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mosquitto_pub -t task/next -m "`task rc.verbose=nothing rc.color=no rc.hooks=0 next || echo '🥳 done for today'`"

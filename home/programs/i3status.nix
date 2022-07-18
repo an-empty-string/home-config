@@ -67,6 +67,11 @@
       {
         block = "custom";
         persistent = true;
+        command = "mosquitto_sub -t task/next";
+      }
+      {
+        block = "custom";
+        persistent = true;
         command = "mosquitto_sub -t pomodoro/statusline";
         click = [
           { button = "left"; cmd = "mosquitto_pub -t pomodoro/command -m trigger"; }
