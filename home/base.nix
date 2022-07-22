@@ -20,7 +20,8 @@
 
   programs.home-manager.enable = true;
 
-  programs.vim = localCallPackage programs/vim.nix;
+  # programs.vim = localCallPackage programs/vim.nix;
+  programs.neovim = localCallPackage programs/neovim.nix;
   programs.zsh = localCallPackage programs/zsh.nix;
   programs.ssh = localCallPackage programs/ssh.nix;
   programs.git = localCallPackage programs/git.nix;

@@ -4,6 +4,7 @@
   chromium
   comic-mono-font
   discord
+  emacs
   emojione
   font-awesome_5
   gajim
@@ -14,11 +15,14 @@
   keepassxc
   lagrange
   libnotify
+  libreoffice
+  musescore
   networkmanager_dmenu
   obs-studio
   pamixer
   pavucontrol
   playerctl
+  polymc
   rofi
   signal-desktop
   slurp
@@ -29,6 +33,7 @@
   vlc
   volumeicon
   wdisplays
+  wireshark
   wl-clipboard
   xdg-desktop-portal-wlr
   zathura

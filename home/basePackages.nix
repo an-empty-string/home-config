@@ -11,6 +11,7 @@
   ffmpeg
   fzf
   gcc
+  gnumake
   htop
   inetutils
   jdk
@@ -20,6 +21,7 @@
   nmap
   nodejs
   openssl
+  pandoc
   picocom
   pv
   pwgen
