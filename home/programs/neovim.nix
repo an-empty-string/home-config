@@ -106,5 +106,6 @@
     vim-airline
     vim-airline-themes
     vim-python-pep8-indent
+    vim-nix
   ];
 }
