@@ -8,6 +8,7 @@
   discord
   emojione
   font-awesome_5
+  freerdp
   gajim
   gimp-with-plugins
   grim
