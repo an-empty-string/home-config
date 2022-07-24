@@ -17,6 +17,11 @@
         system = "x86_64-linux";
         modules = [ ./sys/terracotta/configuration.nix ];
       };
+
+      deepslate = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./sys/deepslate/configuration.nix ];
+      };
     };
 
     homeConfigurations = let

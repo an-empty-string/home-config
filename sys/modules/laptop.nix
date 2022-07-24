@@ -42,6 +42,17 @@
     displayManager.startx.enable = true;
   };
 
+  security.pam.services.swaylock = {};
+
+  xdg.portal = {
+    enable = true;
+    gtkUsePortal = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+    ];
+  };
+
   # Steam
   programs.steam.enable = true;
 
@@ -87,4 +98,18 @@
     swaylock
     powertop
   ];
+
+  # Local MQTT server
+  services.mosquitto = {
+    enable = true;
+    listeners = [
+      {
+        address = "127.0.0.1";
+        port = 1883;
+        omitPasswordAuth = true;
+        settings.allow_anonymous = true;
+        acl = [ "pattern readwrite #" ];
+      }
+    ];
+  };
 }
