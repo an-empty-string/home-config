@@ -11,38 +11,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager }: {
-    homeConfigurations = let
-      system = "x86_64-linux";
-      homeDirectory = "/home/tris";
-      username = "tris";
-      stateVersion = "21.11";
-      mkOptions = attrs: options: attrs // { inherit options; };
-      subConfigs = paths: { lib, pkgs, config, ... }: lib.mkMerge (
-        map (path: (
-          (import path) ({
-            inherit lib pkgs config;
-            localCallPackage = p: ((import p) {
-              inherit lib pkgs config nixpkgs unstable;
-            });
-          })
-        )) paths);
-    in {
-      base = home-manager.lib.homeManagerConfiguration {
-        inherit system homeDirectory username stateVersion;
-
-        configuration = subConfigs [ home/base.nix ];
-      };
-
-      laptop = home-manager.lib.homeManagerConfiguration {
-        inherit system homeDirectory username stateVersion;
-
-        configuration = subConfigs [
-          home/base.nix
-          home/laptop.nix
-          home/package-sets/productivityTools.nix
-        ];
-      };
+  outputs = { self, nixpkgs, unstable, home-manager }: let
+    x64Home = (modules: home-manager.lib.homeManagerConfiguration {
+      inherit modules;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = { inherit unstable; };
+    });
+  in {
+    homeConfigurations = {
+      trisfyi = x64Home [ home/base.nix ];
+      terracotta = x64Home [
+        home/base.nix
+        home/laptop.nix
+        home/package-sets/productivityTools.nix
+      ];
     };
   };
 }

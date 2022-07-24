@@ -1,7 +1,9 @@
 { ... }:
 
 {
-  enable = true;
-  controlMaster = "auto";
-  includes = [ "config.d/*" ];
+  programs.ssh = {
+    enable = true;
+    controlMaster = "auto";
+    includes = [ "config.d/*" ];
+  };
 }

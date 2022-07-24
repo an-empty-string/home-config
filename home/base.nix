@@ -1,8 +1,24 @@
-{ localCallPackage, ... }: {
-  home.sessionVariables = {
-    EDITOR = "vim";
-    MOZ_ENABLE_WAYLAND = "1";
-    SDL_VIDEODRIVER = "wayland";
+{ ... }: {
+  imports = [
+    ./basePackages.nix
+    programs/neovim.nix
+    programs/zsh.nix
+    programs/ssh.nix
+    programs/git.nix
+    programs/tmux.nix
+    programs/autojump.nix
+  ];
+
+  home = {
+    username = "tris";
+    homeDirectory = "/home/tris";
+    stateVersion = "21.11";
+
+    sessionVariables = {
+      EDITOR = "vim";
+      MOZ_ENABLE_WAYLAND = "1";
+      SDL_VIDEODRIVER = "wayland";
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -14,20 +30,8 @@
     '';
 
     target = ".config/nix/nix.conf";
-    };
-
-  home.packages = (localCallPackage ./basePackages.nix);
+  };
 
   programs.home-manager.enable = true;
-
-  # programs.vim = localCallPackage programs/vim.nix;
-  programs.neovim = localCallPackage programs/neovim.nix;
-  programs.zsh = localCallPackage programs/zsh.nix;
-  programs.ssh = localCallPackage programs/ssh.nix;
-  programs.git = localCallPackage programs/git.nix;
-  programs.tmux = localCallPackage programs/tmux.nix;
-
-  programs.autojump = localCallPackage programs/autojump.nix;
-
   services.lorri.enable = true;
 }
