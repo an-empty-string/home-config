@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 
 {
   enable = true;
@@ -9,8 +9,6 @@
 
   coc = {
     enable = true;
-    pluginConfig = ''
-    '';
 
     settings = {
       python = {
@@ -24,12 +22,16 @@
     };
   };
 
+  extraPackages = with pkgs; [
+    solargraph
+  ];
+
   extraPython3Packages = (ps: with ps; [
     black
   ]);
 
   extraConfig = ''
-    let g:coc_global_extensions = ['coc-pyright', 'coc-yaml']
+    let g:coc_global_extensions = ['coc-pyright', 'coc-yaml', 'coc-highlight']
 
     set expandtab
     set modeline

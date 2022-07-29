@@ -6,6 +6,7 @@
   comic-mono-font
   ddcutil
   discord
+  docker-compose
   emojione
   font-awesome_5
   freerdp

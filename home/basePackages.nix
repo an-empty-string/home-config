@@ -9,6 +9,7 @@
   direnv
   dos2unix
   ffmpeg
+  file
   fzf
   gcc
   gnumake
@@ -16,6 +17,7 @@
   inetutils
   jdk
   jq
+  mariadb-client
   mosh
   mosquitto
   nmap
@@ -32,6 +34,7 @@
   sipcalc
   sshfs
   sshpass
+  sshuttle
   step-cli
   unzip
   visidata

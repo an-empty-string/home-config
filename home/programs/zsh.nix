@@ -8,6 +8,8 @@
   };
 
   initExtraFirst = ''
+    setopt extended_glob
+
     promptColor="green"
     if [ -n "$SSH_CLIENT" ]; then
       promptColor="yellow"
@@ -22,7 +24,6 @@
   initExtra = ''
     eval "$(direnv hook zsh)"
     alias ls="ls --color=auto"
-    alias next="task rc.verbose=nothing rc.color=no next"
     precmd() {
       PROMPT="%F{$promptColor}%n@%m %F{blue}%4~ %F{red}%B%#%f%b ";
       branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
