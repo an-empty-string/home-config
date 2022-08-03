@@ -8,7 +8,7 @@
   vimdiffAlias = true;
 
   coc = {
-    enable = true;
+    enable = false;
 
     settings = {
       python = {
@@ -27,6 +27,7 @@
   ];
 
   extraPython3Packages = (ps: with ps; [
+    flask
     black
   ]);
 
