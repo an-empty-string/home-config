@@ -60,6 +60,15 @@
           home/package-sets/productivityTools.nix
         ];
       };
+
+      trisfyi = home-manager.lib.homeManagerConfiguration {
+        inherit system homeDirectory username stateVersion;
+
+        configuration = subConfigs [
+          home/base.nix
+          home/package-sets/productivityTools.nix
+        ];
+      };
     };
   };
 }
