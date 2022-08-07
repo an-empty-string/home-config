@@ -148,7 +148,7 @@
   services.prosody = let
     ssl = {
       cert = "/var/lib/acme/xmpp/fullchain.pem";
-      key = "/var/lib/acme/xmpp/fullchain.key";
+      key = "/var/lib/acme/xmpp/key.pem";
     };
   in {
     enable = true;
