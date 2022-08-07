@@ -22,6 +22,11 @@
         system = "x86_64-linux";
         modules = [ ./sys/deepslate/configuration.nix ];
       };
+
+      trisfyi = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./sys/trisfyi/configuration.nix ];
+      };
     };
 
     homeConfigurations = let
