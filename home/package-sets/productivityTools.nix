@@ -34,6 +34,7 @@
       context.personal = let ctx = "proj:personal"; in { read = ctx; write = ctx; };
       context.cyburity = let ctx = "proj:work.cyburity"; in { read = ctx; write = ctx; };
       context.as = let ctx = "proj:work.as"; in { read = ctx; write = ctx; };
+      context.cat = let ctx = "proj:cat"; in { read = ctx; write = ctx; };
 
       nag = "";
       verbose = "label,affected,footnote,blank,new-id";

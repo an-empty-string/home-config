@@ -10,6 +10,8 @@
 
   # Tailscale / remote access
   services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
+
   services.sshd.enable = true;
 
   networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
