@@ -59,6 +59,7 @@
 
   systemd.user.services.taskwarrior-sync = {
     Unit.Description = "Synchronize taskwarrior tasks";
+    Service.Environment = ''PATH="${pkgs.taskwarrior}/bin:${pkgs.mosquitto}/bin"'';
     Service.ExecStart = "${pkgs.taskwarrior}/bin/task sync";
   };
 
