@@ -10,7 +10,7 @@
         columns = "id,project,priority,description,tags,due.relative";
         labels = "ID,Proj,Pri,Desc,Tags,Due";
         sort = "project+/,priority-,entry+";
-        filter = "status:pending project!=misc -WAITING -BLOCKED -someday";
+        filter = "status:pending project!=misc -WAITING -BLOCKED -someday -notify_only";
       };
 
       report.booklist = {
@@ -25,16 +25,21 @@
         description = "What to work on next";
         columns = "id,project,description";
         labels = "ID,Proj,Desc";
-        filter = "+today status:pending -WAITING -BLOCKED";
+        filter = "+today status:pending -WAITING -BLOCKED -notify_only";
       };
       alias.next = "next limit:1";
 
       uda.priority.values = "N,H,M,,L,S";
 
-      context.personal = let ctx = "proj:personal"; in { read = ctx; write = ctx; };
-      context.cyburity = let ctx = "proj:work.cyburity"; in { read = ctx; write = ctx; };
-      context.as = let ctx = "proj:work.as"; in { read = ctx; write = ctx; };
-      context.cat = let ctx = "proj:cat"; in { read = ctx; write = ctx; };
+      uda.notify.type = "date";
+      uda.notify.label = "Notify";
+
+      context = let mkCtx = (ctx: { read = ctx; write = ctx; }); in {
+        personal = mkCtx "proj:personal";
+        cyburity = mkCtx "proj:work.cyburity";
+        as = mkCtx "proj:work.as";
+        cat = mkCtx "proj:cat";
+      };
 
       nag = "";
       verbose = "label,affected,footnote,blank,new-id";
@@ -52,7 +57,7 @@
   '';
 
   home.file.taskwarriorMQTTHook = {
-    source = ../files/taskwarrior-on-exit-mqtt;
+    source = files/taskwarrior-on-exit-mqtt;
     target = ".local/share/task/hooks/on-exit.mqtt";
     executable = true;
   };

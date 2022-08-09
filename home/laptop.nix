@@ -9,7 +9,7 @@
   services.gpg-agent = localCallPackage programs/gpg-agent.nix;
   services.syncthing.enable = true;
 
-  home.packages = localCallPackage package-sets/graphicalEnvironment.nix;
+  home.packages = localCallPackage ./laptopPackages.nix;
 
   fonts.fontconfig.enable = true;
   programs.alacritty = localCallPackage programs/alacritty.nix;

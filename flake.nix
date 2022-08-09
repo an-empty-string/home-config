@@ -57,7 +57,7 @@
         configuration = subConfigs [
           home/base.nix
           home/laptop.nix
-          home/package-sets/productivityTools.nix
+          home/productivityTools.nix
         ];
       };
 
@@ -66,7 +66,8 @@
 
         configuration = subConfigs [
           home/base.nix
-          home/package-sets/productivityTools.nix
+          home/productivityTools.nix
+          home/productivityToolsPeriodic.nix
         ];
       };
     };
