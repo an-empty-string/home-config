@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  task = "${pkgs.taskwarrior}/bin/task";
+  task = "${pkgs.taskwarrior}/bin/task rc.hooks=0";
   ntfy = "${pkgs.ntfy}/bin/ntfy";
   jq = "${pkgs.jq}/bin/jq";
 
@@ -23,12 +23,12 @@ let
     '';
 
   frequently = pkgs.writeShellScriptBin "frequently" ''
-    ${task} 'notify<now' status:pending export | jq -r ".[].description" | while read line; do
+    ${task} 'notify<now' status:pending export | ${jq} -r ".[].description" | while read line; do
       ${ntfy} -t 'Task notification' send "$line"
     done
 
-    ${task} rc.bulk=0 'notify<now' status:pending +notify_only done
-    ${task} rc.bulk=0 'notify<now' status:pending modify notify:
+    ${task} rc.hooks=0 rc.bulk=0 'notify<now' status:pending +notify_only done
+    ${task} rc.hooks=0 rc.bulk=0 'notify<now' status:pending modify notify:
 
     ${task} sync
   '';
