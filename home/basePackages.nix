@@ -51,6 +51,7 @@
     mypy
     pygame
     pytest
+    pyyaml
     requests
   ]))
 ]

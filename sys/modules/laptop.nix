@@ -49,7 +49,7 @@
     gtkUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
+      xdg-desktop-portal-gtk
     ];
   };
 
@@ -97,5 +97,19 @@
   environment.systemPackages = with pkgs; [
     swaylock
     powertop
+    tpm2-tools
   ];
+
+  # TPM support
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    pkcs11.package = pkgs.tpm2-pkcs11.overrideAttrs (f: p: {
+      configureFlags = [ "--disable-fapi" ];
+      patches = p.patches ++ [
+        ./0002-remove-fapi-message.patch
+      ];
+    });
+    abrmd.enable = true;
+  };
 }

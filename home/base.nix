@@ -3,6 +3,8 @@
     EDITOR = "vim";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
+    TPM2TOOLS_TCTI = "tabrmd:bus_type=system";
+    TSS2_LOG = "fapi+NONE";
   };
 
   nixpkgs.config.allowUnfree = true;
