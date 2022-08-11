@@ -27,6 +27,11 @@
         system = "x86_64-linux";
         modules = [ ./sys/trisfyi/configuration.nix ];
       };
+
+      hsv1 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./sys/hsv1/configuration.nix ];
+      };
     };
 
     homeConfigurations = let
