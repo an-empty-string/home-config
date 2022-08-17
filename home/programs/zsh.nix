@@ -13,11 +13,11 @@
     promptColor="green"
     if [ -n "$SSH_CLIENT" ]; then
       promptColor="yellow"
-    fi
-
-    authSockCandidate="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-    if [ -e $authSockCandidate ]; then
-      export SSH_AUTH_SOCK=$authSockCandidate
+    else
+      authSockCandidate="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+      if [ -e $authSockCandidate ]; then
+        export SSH_AUTH_SOCK=$authSockCandidate
+      fi
     fi
   '';
 

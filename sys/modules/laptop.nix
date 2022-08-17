@@ -18,6 +18,8 @@
     HandlePowerKey=suspend
   '';
 
+  services.throttled.enable = true;
+
   services.tlp = {
     enable = true;
     settings = {

@@ -7,7 +7,7 @@
 
       report.act = {
         description = "Unblocked tasks by project";
-        columns = "id,project,priority,description,tags,due.relative";
+        columns = "id,project,priority,description.count,tags,due.relative";
         labels = "ID,Proj,Pri,Desc,Tags,Due";
         sort = "project+/,priority-,entry+";
         filter = "status:pending project!=misc -WAITING -BLOCKED -someday -notify_only";

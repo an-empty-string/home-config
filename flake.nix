@@ -23,6 +23,11 @@
         modules = [ ./sys/deepslate/configuration.nix ];
       };
 
+      dripleaf = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./sys/dripleaf/configuration.nix ];
+      };
+
       trisfyi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ ./sys/trisfyi/configuration.nix ];

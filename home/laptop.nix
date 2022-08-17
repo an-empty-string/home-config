@@ -60,4 +60,14 @@
 
     target = ".config/networkmanager-dmenu/config.ini";
   };
+
+  # services.kanshi = {
+  #   enable = true;
+  #   profiles = [
+  #     {
+  #       criteria = "eDP-1";
+  #       scale = 2;
+  #     }
+  #   ];
+  # };
 }
