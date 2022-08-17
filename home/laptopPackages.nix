@@ -3,7 +3,7 @@
   audacity
   brightnessctl
   chromium
-  comic-mono-font
+  comic-mono
   ddcutil
   discord
   docker-compose
