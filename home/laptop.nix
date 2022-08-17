@@ -61,13 +61,27 @@
     target = ".config/networkmanager-dmenu/config.ini";
   };
 
-  # services.kanshi = {
-  #   enable = true;
-  #   profiles = [
-  #     {
-  #       criteria = "eDP-1";
-  #       scale = 2;
-  #     }
-  #   ];
-  # };
+  services.kanshi = {
+    enable = true;
+    profiles = {
+      undocked = {
+        outputs = [{
+          criteria = "eDP-1";
+          status = "enable";
+        }];
+      };
+      docked = {
+        outputs = [{
+          criteria = "eDP-1";
+          status = "disable";
+        } {
+          criteria = "DP-7";
+          status = "enable";
+        } {
+          criteria = "DP-8";
+          status = "enable";
+        }];
+      };
+    };
+  };
 }
