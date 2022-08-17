@@ -34,7 +34,6 @@
   wdisplays
   wireshark
   volumeicon
-  waypipe
   wdisplays
   wl-clipboard
   xdg-desktop-portal-wlr
