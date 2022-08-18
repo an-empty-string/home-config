@@ -18,6 +18,8 @@
     HandlePowerKey=suspend
   '';
 
+  boot.kernelModules = [ "intel_pstate" ];
+
   services.throttled.enable = true;
 
   services.tlp = {
@@ -25,6 +27,7 @@
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
       DISK_APM_LEVEL_ON_BAT = "1 1";
       INTEL_GPU_MAX_FREQ_ON_BAT = 350;
@@ -101,6 +104,9 @@
     powertop
     tpm2-tools
   ];
+
+  # Container management
+  virtualisation.docker.rootless.enable = true;
 
   # TPM support
   security.tpm2 = {

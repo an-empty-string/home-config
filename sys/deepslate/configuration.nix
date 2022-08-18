@@ -11,8 +11,6 @@
   networking.hostName = "deepslate";
   time.timeZone = "America/Chicago";
 
-  virtualisation.docker.enable = true;
-
   services.hardware.bolt.enable = true;
 
   services.tlp.settings = {

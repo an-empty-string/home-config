@@ -94,6 +94,18 @@
           status = "enable";
         }];
       };
+      docked3 = {
+        outputs = [{
+          criteria = "eDP-1";
+          status = "disable";
+        } {
+          criteria = "DP-5";
+          status = "enable";
+        } {
+          criteria = "DP-6";
+          status = "enable";
+        }];
+      };
     };
   };
 }
