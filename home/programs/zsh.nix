@@ -34,6 +34,7 @@
     RPROMPT="";
 
     export EDITOR="vim"
+    export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 
     if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
       exec sway
