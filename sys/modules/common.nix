@@ -65,12 +65,11 @@
   programs.mtr.enable = true;
 
   # Local MQTT server
+  # Firewall will limit this to Tailscale and local access only
   services.mosquitto = {
     enable = true;
     listeners = [
       {
-        address = "127.0.0.1";
-        port = 1883;
         omitPasswordAuth = true;
         settings.allow_anonymous = true;
         acl = [ "pattern readwrite #" ];
