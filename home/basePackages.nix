@@ -43,6 +43,7 @@
   (python39.withPackages (p: with p; [
     arrow
     black
+    click
     cryptography
     flake8
     flask
@@ -53,5 +54,6 @@
     pytest
     pyyaml
     requests
+    rich
   ]))
 ]
