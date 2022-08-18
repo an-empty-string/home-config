@@ -45,6 +45,9 @@
   # Hardening
   boot.kernel.sysctl."kernel.unprivileged_bpf_disabled" = 1;
 
+  security.sudo.enable = false;
+  security.doas.enable = true;
+
   # RTL-SDR support
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
 
