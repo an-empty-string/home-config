@@ -33,9 +33,9 @@
   volumeicon
   wdisplays
   wireshark
-  volumeicon
   wdisplays
   wl-clipboard
+  wob
   xdg-desktop-portal-wlr
   zathura
 ]

@@ -27,6 +27,8 @@
 
   home.file.swayidle = let swaylock = "swaylock -lfF -c 282828"; in {
     text = ''
+      timeout 120 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+
       timeout 300 '${swaylock}'
       before-sleep '${swaylock}'
     '';
@@ -39,6 +41,15 @@
     Service.Restart = "always";
     Install.WantedBy = [ "sway-session.target" ];
   };
+
+  systemd.user.services.wob = {
+    Unit.Description = "wob";
+    Service.ExecStart = "/bin/sh -c 'mosquitto_sub -t wob | wob --background-color \"#262626dd\" --bar-color \"#ebdbb2dd\" --border-color \"#b8bb26dd\" --anchor top --anchor right'";
+    Service.Restart = "always";
+    Install.WantedBy = [ "sway-session.target" ];
+  };
+
+  systemd.user.services.kanshi.Install.WantedBy = [ "sway-session.target" ];
 
   home.file.electron-flags = {
     text = ''

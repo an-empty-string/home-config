@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   enable = true;
   wrapperFeatures.gtk = true;
 
@@ -25,9 +25,10 @@
 
     window.hideEdgeBorders = "smart";
 
-    keybindings =
-      let mod = config.wayland.windowManager.sway.config.modifier; in
-    lib.mkOptionDefault {
+    keybindings = let
+      mod = config.wayland.windowManager.sway.config.modifier;
+      volcheck = ''if [ `pamixer --get-mute` = "true" ]; then echo 0; else pamixer --get-volume; fi | mosquitto_pub -t wob -l'';
+    in lib.mkOptionDefault {
         "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
 
@@ -36,8 +37,9 @@
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
 
-        "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-        "XF86AudioLowerVolume" = "exec pamixer -d 5";
+        "XF86AudioRaiseVolume" = "exec sh -c 'pamixer -u && pamixer -i 5 && ${volcheck}'";
+        "XF86AudioLowerVolume" = "exec sh -c 'pamixer -d 5 && ${volcheck}'";
+        "XF86AudioMute" = "exec sh -c 'pamixer -t && ${volcheck}'";
 
         "${mod}+g" = "split h";
 
