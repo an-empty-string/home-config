@@ -89,6 +89,13 @@
   #   ]))
   # ];
 
+  # Syncthing - as system (on server)
+  services.syncthing = {
+    enable = true;
+    overrideFolders = false;
+    overrideDevices = false;
+  };
+
   # Web server configuration
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme-admin@tris.fyi";
@@ -119,6 +126,14 @@
       enableACME = true;
       locations."/" = {
         proxyPass = "http://[fdee:d21b:6b8b:ef00::2]";
+      };
+    };
+
+    virtualHosts."wiki.tris.fyi" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://[fdee:d21b:6b8b:ef01::2]:4567";
       };
     };
 
@@ -206,6 +221,37 @@
 
       };
       system.stateVersion = "21.11";
+    };
+  };
+
+  containers.wiki = {
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress6 = "fdee:d21b:6b8b:ef01::1";
+    localAddress6 = "fdee:d21b:6b8b:ef01::2";
+
+    bindMounts."/var/lib/gollum" = {
+      hostPath = "/var/www/wiki";
+      isReadOnly = false;
+    };
+
+    config = { config, pkgs, ... }: {
+      services.gollum = {
+        address = "::";
+        enable = true;
+        emoji = true;
+        no-edit = true;
+        branch = "main";
+      };
+
+      systemd.services.gollum.path = [
+        pkgs.git
+        pkgs.python310Packages.pygments
+      ];
+
+      networking.firewall.allowedTCPPorts = [ 4567 ];
+
+      system.stateVersion = "22.05";
     };
   };
 
