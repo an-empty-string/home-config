@@ -30,6 +30,8 @@
       if [ $? -eq 0 ]; then
         PROMPT="%F{magenta}(on $branch) $PROMPT"
       fi
+
+      print -Pn "\e]0;zsh: ''${PWD/$HOME/\~}\a"
     }
     RPROMPT="";
 

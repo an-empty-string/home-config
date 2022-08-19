@@ -41,6 +41,9 @@
         "XF86AudioLowerVolume" = "exec sh -c 'pamixer -d 5 && ${volcheck}'";
         "XF86AudioMute" = "exec sh -c 'pamixer -t && ${volcheck}'";
 
+        "${mod}+comma" = "exec mosquitto_pub -t sov -m 1";
+        "--release ${mod}+comma" = "exec mosquitto_pub -t sov -m 0";
+
         "${mod}+g" = "split h";
 
         "${mod}+d" = "exec rofi -show drun -modi drun,run";

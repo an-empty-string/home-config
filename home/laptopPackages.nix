@@ -38,4 +38,6 @@
   wob
   xdg-desktop-portal-wlr
   zathura
+
+  unstable.legacyPackages.x86_64-linux.sov
 ]

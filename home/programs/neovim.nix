@@ -44,6 +44,9 @@
 
     set nocompatible
 
+    " Set window title
+    set title
+
     " Tab to cycle through menu options
     set wildmenu
 

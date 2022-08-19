@@ -36,15 +36,22 @@
   };
 
   systemd.user.services.swayidle = {
-    Unit.Description = "swayidle";
+    Unit.Description = "swayidle idle management daemon";
     Service.ExecStart = "${pkgs.swayidle}/bin/swayidle -w";
     Service.Restart = "always";
     Install.WantedBy = [ "sway-session.target" ];
   };
 
   systemd.user.services.wob = {
-    Unit.Description = "wob";
+    Unit.Description = "wob overlay bar display";
     Service.ExecStart = "/bin/sh -c 'mosquitto_sub -t wob | wob --background-color \"#262626dd\" --bar-color \"#ebdbb2dd\" --border-color \"#b8bb26dd\" --anchor top --anchor right'";
+    Service.Restart = "always";
+    Install.WantedBy = [ "sway-session.target" ];
+  };
+
+  systemd.user.services.sov = {
+    Unit.Description = "sov window overviewer";
+    Service.ExecStart = "/bin/sh -c 'mosquitto_sub -t sov | sov'";
     Service.Restart = "always";
     Install.WantedBy = [ "sway-session.target" ];
   };

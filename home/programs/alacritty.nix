@@ -1,6 +1,7 @@
 { ... }: {
   enable = true;
   settings = {
+    dynamic_title = true;
     window = {
     };
     font = {
