@@ -11,8 +11,10 @@
     setopt extended_glob
 
     promptColor="green"
+    location=""
     if [ -n "$SSH_CLIENT" ]; then
       promptColor="yellow"
+      location=": $(hostname)"
     else
       authSockCandidate="/run/user/$UID/gnupg/S.gpg-agent.ssh"
       if [ -e $authSockCandidate ]; then
@@ -31,7 +33,10 @@
         PROMPT="%F{magenta}(on $branch) $PROMPT"
       fi
 
-      print -Pn "\e]0;zsh: ''${PWD/$HOME/\~}\a"
+      print -Pn "\e]0;zsh$location: ''${PWD/$HOME/\~}\a"
+    }
+    preexec() {
+      print -Pn "\e]0;$location$1\a"
     }
     RPROMPT="";
 
