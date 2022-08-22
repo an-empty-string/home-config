@@ -25,7 +25,9 @@
     bind = null;
     port = 6379;
 
-    appendOnly = true;
+    settings = {
+      "protected-mode" = "no";
+    };
   };
 
   system.stateVersion = "22.05";
