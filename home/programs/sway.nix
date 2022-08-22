@@ -44,6 +44,12 @@
         "${mod}+comma" = "exec mosquitto_pub -t sov -m 1";
         "--release ${mod}+comma" = "exec mosquitto_pub -t sov -m 0";
 
+        "${mod}+q" = "exec pamixer --default-source -u";
+        "--release ${mod}+q" = "exec pamixer --default-source -m";
+        "XF86AudioMicMute" = "exec pamixer --default-source -t";
+
+        "${mod}+period" = "exec makoctl dismiss -a";
+
         "${mod}+g" = "split h";
 
         "${mod}+d" = "exec rofi -show drun -modi drun,run";
