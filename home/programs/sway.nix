@@ -29,8 +29,8 @@
       mod = config.wayland.windowManager.sway.config.modifier;
       volcheck = ''if [ `pamixer --get-mute` = "true" ]; then echo 0; else pamixer --get-volume; fi | mosquitto_pub -t wob -l'';
     in lib.mkOptionDefault {
-        "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl -e set +10%";
+        "XF86MonBrightnessDown" = "exec brightnessctl -e set 10%-";
 
         "XF86AudioPause" = "exec playerctl play-pause";
         "XF86AudioPlay" = "exec playerctl play-pause";

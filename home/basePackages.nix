@@ -27,6 +27,7 @@
   picocom
   pv
   pwgen
+  redis
   rmapi
   ruby
   rustup
@@ -40,7 +41,7 @@
   visidata
   zip
 
-  (python39.withPackages (p: with p; [
+  (python310.withPackages (p: with p; [
     arrow
     black
     click
@@ -53,6 +54,7 @@
     pygame
     pytest
     pyyaml
+    redis
     requests
     rich
   ]))
