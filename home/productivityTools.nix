@@ -28,7 +28,14 @@
         labels = "ID,Proj,Desc";
         filter = "+today status:pending -WAITING -BLOCKED -notify_only";
       };
+
+      alias.cal = "calendar";
       alias.next = "next limit:1";
+
+      color.tag = {
+        today = "rgb140";  # brightish green
+        tomorrow = "rgb120";  # a little darker green
+      };
 
       uda.priority.values = "N,H,M,,L,S";
 
