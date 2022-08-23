@@ -57,5 +57,7 @@
     redis
     requests
     rich
+
+    tris-config
   ]))
 ]

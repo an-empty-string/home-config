@@ -4,6 +4,7 @@
     config = {
       news.version = "2.6.0";
       default.command = "act";
+      calendar.holidays = "full";
 
       report.act = {
         description = "Unblocked tasks by project";
@@ -48,12 +49,15 @@
 
   home.packages = with pkgs; [
     tris-pomodoro
+    tris-bamboo-holidays
   ];
 
   home.activation.writeMutableTaskrc = ''
     echo 'include ~/.config/task/taskrc' > ~/.taskrc
     echo 'include ~/.taskrc-secret' >> ~/.taskrc
+    echo 'include ~/.holidays' >> ~/.taskrc
     touch ~/.taskrc-secret
+    touch ~/.holidays
   '';
 
   home.file.taskwarriorMQTTHook = {
@@ -71,6 +75,17 @@
   systemd.user.timers.taskwarrior-sync = {
     Unit.Description = "Synchronize taskwarrior tasks periodically";
     Timer.OnCalendar = "*:0/10";
+    Install.WantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services.bamboo-holidays-update = {
+    Unit.Description = "Update holiday data from BambooHR";
+    Service.ExecStart = "${pkgs.tris-bamboo-holidays}/bin/bamboo-holidays-update";
+  };
+
+  systemd.user.timers.bamboo-holidays-update = {
+    Unit.Description = "Periodically update holiday data from BambooHR";
+    Timer.OnCalendar = "0/4:0";
     Install.WantedBy = [ "default.target" ];
   };
 
