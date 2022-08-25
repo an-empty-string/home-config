@@ -25,9 +25,18 @@
     SDL_VIDEODRIVER = "wayland";
   };
 
-  home.file.swayidle = let swaylock = "swaylock -lfF -c 282828"; in {
+  home.file.swayidle = let
+    swaylock = "swaylock -lfF -c 282828";
+    displayOff = pkgs.writeShellScript "displayOff" ''
+      if [ -e /sys/class/power_supply/AC/online ] && [ "$(cat /sys/class/power_supply/AC/online)" = "1" ]; then
+        exit 0
+      fi
+
+      swaymsg "output * dpms off"
+    '';
+  in {
     text = ''
-      timeout 120 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+      timeout 120 '${displayOff}' resume 'swaymsg "output * dpms on"'
 
       timeout 300 '${swaylock}'
       before-sleep '${swaylock}'

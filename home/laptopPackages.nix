@@ -29,6 +29,7 @@
   speedcrunch
   spotify
   swayidle
+  virt-manager
   vlc
   volumeicon
   wdisplays

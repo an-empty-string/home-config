@@ -8,6 +8,8 @@
 
   boot.initrd.luks.devices.cryptlvm.device = "/dev/nvme0n1p5";
 
+  virtualisation.libvirtd.enable = true;
+
   networking.hostName = "deepslate";
   time.timeZone = "America/Chicago";
 

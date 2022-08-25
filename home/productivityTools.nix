@@ -8,9 +8,9 @@
 
       report.act = {
         description = "Unblocked tasks by project";
-        columns = "id,project,priority,description.count,tags,due.relative";
-        labels = "ID,Proj,Pri,Desc,Tags,Due";
-        sort = "project+/,priority-,entry+";
+        columns = "id,project,priority,size,description.count,tags,due.relative";
+        labels = "ID,Proj,Pri,Size,Desc,Tags,Due";
+        sort = "project+/,priority-,size-,entry+";
         filter = "status:pending project!=misc -WAITING -BLOCKED -someday -notify_only";
       };
 
@@ -39,6 +39,10 @@
 
       uda.priority.values = "N,H,M,,L,S";
 
+      uda.size.label = "Size";
+      uda.size.type = "string";
+      uda.size.values = ",xs,sm,md,lg,xl";
+
       uda.notify.type = "date";
       uda.notify.label = "Notify";
 
@@ -47,6 +51,7 @@
         cyburity = mkCtx "proj:work.cyburity";
         as = mkCtx "proj:work.as";
         cat = mkCtx "proj:cat";
+        home = { read = "proj:personal or proj:work.as"; };
       };
 
       nag = "";

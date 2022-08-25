@@ -32,7 +32,7 @@
   # Users
   users.users.tris = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "dialout" "video" "input" "docker" "gemini" "www" ];
+    extraGroups = [ "wheel" "networkmanager" "dialout" "video" "input" "docker" "gemini" "www" "libvirtd" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       # YubiKey
