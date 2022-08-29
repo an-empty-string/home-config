@@ -12,10 +12,7 @@
       size = 12.0;
     }; in
   rec {
-    bars = [{
-      statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
-      fonts = useFonts;
-    }];
+    bars = [];
 
     focus.newWindow = "urgent";
 

@@ -19,6 +19,7 @@
   services.gammastep = localCallPackage programs/gammastep.nix;
   services.mpris-proxy.enable = true;
   wayland.windowManager.sway = localCallPackage programs/sway.nix;
+  programs.waybar = localCallPackage programs/waybar.nix;
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
