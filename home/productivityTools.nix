@@ -32,9 +32,13 @@
       alias.cal = "calendar";
       alias.next = "next limit:1";
 
-      color.tag = {
-        today = "rgb140";  # brightish green
-        tomorrow = "rgb120";  # a little darker green
+      color = {
+        blocking = "";
+
+        tag = {
+          today = "rgb140";  # brightish green
+          tomorrow = "rgb120";  # a little darker green
+        };
       };
 
       uda.priority.values = "N,H,M,,L,S";

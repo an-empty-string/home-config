@@ -42,6 +42,7 @@
 
     export EDITOR="vim"
     export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
+    export PATH="$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin"
 
     if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
       exec sway
