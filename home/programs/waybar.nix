@@ -6,7 +6,7 @@
       position = "bottom";
 
       modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-right = [ "battery" "clock" "tray" ];
+      modules-right = [ "custom/pomodoro" "battery" "clock" "tray" ];
 
       clock = {
         format = "{:%Y-%m-%d %H:%M}";
@@ -23,6 +23,12 @@
         format-charging = "{capacity}%+ {time}";
 
         format = "{capacity}%";
+      };
+
+      "custom/pomodoro" = {
+        exec = "mosquitto_sub -t pomodoro/statusline";
+        on-click = "mosquitto_pub -t pomodoro/command -m trigger";
+        on-click-right = "mosquitto_pub -t pomodoro/command -m reset";
       };
     };
   };
@@ -66,8 +72,9 @@
       margin-left: 0;
     }
 
-    #clock,
+    #custom-pomodoro,
     #battery,
+    #clock,
     #tray
     {
         padding: 0 10px;
@@ -90,6 +97,11 @@
 
     #battery.critical {
       background-color: #fb4934;
+    }
+
+    #custom-pomodoro {
+      color: #262626;
+      background-color: #fabd2f;
     }
 
     #tray {
