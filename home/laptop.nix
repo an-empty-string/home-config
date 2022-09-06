@@ -14,7 +14,6 @@
   fonts.fontconfig.enable = true;
   programs.alacritty = localCallPackage programs/alacritty.nix;
   programs.firefox.enable = true;
-  programs.i3status-rust = localCallPackage programs/i3status.nix;
   programs.mako.enable = true;
   services.gammastep = localCallPackage programs/gammastep.nix;
   services.mpris-proxy.enable = true;
