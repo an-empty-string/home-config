@@ -21,18 +21,12 @@
   virtualisation.docker.enable = true;
 
   networking.wireguard.interfaces.wg0 = {
-    ips = [
-      "fdd2:972a:b48c::1/64"
-      "100.127.255.1/24"
-    ];
+    ips = [ "fdd2:972a:b48c::1/64" ];
 
     peers = [
       {
         publicKey = "EPtzMkbJF6vGOgQdZUv4sIk7yNp6PRUzdyl+2zoOY2s=";
-        allowedIPs = [
-          "fdd2:972a:b48c::2/128"
-          "100.127.255.2/32"
-        ];
+        allowedIPs = [ "fdd2:972a:b48c::2/128" ];
       }
     ];
 
