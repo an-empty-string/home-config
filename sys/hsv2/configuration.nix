@@ -41,5 +41,7 @@
     generatePrivateKeyFile = true;
   };
 
+  networking.firewall.allowedUDPPorts = [ 51821 ];
+
   system.stateVersion = "22.05";
 }
