@@ -35,6 +35,9 @@
     generatePrivateKeyFile = true;
   };
 
+  services.openssh.ports = [ 22 3128 ];
+  networking.firewall.allowedTCPPorts = [ 3128 ];
+
   networking.firewall.allowedUDPPorts = [ 51821 ];
 
   system.stateVersion = "22.05";
