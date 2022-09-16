@@ -11,6 +11,6 @@
 
     # Window status
     setw -g window-status-format "#[fg=colour245]#I (#W)"
-    setw -g window-status-current-format "#[bg=black]#[fg=white,bold]#I (#W)"
+    setw -g window-status-current-format "#[fg=colour255,bold]#I (#W)"
   '';
 }

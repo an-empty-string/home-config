@@ -9,12 +9,12 @@
       size = 14;
     };
     colors = {
-      primary.background = "0x262626";
+      primary.background = "0x282828";
       primary.foreground = "0xebdbb2";
       cursor.text = "0x282828";
       cursor.cursor = "0xd5c4a1";
       normal = {
-        black = "0x282828";
+        black = "0x928374";
         red = "0xfb4934";
         green = "0xb8bb26";
         yellow = "0xfabd2f";
