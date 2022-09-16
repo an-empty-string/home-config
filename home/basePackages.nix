@@ -5,6 +5,7 @@
   bind
   binutils
   binwalk
+  catgirl
   cloudflared
   direnv
   dos2unix
