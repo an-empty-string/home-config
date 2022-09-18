@@ -113,6 +113,7 @@
         root = "/var/www";
       };
     };
+
     virtualHosts."f.tris.fyi" = {
       forceSSL = true;
       enableACME = true;
@@ -235,14 +236,16 @@
       isReadOnly = false;
     };
 
-    config = { config, pkgs, ... }: {
-      services.gollum = {
-        address = "::";
-        enable = true;
-        emoji = true;
-        no-edit = true;
-        branch = "main";
-      };
+    config = { config, pkgs, lib, ... }: {
+      services.gollum.enable = true;
+
+      systemd.services.gollum.serviceConfig.ExecStart =
+        lib.mkForce ''
+          ${pkgs.gollum}/bin/gollum \
+            --port 4567 --host :: --ref main \
+            --no-edit --emoji --css --h1-title --mathjax \
+            /var/lib/gollum
+        '';
 
       systemd.services.gollum.path = [
         pkgs.git
