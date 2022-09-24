@@ -23,6 +23,7 @@
   pavucontrol
   playerctl
   polymc
+  qgis
   rofi
   signal-desktop
   slurp

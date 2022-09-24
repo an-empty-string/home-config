@@ -58,6 +58,7 @@
     redis
     requests
     rich
+    tox
 
     tris-config
   ]))
