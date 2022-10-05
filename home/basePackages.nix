@@ -26,6 +26,7 @@
   openssl
   pandoc
   picocom
+  poppler_utils
   pv
   pwgen
   redis

@@ -1,6 +1,7 @@
 { pkgs, unstable, ... }: with pkgs; [
   audacity
   brightnessctl
+  calibre
   chromium
   comic-mono
   discord
@@ -36,6 +37,7 @@
   wdisplays
   wireshark
   wdisplays
+  wego
   wl-clipboard
   wob
   xdg-desktop-portal-wlr
