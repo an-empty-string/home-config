@@ -112,6 +112,21 @@
       locations."/" = {
         root = "/var/www";
       };
+
+      locations."/content" = {
+        extraConfig = ''
+          dav_methods PUT;
+          dav_access user:rw group:rw all:r;
+
+          limit_except GET {
+            satisfy any;
+            deny all;
+
+            auth_basic_user_file /etc/content.htpasswd;
+            auth_basic "authenticate to upload content";
+          }
+        '';
+      };
     };
 
     virtualHosts."f.tris.fyi" = {
