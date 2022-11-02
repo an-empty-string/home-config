@@ -23,7 +23,7 @@
   pamixer
   pavucontrol
   playerctl
-  polymc
+  prismlauncher
   qgis
   rofi
   signal-desktop

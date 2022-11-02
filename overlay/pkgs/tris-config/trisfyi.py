@@ -67,7 +67,22 @@ class Store():
         return self[attr]
 
 
+class Code():
+    def __init__(self, store, env="production"):
+        self.store = store
+        self.env = env
+
+    def __getattr__(self, key):
+        src = self.store[f"code/{self.env}/{key}"]
+
+        data = {}
+        exec(src.obj, data, data)
+
+        return data[key]
+
+
 store = Store(config)
+code = Code(store)
 
 
 @click.group()
@@ -87,6 +102,15 @@ def set_config(key, value):
 @main.command()
 def get_config(key):
     click.echo(config[key])
+
+
+@click.argument("KEY")
+@click.argument("FILE", type=click.File("r"))
+@click.option("--env", default="production")
+@main.command()
+def upload_code(key, file, env):
+    store[f"code/{env}/{key}"] = file.read()
+    click.echo("Uploaded.")
 
 
 if __name__ == "__main__":

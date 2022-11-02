@@ -11,6 +11,11 @@
   # Firmware update services
   services.fwupd.enable = true;
 
+  # Keyboard
+  services.udev.packages = with pkgs; [
+    qmk-udev-rules
+  ];
+
   # Power management
   services.logind.lidSwitch = "suspend-then-hibernate";
   services.logind.extraConfig = ''
@@ -104,6 +109,8 @@
     powertop
     tpm2-tools
   ];
+
+  programs.wshowkeys.enable = true;
 
   # Container management
   virtualisation.docker.rootless.enable = true;

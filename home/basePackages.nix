@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: with pkgs; [
+{ pkgs, unstable, ... }: (with pkgs; [
   acpi
   asciinema
   awscli2
@@ -6,7 +6,6 @@
   binutils
   binwalk
   catgirl
-  cloudflared
   direnv
   dos2unix
   ffmpeg
@@ -39,6 +38,7 @@
   sshpass
   sshuttle
   step-cli
+  sqlite-interactive
   unzip
   visidata
   zip
@@ -63,4 +63,6 @@
 
     tris-config
   ]))
-]
+]) ++ (with unstable.legacyPackages.x86_64-linux; [
+  cloudflared
+])
