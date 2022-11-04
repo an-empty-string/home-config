@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../modules/nfs.nix
+  ];
+
   # Nix/nixpkgs configuration
   nix.package = pkgs.nixUnstable;
   nixpkgs.config.allowUnfree = true;
@@ -31,6 +35,7 @@
 
   # Users
   users.users.tris = {
+    uid = 1000;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "dialout" "video" "input" "docker" "gemini" "www" "libvirtd" ];
     shell = pkgs.zsh;

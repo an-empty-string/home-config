@@ -1,3 +1,4 @@
 /local.nix
 result
 *.swp
+__pycache__
