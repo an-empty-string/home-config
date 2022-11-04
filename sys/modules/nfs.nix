@@ -1,5 +1,6 @@
-{ config, lib, ... }: lib.mkMerge [
+{ config, lib, pkgs, ... }: lib.mkMerge [
   {
+    environment.systemPackages = [ pkgs.nfs-utils ];
     services.rpcbind.enable = true;
   }
 

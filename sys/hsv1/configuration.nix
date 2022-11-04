@@ -33,6 +33,11 @@
   # NFS (Tailscale only)
   services.nfs.server = {
     enable = true;
+
+    statdPort = 4000;
+    lockdPort = 4001;
+    mountdPort = 4002;
+
     exports = ''
       /net/hsv1             100.64.0.0/10(rw,fsid=0,no_subtree_check)
     '';
