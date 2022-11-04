@@ -1,21 +1,32 @@
 { config, lib, pkgs, ... }: lib.mkMerge [
   {
     environment.systemPackages = [ pkgs.nfs-utils ];
+    services.nfs.server.enable = true;
     services.rpcbind.enable = true;
   }
 
-  (lib.mkIf (config.networking.hostName != "hsv1") {
-    systemd.mounts = [{
-      type = "nfs";
-      mountConfig.Options = "noatime";
-      what = "hsv1:/net/hsv1";
-      where = "/net/hsv1";
-    }];
+  (let expose = (host: (lib.mkMerge [
+    (lib.mkIf (config.networking.hostName != host) {
+      systemd.mounts = [{
+        type = "nfs";
+        mountConfig.Options = "noatime";
+        what = "${host}:/net/${host}";
+        where = "/net/${host}";
+      }];
 
-    systemd.automounts = [{
-      wantedBy = [ "multi-user.target"];
-      automountConfig.TimeoutIdleSec = "600";
-      where = "/net/hsv1";
-    }];
-  })
+      systemd.automounts = [{
+        wantedBy = [ "multi-user.target"];
+        automountConfig.TimeoutIdleSec = "600";
+        where = "/net/${host}";
+      }];
+    })
+
+    (lib.mkIf (config.networking.hostName == host) {
+      services.nfs.server.exports = ''
+        /net/${host}          100.64.0.0/10(rw,fsid=0,no_subtree_check)
+      '';
+    })
+  ])); in lib.mkMerge [
+    (expose "hsv1")
+  ])
 ]
