@@ -1,4 +1,6 @@
 self: super: {
+  glauth = super.callPackage ./pkgs/glauth {};
+
   tris-upload-utils = super.callPackage ./pkgs/tris-upload-utils {};
   tris-pomodoro = super.callPackage ./pkgs/tris-pomodoro {};
   tris-bamboo-holidays = super.callPackage ./pkgs/tris-bamboo-holidays {};

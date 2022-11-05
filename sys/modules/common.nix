@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/nfs.nix
+    ../modules/tailscale.nix
   ];
 
   # Nix/nixpkgs configuration

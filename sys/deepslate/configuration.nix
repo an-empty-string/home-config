@@ -15,6 +15,11 @@
 
   services.hardware.bolt.enable = true;
 
+  services.instanced-tailscale.lessbroken = {
+    port = 41642;
+    interfaceName = "ts-lessbroken";
+  };
+
   services.tlp.settings = {
     START_CHARGE_THRESH_BAT0 = 75;
     STOP_CHARGE_THRESH_BAT0 = 80;

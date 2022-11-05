@@ -1,4 +1,5 @@
 { pkgs, unstable, ... }: (with pkgs; [
+  glauth
   acpi
   asciinema
   awscli2
