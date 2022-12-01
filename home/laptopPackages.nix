@@ -1,5 +1,3 @@
-{ pkgs, unstable, ... }:
-
 {
   home.packages = with pkgs; [
     audacity
@@ -38,6 +36,7 @@
     speedcrunch
     spotify
     swayidle
+    thunderbird
     virt-manager
     vlc
     volumeicon

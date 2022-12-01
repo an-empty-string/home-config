@@ -24,9 +24,9 @@ in {
 
     systemd.services = mkMerge (attrsets.mapAttrsToList (name: value: {
       "tailscaled@${name}" = {
+        # the true tailscaled needs to start last to provide DNS
+        before = [ "tailscaled.service" ];
         wantedBy = [ "multi-user.target" ];
-        path = [
-        ];
 
         serviceConfig.ExecStart = "${pkg}/bin/tailscaled --port ${toString value.port} --tun ${escapeShellArg value.interfaceName} --socket=/run/tailscale/${name}.sock --statedir=/var/lib/tailscale/${name} --state=/var/lib/tailscale/${name}/state";
         stopIfChanged = false;
