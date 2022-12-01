@@ -4,6 +4,7 @@
   imports = [
     ./generated.nix
     ../modules/laptop.nix
+    ../modules/pg.nix
   ];
 
   boot.initrd.luks.devices.cryptlvm.device = "/dev/nvme0n1p5";

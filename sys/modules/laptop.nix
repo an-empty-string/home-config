@@ -56,11 +56,15 @@
 
   xdg.portal = {
     enable = true;
-    gtkUsePortal = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-    ];
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_type = "dmenu";
+          chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi -dmenu";
+        };
+      };
+    };
   };
 
   # Steam

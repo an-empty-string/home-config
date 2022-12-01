@@ -217,43 +217,6 @@
     };
   };
 
-  # Grocy
-  containers.grocy = {
-    autoStart = true;
-
-    privateNetwork = true;
-    hostAddress6 = "fdee:d21b:6b8b:ef00::1";
-    localAddress6 = "fdee:d21b:6b8b:ef00::2";
-
-    bindMounts."/var/lib/grocy" =  {
-      hostPath = "/srv/container/grocy/grocy";
-      isReadOnly = false;
-    };
-
-    config = { config, pkgs, ... }: {
-      services.grocy = {
-        enable = true;
-        hostName = "grocy.tris.fyi";
-        nginx.enableSSL = false;
-        phpfpm.settings = {
-          "pm" = "dynamic";
-          "php_admin_value[error_log]" = "stderr";
-          "php_admin_flag[log_errors]" = true;
-          "listen.owner" = "nginx";
-          "catch_workers_output" = true;
-          "pm.max_children" = "32";
-          "pm.start_servers" = "2";
-          "pm.min_spare_servers" = "2";
-          "pm.max_spare_servers" = "4";
-          "pm.max_requests" = "500";
-          "php_admin_value[date.timezone]" = "America/Chicago";
-        };
-
-      };
-      system.stateVersion = "21.11";
-    };
-  };
-
   containers.wiki = {
     autoStart = true;
     privateNetwork = true;

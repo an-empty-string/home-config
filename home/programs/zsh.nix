@@ -45,10 +45,14 @@
       export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
       export PATH="$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin"
 
+      alias -s {csv,tsv}=vd
+      alias -s {png,jpg}=imv
+      alias -s {txt,py,rb}=nvim
+
       if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
         exec sway
       fi
-    '';
+  '';
 
     autocd = true;
     defaultKeymap = "viins";

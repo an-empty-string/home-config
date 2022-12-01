@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: 
+{ pkgs, unstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,6 +7,7 @@
     calibre
     chromium
     comic-mono
+    darktable
     discord
     docker-compose
     emojione
@@ -27,8 +28,8 @@
     pavucontrol
     playerctl
     prismlauncher
-    qgis
-    rofi
+    qpwgraph
+    rofi-wayland
     signal-desktop
     slurp
     speedcrunch
@@ -38,14 +39,12 @@
     vlc
     volumeicon
     wdisplays
-    wireshark
     wdisplays
     wego
+    wireshark
     wl-clipboard
     wob
     xdg-desktop-portal-wlr
     zathura
-
-    unstable.sov
   ];
 }

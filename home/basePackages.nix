@@ -32,6 +32,7 @@
     poppler_utils
     pv
     pwgen
+    qsynth
     redis
     rmapi
     ruby
@@ -48,6 +49,10 @@
     weechat
     zip
 
+    consul
+    vault
+    nomad
+
     (python310.withPackages (p: with p; [
       arrow
       black
@@ -57,6 +62,7 @@
       flask
       httpx
       ipython
+      mido
       mypy
       pygame
       pytest
