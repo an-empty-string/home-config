@@ -55,14 +55,7 @@
 
   systemd.user.services.wob = {
     Unit.Description = "wob overlay bar display";
-    Service.ExecStart = "/bin/sh -c 'mosquitto_sub -t wob | wob --background-color \"#262626dd\" --bar-color \"#ebdbb2dd\" --border-color \"#b8bb26dd\" --anchor top --anchor right'";
-    Service.Restart = "always";
-    Install.WantedBy = [ "sway-session.target" ];
-  };
-
-  systemd.user.services.sov = {
-    Unit.Description = "sov window overviewer";
-    Service.ExecStart = "/bin/sh -c 'mosquitto_sub -t sov | sov'";
+    Service.ExecStart = "/bin/sh -c '${pkgs.mosquitto}/bin/mosquitto_sub -t wob | ${pkgs.wob}/bin/wob --background-color \"#262626dd\" --bar-color \"#ebdbb2dd\" --border-color \"#b8bb26dd\" --anchor top --anchor right'";
     Service.Restart = "always";
     Install.WantedBy = [ "sway-session.target" ];
   };

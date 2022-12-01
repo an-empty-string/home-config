@@ -4,6 +4,8 @@
     ./efiBoot.nix
   ];
 
+
+
   # Networking: use NetworkManager instead of built-in DHCP units
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
@@ -131,4 +133,9 @@
     });
     abrmd.enable = true;
   };
+
+  # AppVM
+  virtualisation.appvm.enable = true;
+  virtualisation.appvm.user = "tris";
 }
+

@@ -8,7 +8,7 @@
       mainBar = {
         position = "bottom";
 
-        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
         modules-right = [ "custom/pomodoro" "battery" "clock" "tray" ];
 
         clock = {
@@ -69,6 +69,11 @@
       #workspaces button.focused {
         background-color: #d3869b;
         color: #262626;
+      }
+
+      #window {
+        margin-left: 0.5em;
+        color: #ebdbb2;
       }
 
       .modules-left > widget:first-child > #workspaces {
