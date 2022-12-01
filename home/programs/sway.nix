@@ -1,65 +1,69 @@
-{ lib, config, pkgs, ... }: {
-  enable = true;
-  wrapperFeatures.gtk = true;
+{ lib, config, pkgs, ... }:
 
-  extraOptions = [ "--unsupported-gpu" ];
-  systemdIntegration = true;
+{
+  wayland.windowManager.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
 
-  config =
-    let useFonts = {
-      names = [ "Comic Mono" "Hack" ];
-      style = "Normal";
-      size = 12.0;
-    }; in
-  rec {
-    bars = [];
+    extraOptions = [ "--unsupported-gpu" ];
+    systemdIntegration = true;
 
-    focus.newWindow = "urgent";
+    config =
+      let useFonts = {
+        names = [ "Comic Mono" "Hack" ];
+        style = "Normal";
+        size = 12.0;
+      }; in
+    rec {
+      bars = [];
 
-    fonts = useFonts;
-    modifier = "Mod4";
-    terminal = "alacritty";
+      focus.newWindow = "urgent";
 
-    window.hideEdgeBorders = "smart";
+      fonts = useFonts;
+      modifier = "Mod4";
+      terminal = "alacritty";
 
-    keybindings = let
-      mod = config.wayland.windowManager.sway.config.modifier;
-      volcheck = ''if [ `pamixer --get-mute` = "true" ]; then echo 0; else pamixer --get-volume; fi | mosquitto_pub -t wob -l'';
-    in lib.mkOptionDefault {
-        "XF86MonBrightnessUp" = "exec brightnessctl -e set +10%";
-        "XF86MonBrightnessDown" = "exec brightnessctl -e set 10%-";
+      window.hideEdgeBorders = "smart";
 
-        "XF86AudioPause" = "exec playerctl play-pause";
-        "XF86AudioPlay" = "exec playerctl play-pause";
-        "XF86AudioNext" = "exec playerctl next";
-        "XF86AudioPrev" = "exec playerctl previous";
+      keybindings = let
+        mod = config.wayland.windowManager.sway.config.modifier;
+        volcheck = ''if [ `pamixer --get-mute` = "true" ]; then echo 0; else pamixer --get-volume; fi | mosquitto_pub -t wob -l'';
+      in lib.mkOptionDefault {
+          "XF86MonBrightnessUp" = "exec brightnessctl -e set +10%";
+          "XF86MonBrightnessDown" = "exec brightnessctl -e set 10%-";
 
-        "XF86AudioRaiseVolume" = "exec sh -c 'pamixer -u && pamixer -i 5 && ${volcheck}'";
-        "XF86AudioLowerVolume" = "exec sh -c 'pamixer -d 5 && ${volcheck}'";
-        "XF86AudioMute" = "exec sh -c 'pamixer -t && ${volcheck}'";
+          "XF86AudioPause" = "exec playerctl play-pause";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
 
-        "${mod}+comma" = "exec mosquitto_pub -t sov -m 1";
-        "--release ${mod}+comma" = "exec mosquitto_pub -t sov -m 0";
+          "XF86AudioRaiseVolume" = "exec sh -c 'pamixer -u && pamixer -i 5 && ${volcheck}'";
+          "XF86AudioLowerVolume" = "exec sh -c 'pamixer -d 5 && ${volcheck}'";
+          "XF86AudioMute" = "exec sh -c 'pamixer -t && ${volcheck}'";
 
-        "${mod}+q" = "exec pamixer --default-source -u";
-        "--release ${mod}+q" = "exec pamixer --default-source -m";
-        "XF86AudioMicMute" = "exec pamixer --default-source -t";
+          "${mod}+comma" = "exec mosquitto_pub -t sov -m 1";
+          "--release ${mod}+comma" = "exec mosquitto_pub -t sov -m 0";
 
-        "${mod}+period" = "exec makoctl dismiss -a";
+          "${mod}+q" = "exec pamixer --default-source -u";
+          "--release ${mod}+q" = "exec pamixer --default-source -m";
+          "XF86AudioMicMute" = "exec pamixer --default-source -t";
 
-        "${mod}+g" = "split h";
+          "${mod}+period" = "exec makoctl dismiss -a";
 
-        "${mod}+d" = "exec rofi -show drun -modi drun,run";
-        "${mod}+Shift+z" = "exec swaylock -c 282828";
-        "${mod}+Shift+n" = "exec networkmanager_dmenu";
-    };
+          "${mod}+g" = "split h";
 
-    floating.criteria = [
-      { title = "Firefox — Sharing Indicator"; }
-    ];
+          "${mod}+d" = "exec rofi -show drun -modi drun,run";
+          "${mod}+Shift+z" = "exec swaylock -c 282828";
+          "${mod}+Shift+n" = "exec networkmanager_dmenu";
+      };
 
-    assigns = {
-      "Firefox is sharing" = [{ title = "Firefox — Sharing Indicator"; }];
+      floating.criteria = [
+        { title = "Firefox — Sharing Indicator"; }
+      ];
+
+      assigns = {
+        "Firefox is sharing" = [{ title = "Firefox — Sharing Indicator"; }];
+      };
     };
   };
 }

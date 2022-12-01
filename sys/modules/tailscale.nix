@@ -3,6 +3,7 @@
   pkg = pkgs.tailscale;
 in {
   options.services.instanced-tailscale = mkOption {
+    default = {};
     type = types.attrsOf (types.submodule {
       options = {
         port = mkOption { type = types.port; };
@@ -11,7 +12,7 @@ in {
     });
   };
 
-  config = {
+  config = lib.mkIf (builtins.length (builtins.attrNames cfg) > 0) {
     environment.systemPackages = [ pkg ];
 
     systemd.packages = attrsets.mapAttrsToList (name: value:

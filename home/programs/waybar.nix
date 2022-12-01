@@ -1,114 +1,118 @@
-{ ... }: {
-  enable = true;
+{ ... }:
 
-  settings = {
-    mainBar = {
-      position = "bottom";
+{
+  programs.waybar = {
+    enable = true;
 
-      modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-right = [ "custom/pomodoro" "battery" "clock" "tray" ];
+    settings = {
+      mainBar = {
+        position = "bottom";
 
-      clock = {
-        format = "{:%Y-%m-%d %H:%M}";
-      };
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-right = [ "custom/pomodoro" "battery" "clock" "tray" ];
 
-      battery = {
-        states = {
-          warning = 30;
-          critical = 10;
+        clock = {
+          format = "{:%Y-%m-%d %H:%M}";
         };
 
-        format-time = "{H}h{M}m";
-        format-discharging = "{capacity}%- {time}";
-        format-charging = "{capacity}%+ {time}";
+        battery = {
+          states = {
+            warning = 30;
+            critical = 10;
+          };
 
-        format = "{capacity}%";
-      };
+          format-time = "{H}h{M}m";
+          format-discharging = "{capacity}%- {time}";
+          format-charging = "{capacity}%+ {time}";
 
-      "custom/pomodoro" = {
-        exec = "mosquitto_sub -t pomodoro/statusline";
-        on-click = "mosquitto_pub -t pomodoro/command -m trigger";
-        on-click-right = "mosquitto_pub -t pomodoro/command -m reset";
+          format = "{capacity}%";
+        };
+
+        "custom/pomodoro" = {
+          exec = "mosquitto_sub -t pomodoro/statusline";
+          on-click = "mosquitto_pub -t pomodoro/command -m trigger";
+          on-click-right = "mosquitto_pub -t pomodoro/command -m reset";
+        };
       };
     };
-  };
 
-  style = ''
-    * {
-      font-family: Comic Mono;
-      font-size: 13pt;
-    }
+    style = ''
+      * {
+        font-family: Comic Mono;
+        font-size: 13pt;
+      }
 
-    window#waybar {
-      background-color: #262626;
-    }
+      window#waybar {
+        background-color: #262626;
+      }
 
-    #workspaces button {
-      background: #262626;
-      border: #262626;
-      padding: 0 5px;
-      color: inherit;
-      border-radius: 0;
-    }
+      #workspaces button {
+        background: #262626;
+        border: #262626;
+        padding: 0 5px;
+        color: inherit;
+        border-radius: 0;
+      }
 
-    #workspaces button:hover {
-      box-shadow: inherit;
-      text-shadow: inherit;
-      background: #363636;
-      border: #363636;
-      padding: 0 5px;
-    }
+      #workspaces button:hover {
+        box-shadow: inherit;
+        text-shadow: inherit;
+        background: #363636;
+        border: #363636;
+        padding: 0 5px;
+      }
 
-    #workspaces button:not(.focused) {
-      color: #ebdbb2;
-    }
-
-    #workspaces button.focused {
-      background-color: #d3869b;
-      color: #262626;
-    }
-
-    .modules-left > widget:first-child > #workspaces {
-      margin-left: 0;
-    }
-
-    #custom-pomodoro,
-    #battery,
-    #clock,
-    #tray
-    {
-        padding: 0 10px;
+      #workspaces button:not(.focused) {
         color: #ebdbb2;
-    }
+      }
 
-    #clock {
-      color: #262626;
-      background-color: #83a598;
-    }
+      #workspaces button.focused {
+        background-color: #d3869b;
+        color: #262626;
+      }
 
-    #battery {
-      color: #262626;
-      background-color: #b8bb26;
-    }
+      .modules-left > widget:first-child > #workspaces {
+        margin-left: 0;
+      }
 
-    #battery.warning {
-      background-color: #fabd2f;
-    }
+      #custom-pomodoro,
+      #battery,
+      #clock,
+      #tray
+      {
+          padding: 0 10px;
+          color: #ebdbb2;
+      }
 
-    #battery.critical {
-      background-color: #fb4934;
-    }
+      #clock {
+        color: #262626;
+        background-color: #83a598;
+      }
 
-    #custom-pomodoro {
-      color: #262626;
-      background-color: #fabd2f;
-    }
+      #battery {
+        color: #262626;
+        background-color: #b8bb26;
+      }
 
-    #tray {
-      border: 1px solid #665c54;
-      margin-left: 1px;
-    }
-  '';
+      #battery.warning {
+        background-color: #fabd2f;
+      }
 
-  systemd.enable = true;
+      #battery.critical {
+        background-color: #fb4934;
+      }
+
+      #custom-pomodoro {
+        color: #262626;
+        background-color: #fabd2f;
+      }
+
+      #tray {
+        border: 1px solid #665c54;
+        margin-left: 1px;
+      }
+    '';
+
+    systemd.enable = true;
+  };
 }

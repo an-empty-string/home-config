@@ -2,11 +2,11 @@
   description = "Home Manager configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -45,31 +45,19 @@
     };
 
     homeConfigurations = let
-      system = "x86_64-linux";
-      homeDirectory = "/home/tris";
-      username = "tris";
-      stateVersion = "21.11";
-      mkOptions = attrs: options: attrs // { inherit options; };
-      subConfigs = paths: { lib, pkgs, config, ... }: lib.mkMerge (
-        map (path: (
-          (import path) ({
-            inherit lib pkgs config;
-            localCallPackage = p: ((import p) {
-              inherit lib pkgs config nixpkgs unstable;
-            });
-          })
-        )) paths);
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = {
+        unstable = unstable.legacyPackages.x86_64-linux;
+      };
     in {
       base = home-manager.lib.homeManagerConfiguration {
-        inherit system homeDirectory username stateVersion;
-
-        configuration = subConfigs [ home/base.nix ];
+        inherit pkgs extraSpecialArgs;
+        modules = [ home/base.nix ];
       };
 
       laptop = home-manager.lib.homeManagerConfiguration {
-        inherit system homeDirectory username stateVersion;
-
-        configuration = subConfigs [
+        inherit pkgs extraSpecialArgs;
+        modules = [
           home/base.nix
           home/laptop.nix
           home/productivityTools.nix
@@ -77,9 +65,8 @@
       };
 
       trisfyi = home-manager.lib.homeManagerConfiguration {
-        inherit system homeDirectory username stateVersion;
-
-        configuration = subConfigs [
+        inherit pkgs extraSpecialArgs;
+        modules = [
           home/base.nix
           home/productivityTools.nix
           home/productivityToolsPeriodic.nix

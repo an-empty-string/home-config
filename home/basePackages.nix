@@ -1,69 +1,74 @@
-{ pkgs, unstable, ... }: (with pkgs; [
-  glauth
-  acpi
-  asciinema
-  awscli2
-  bind
-  binutils
-  binwalk
-  catgirl
-  direnv
-  dos2unix
-  ffmpeg
-  file
-  fzf
-  gcc
-  gnumake
-  htop
-  inetutils
-  jdk
-  jq
-  mariadb-client
-  mosh
-  mosquitto
-  nmap
-  nodejs
-  openssl
-  pandoc
-  picocom
-  poppler_utils
-  pv
-  pwgen
-  redis
-  rmapi
-  ruby
-  rustup
-  silver-searcher
-  sipcalc
-  sshfs
-  sshpass
-  sshuttle
-  step-cli
-  sqlite-interactive
-  unzip
-  visidata
-  zip
+{ pkgs, unstable, ... }: 
 
-  (python310.withPackages (p: with p; [
-    arrow
-    black
-    click
-    cryptography
-    flake8
-    flask
-    httpx
-    ipython
-    mypy
-    pygame
-    pytest
-    pyyaml
+{
+  home.packages = (with pkgs; [
+    glauth
+    acpi
+    asciinema
+    awscli2
+    bind
+    binutils
+    binwalk
+    catgirl
+    direnv
+    dos2unix
+    ffmpeg
+    file
+    fzf
+    gcc
+    gnumake
+    htop
+    inetutils
+    jdk
+    jq
+    mariadb-client
+    mosh
+    mosquitto
+    nmap
+    nodejs
+    openssl
+    pandoc
+    picocom
+    poppler_utils
+    pv
+    pwgen
     redis
-    requests
-    rich
-    tox
+    rmapi
+    ruby
+    rustup
+    silver-searcher
+    sipcalc
+    sshfs
+    sshpass
+    sshuttle
+    step-cli
+    sqlite-interactive
+    unzip
+    visidata
+    weechat
+    zip
 
-    tris-config
-  ]))
-]) ++ (with unstable.legacyPackages.x86_64-linux; [
-  cloudflared
-])
+    (python310.withPackages (p: with p; [
+      arrow
+      black
+      click
+      cryptography
+      flake8
+      flask
+      httpx
+      ipython
+      mypy
+      pygame
+      pytest
+      pyyaml
+      redis
+      requests
+      rich
+      tox
+
+      tris-config
+    ]))
+  ]) ++ (with unstable; [
+    cloudflared
+  ]);
+}

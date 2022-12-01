@@ -1,24 +1,26 @@
 { lib, pkgs, localCallPackage, config, ... }: {
+  imports = [
+    ./laptopPackages.nix
+    programs/gpg.nix
+    programs/gpg-agent.nix
+    programs/alacritty.nix
+    programs/gammastep.nix
+    programs/sway.nix
+    programs/waybar.nix
+  ];
+
   systemd.user.services.inhibit-lid-sleep = {
     Unit.Description = "Prevent lid switch from suspending the system";
     Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${config.home.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
   };
 
   programs.password-store.enable = true;
-  programs.gpg = localCallPackage programs/gpg.nix;
-  services.gpg-agent = localCallPackage programs/gpg-agent.nix;
   services.syncthing.enable = true;
 
-  home.packages = localCallPackage ./laptopPackages.nix;
-
   fonts.fontconfig.enable = true;
-  programs.alacritty = localCallPackage programs/alacritty.nix;
   programs.firefox.enable = true;
   programs.mako.enable = true;
-  services.gammastep = localCallPackage programs/gammastep.nix;
   services.mpris-proxy.enable = true;
-  wayland.windowManager.sway = localCallPackage programs/sway.nix;
-  programs.waybar = localCallPackage programs/waybar.nix;
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

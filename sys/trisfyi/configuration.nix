@@ -53,6 +53,8 @@
     };
   };
 
+  virtualisation.docker.enable = true;
+
   # Amethyst configuration
   # services.amethyst = {
   #   enable = true;
@@ -102,6 +104,8 @@
 
   services.nginx = {
     enable = true;
+    clientMaxBodySize = "64m";
+    proxyTimeout = "300s";
     recommendedTlsSettings = true;
     recommendedProxySettings = true;
 
@@ -119,7 +123,6 @@
           dav_access user:rw group:rw all:r;
 
           limit_except GET {
-            satisfy any;
             deny all;
 
             auth_basic_user_file /etc/content.htpasswd;
@@ -158,6 +161,17 @@
       enableACME = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8082";
+      };
+    };
+
+    virtualHosts."social.tris.fyi" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000";
+        extraConfig = ''
+          proxy_set_header X-Forwarded-Proto "https";
+        '';
       };
     };
   };

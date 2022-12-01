@@ -1,4 +1,8 @@
-{ ... }: {
-  enable = true;
-  enableZshIntegration = true;
+{ ... }:
+
+{
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
