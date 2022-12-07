@@ -14,6 +14,8 @@
   networking.hostName = "deepslate";
   time.timeZone = "America/Chicago";
 
+  services.flatpak.enable = true;
+
   services.hardware.bolt.enable = true;
 
   services.instanced-tailscale.lessbroken = {
@@ -22,8 +24,8 @@
   };
 
   services.tlp.settings = {
-    START_CHARGE_THRESH_BAT0 = 75;
-    STOP_CHARGE_THRESH_BAT0 = 80;
+    START_CHARGE_THRESH_BAT0 = 45;
+    STOP_CHARGE_THRESH_BAT0 = 55;
   };
 
   system.stateVersion = "21.11";

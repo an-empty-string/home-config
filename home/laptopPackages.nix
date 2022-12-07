@@ -13,6 +13,7 @@
     emojione
     font-awesome_5
     freerdp
+    gajim
     gimp-with-plugins
     grim
     hack-font
@@ -28,6 +29,7 @@
     pavucontrol
     playerctl
     prismlauncher
+    # qgis
     qpwgraph
     rofi-wayland
     signal-desktop
@@ -38,7 +40,6 @@
     virt-manager
     vlc
     volumeicon
-    wdisplays
     wdisplays
     wego
     wireshark

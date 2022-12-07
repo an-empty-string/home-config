@@ -9,6 +9,10 @@
     programs/waybar.nix
   ];
 
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "qtwebkit-5.212.0-alpha4"
+  # ];
+
   systemd.user.services.inhibit-lid-sleep = {
     Unit.Description = "Prevent lid switch from suspending the system";
     Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${config.home.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
@@ -21,6 +25,13 @@
   programs.firefox.enable = true;
   programs.mako.enable = true;
   services.mpris-proxy.enable = true;
+  services.pass-secret-service.enable = true;
+
+  gtk.enable = true;
+  gtk.iconTheme = {
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+  };
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
