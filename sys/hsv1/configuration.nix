@@ -20,8 +20,6 @@
 
   services.syncthing.enable = true;
 
-  users.users.calibre-server.uid = 8001;
-
   services.calibre-server = {
     enable = true;
     user = "calibre-server";
