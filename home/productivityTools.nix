@@ -64,6 +64,7 @@
   };
 
   home.packages = with pkgs; [
+    timewarrior
     tris-pomodoro
     tris-bamboo-holidays
   ];
