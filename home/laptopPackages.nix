@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     audacity
+    authy
     brightnessctl
     calibre
     chromium
@@ -47,5 +48,7 @@
     wob
     xdg-desktop-portal-wlr
     zathura
+
+    unstable.android-tools
   ];
 }

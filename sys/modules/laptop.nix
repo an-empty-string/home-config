@@ -4,8 +4,6 @@
     ./efiBoot.nix
   ];
 
-
-
   # Networking: use NetworkManager instead of built-in DHCP units
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
@@ -17,6 +15,9 @@
   services.udev.packages = with pkgs; [
     qmk-udev-rules
   ];
+
+  # Android
+  programs.adb.enable = true;
 
   # Power management
   services.logind.lidSwitch = "suspend-then-hibernate";

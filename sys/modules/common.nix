@@ -38,7 +38,7 @@
   users.users.tris = {
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "dialout" "video" "input" "docker" "gemini" "www" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "dialout" "video" "input" "docker" "gemini" "www" "libvirtd" "adbusers" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       # YubiKey

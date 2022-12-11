@@ -9,6 +9,8 @@
 
   boot.initrd.luks.devices.cryptlvm.device = "/dev/nvme0n1p5";
 
+  networking.firewall.allowedTCPPorts = [ 9090 ];
+
   virtualisation.libvirtd.enable = true;
 
   networking.hostName = "deepslate";
