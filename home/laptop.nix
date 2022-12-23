@@ -39,7 +39,7 @@
   };
 
   home.file.swayidle = let
-    swaylock = "swaylock -lfF -c 282828";
+    swaylock = "${pkgs.swaylock}/bin/swaylock -lfF -c 282828";
     displayOff = pkgs.writeShellScript "displayOff" ''
       if [ -e /sys/class/power_supply/AC/online ] && [ "$(cat /sys/class/power_supply/AC/online)" = "1" ]; then
         exit 0

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.waybar = {
@@ -29,9 +29,9 @@
         };
 
         "custom/pomodoro" = {
-          exec = "mosquitto_sub -t pomodoro/statusline";
-          on-click = "mosquitto_pub -t pomodoro/command -m trigger";
-          on-click-right = "mosquitto_pub -t pomodoro/command -m reset";
+          exec = "${pkgs.mosquitto}/bin/mosquitto_sub -t pomodoro/statusline";
+          on-click = "${pkgs.mosquitto}/bin/mosquitto_pub -t pomodoro/command -m trigger";
+          on-click-right = "${pkgs.mosquitto}/bin/mosquitto_pub -t pomodoro/command -m reset";
         };
       };
     };
