@@ -30,6 +30,7 @@
     pandoc
     picocom
     poppler_utils
+    pre-commit
     pv
     pwgen
     qsynth
@@ -64,6 +65,7 @@
       ipython
       mido
       mypy
+      poetry
       pygame
       pytest
       pyyaml

@@ -8,21 +8,6 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    coc = {
-      enable = false;
-
-      settings = {
-        python = {
-          formatting.provider = "black";
-
-          linting = {
-            flake8Enabled = true;
-            mypyEnabled = true;
-          };
-        };
-      };
-    };
-
     extraPackages = with pkgs; [
       solargraph
     ];
@@ -33,7 +18,7 @@
     ]);
 
     extraConfig = ''
-      let g:coc_global_extensions = ['coc-pyright', 'coc-yaml', 'coc-highlight']
+      let g:black_use_virtualenv = 0
 
       set expandtab
       set modeline
@@ -95,6 +80,10 @@
       autocmd InsertEnter * :set norelativenumber
       autocmd InsertLeave * :set relativenumber
 
+      " Aggressively autoformat
+      autocmd InsertLeave *.py :Black
+      autocmd BufWritePre *.py :Black
+
       " Two space tabs in YAML and nix files
       autocmd FileType yaml setlocal ts=2 sw=2
       autocmd FileType nix setlocal ts=2 sw=2
@@ -102,18 +91,30 @@
       " Maps
       nmap <silent> <Leader>h :set nohlsearch<CR>
       nmap <silent> <Leader>tf :Pytest file<CR>
-      nmap <silent> <Leader>af :call CocAction('format')<CR>
+      nmap <silent> <Leader>af :Black<CR>
 
       colorscheme gruvbox
     '';
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; let
+      tris-vim-black = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        name = "vim-black";
+        src = pkgs.fetchFromGitHub {
+          owner = "psf";
+          repo = "black";
+          rev = "8aa39b69fca3d78baf841fc4bb2f4202936a67e1";
+          hash = "sha256-QJpUCWd3A9J8x36k5iEcqSm4kKIJghOi9K7ICDjiaE0=";
+        };
+      };
+    in [
       gruvbox
       vim-unimpaired
       vim-airline
       vim-airline-themes
       vim-python-pep8-indent
       vim-nix
+
+      tris-vim-black
     ];
   };
 }

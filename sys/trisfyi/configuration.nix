@@ -98,6 +98,28 @@
     overrideDevices = false;
   };
 
+  # Miniflux
+  services.miniflux = {
+    enable = true;
+    config = {
+      LISTEN_ADDR = "127.0.0.1:8190";
+      FETCH_YOUTUBE_WATCH_TIME = "true";
+    };
+    adminCredentialsFile = "/etc/miniflux.secret";
+  };
+
+  # Radicale
+  services.radicale = {
+    enable = true;
+    settings = {
+      auth = {
+        type = "htpasswd";
+        htpasswd_filename = "/etc/radicale.passwd";
+        htpasswd_encryption = "md5";
+      };
+    };
+  };
+
   # Web server configuration
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme-admin@tris.fyi";
@@ -137,6 +159,22 @@
       enableACME = true;
       locations."/" = {
         root = "/var/www/f";
+      };
+    };
+
+    virtualHosts."miniflux.tris.fyi" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8190";
+      };
+    };
+
+    virtualHosts."radicale.tris.fyi" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:5232";
       };
     };
 
