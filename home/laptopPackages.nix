@@ -23,7 +23,7 @@
     lagrange
     libnotify
     libreoffice
-    musescore
+    unstable.musescore
     networkmanager_dmenu
     obs-studio
     pamixer
