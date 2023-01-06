@@ -7,6 +7,7 @@
   # Networking: use NetworkManager instead of built-in DHCP units
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Firmware update services
   services.fwupd.enable = true;

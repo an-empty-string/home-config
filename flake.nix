@@ -11,37 +11,21 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager }: {
+  outputs = { self, nixpkgs, unstable, home-manager }: let
+    mkSystem = mainMod: nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ mainMod ];
+      specialArgs = {
+        unstable = unstable.legacyPackages.x86_64-linux;
+      };
+    }; in {
     nixosConfigurations = {
-      terracotta = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/terracotta/configuration.nix ];
-      };
-
-      deepslate = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/deepslate/configuration.nix ];
-      };
-
-      dripleaf = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/dripleaf/configuration.nix ];
-      };
-
-      trisfyi = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/trisfyi/configuration.nix ];
-      };
-
-      hsv1 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/hsv1/configuration.nix ];
-      };
-
-      hsv2 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./sys/hsv2/configuration.nix ];
-      };
+      terracotta = mkSystem ./sys/terracotta/configuration.nix;
+      deepslate = mkSystem ./sys/deepslate/configuration.nix;
+      dripleaf = mkSystem ./sys/dripleaf/configuration.nix;
+      trisfyi = mkSystem ./sys/trisfyi/configuration.nix;
+      hsv1 = mkSystem ./sys/hsv1/configuration.nix;
+      hsv2 = mkSystem ./sys/hsv2/configuration.nix;
     };
 
     homeConfigurations = let
