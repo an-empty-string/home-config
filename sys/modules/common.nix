@@ -8,6 +8,7 @@
 
   # Nix/nixpkgs configuration
   nix.package = pkgs.nixUnstable;
+  nixpkgs.overlays = [ (import ../../overlay) ];
   nixpkgs.config.allowUnfree = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes

@@ -120,10 +120,10 @@
           criteria = "eDP-1";
           status = "disable";
         } {
-          criteria = "DP-4";
+          criteria = "DP-6";
           status = "enable";
         } {
-          criteria = "DP-5";
+          criteria = "DP-7";
           status = "enable";
         }];
       };

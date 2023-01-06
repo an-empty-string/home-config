@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
     ./efiBoot.nix
+    ./keyd.nix
   ];
 
   # Networking: use NetworkManager instead of built-in DHCP units
