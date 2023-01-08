@@ -56,6 +56,7 @@
 
     (python310.withPackages (p: with p; [
       arrow
+      asyncio-mqtt
       black
       click
       cryptography

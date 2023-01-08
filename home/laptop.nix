@@ -73,6 +73,17 @@
 
   systemd.user.services.kanshi.Install.WantedBy = [ "sway-session.target" ];
 
+  systemd.user.services.mqtt-bluetooth = {
+    Unit.Description = "MQTT to bluetoothctl bridge";
+    Service = {
+      ExecStart = "${pkgs.tris-mqtt-bluetooth}/bin/mqtt-bluetooth";
+      Restart = "always";
+      RestartSec = "30";
+      StartLimitIntervalSec = "0";
+      Environment = "PATH=${pkgs.bluez}/bin";
+    };
+  };
+
   home.file.electron-flags = {
     text = ''
       --enable-features=UseOzonePlatform

@@ -1,6 +1,11 @@
 { pkgs, unstable, ... }:
 
 {
+  # qgis
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
+
   home.packages = with pkgs; [
     audacity
     authy
@@ -30,7 +35,7 @@
     pavucontrol
     playerctl
     prismlauncher
-    # qgis
+    qgis
     qpwgraph
     rofi-wayland
     signal-desktop
