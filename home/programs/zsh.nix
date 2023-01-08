@@ -49,6 +49,32 @@
       alias -s {png,jpg}=imv
       alias -s {txt,py,rb}=nvim
 
+      jr() {
+        date "+%Y-%m-%d %H:%M:%S" >> ~/journal.txt
+        if [[ $# -gt 0 ]]; then
+          echo "$@" >> ~/journal.txt
+          echo >> ~/journal.txt
+        else
+          cat >> ~/journal.txt
+        fi
+      }
+
+      bt() {
+        if [[ $1 = earbuds ]]; then
+          mac=AC:12:2F:CF:96:86
+        elif [[ $1 = headphones ]]; then
+          mac=AC:12:2F:AC:C7:A4
+        else
+          echo "earbuds/headphones?"
+          return
+        fi
+
+        mosquitto_pub -h hsv1 -t bluetooth/all -m "disconnect $mac"
+        sleep 2
+        bluetoothctl disconnect || true
+        bluetoothctl connect $mac
+      }
+
       if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
         exec sway
       fi
