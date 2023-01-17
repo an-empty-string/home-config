@@ -19,6 +19,7 @@
     gnumake
     htop
     inetutils
+    iperf3
     jdk
     jq
     mariadb-client
