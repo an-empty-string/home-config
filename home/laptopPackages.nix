@@ -35,7 +35,7 @@
     pavucontrol
     playerctl
     prismlauncher
-    qgis
+    # qgis
     qpwgraph
     rofi-wayland
     signal-desktop

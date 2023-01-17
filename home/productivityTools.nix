@@ -3,7 +3,7 @@
     enable = true;
     config = {
       news.version = "2.6.0";
-      default.command = "act";
+      default.command = "act +today";
       calendar.holidays = "full";
 
       report.act = {
@@ -31,6 +31,8 @@
 
       alias.cal = "calendar";
       alias.next = "next limit:1";
+      alias.inbox = "add +inbox";
+      alias.inboxed = "act +inbox";
 
       color = {
         blocking = "";

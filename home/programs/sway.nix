@@ -55,6 +55,7 @@
           "${mod}+d" = "exec rofi -show drun -modi drun,run";
           "${mod}+Shift+z" = "exec swaylock -c 282828";
           "${mod}+Shift+n" = "exec networkmanager_dmenu";
+          "${mod}+Shift+x" = "exec alacritty -e sh -c 'q=`mktemp`; wl-paste > $q; vim $q; wl-copy < $q; shred -u $q'";
       };
 
       floating.criteria = [
