@@ -80,8 +80,7 @@
       autocmd InsertEnter * :set norelativenumber
       autocmd InsertLeave * :set relativenumber
 
-      " Aggressively autoformat
-      autocmd InsertLeave *.py :Black
+      " Reasonably autoformat
       autocmd BufWritePre *.py :Black
 
       " Two space tabs in YAML and nix files
