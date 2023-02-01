@@ -75,6 +75,20 @@
         bluetoothctl connect $mac
       }
 
+      tasknote() {
+        mkdir -p ~/vimwiki/tasknotes
+        uuid=$(task $1 uuids)
+        desc=$(task _get ''${uuid}.description)
+        note=~/vimwiki/tasknotes/$uuid.wiki
+
+        if [[ ! -f $note ]]; then
+          echo "* [[''${uuid}|''${desc}]]" >> ~/vimwiki/tasknotes/index.wiki
+          echo "== ''${desc} ==" > $note
+        fi
+
+        vim $note
+      }
+
       if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
         exec sway
       fi

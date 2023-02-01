@@ -94,6 +94,8 @@
       nmap <silent> <Leader>af :Black<CR>
 
       colorscheme gruvbox
+
+      " lua require("nvim-tree").setup()
     '';
 
     plugins = with pkgs.vimPlugins; let
@@ -113,6 +115,9 @@
       vim-airline-themes
       vim-python-pep8-indent
       vim-nix
+
+      vimwiki
+      nvim-tree-lua
 
       tris-vim-black
     ];

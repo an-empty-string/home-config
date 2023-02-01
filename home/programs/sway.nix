@@ -56,6 +56,8 @@
           "${mod}+Shift+z" = "exec swaylock -c 282828";
           "${mod}+Shift+n" = "exec networkmanager_dmenu";
           "${mod}+Shift+x" = "exec alacritty -e sh -c 'q=`mktemp`; wl-paste > $q; vim $q; wl-copy < $q; shred -u $q'";
+          "${mod}+Shift+a" = "exec systemctl stop --user waybar";
+          "${mod}+Shift+s" = "exec systemctl start --user waybar";
       };
 
       floating.criteria = [

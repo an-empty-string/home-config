@@ -30,6 +30,7 @@
     libreoffice
     unstable.musescore
     networkmanager_dmenu
+    noto-fonts-emoji
     obs-studio
     pamixer
     pavucontrol
