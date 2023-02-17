@@ -31,7 +31,7 @@ def main():
                 continue
 
             k, v = line.strip().split(":")
-            if k == "BEGIN:VEVENT":
+            if k == "BEGIN" and v == "VEVENT":
                 state.clear()
 
             if k == "SUMMARY":
@@ -43,7 +43,7 @@ def main():
             if k == "DTEND;VALUE=DATE":
                 state["end"] = int(v)
 
-            if k == "END:VEVENT":
+            if k == "END" and v == "VEVENT":
                 if state in seen:
                     continue
 
