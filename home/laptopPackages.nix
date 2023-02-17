@@ -36,7 +36,7 @@
     pavucontrol
     playerctl
     prismlauncher
-    # qgis
+    unstable.qgis
     qpwgraph
     rofi-wayland
     signal-desktop
