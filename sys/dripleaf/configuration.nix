@@ -9,7 +9,7 @@
   boot.initrd.luks.devices.cryptlvm.device = "/dev/nvme0n1p1";
 
   networking.hostName = "dripleaf";
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/New_York";
 
   services.hardware.bolt.enable = true;
 
