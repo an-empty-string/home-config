@@ -14,7 +14,7 @@
   virtualisation.libvirtd.enable = true;
 
   networking.hostName = "deepslate";
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/New_York";
 
   services.flatpak.enable = true;
 

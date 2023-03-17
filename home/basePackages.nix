@@ -16,6 +16,7 @@
     file
     fzf
     gcc
+    gdal
     gnumake
     htop
     inetutils
@@ -54,6 +55,7 @@
     consul
     vault
     nomad
+    packer
 
     (python310.withPackages (p: with p; [
       arrow

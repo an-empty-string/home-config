@@ -10,11 +10,12 @@
     *
 
     [main]
-    capslock = overload(capslock, esc)
+    capslock = timeout(overload(navigation, esc), 500, toggle(navigation))
+    rightshift = layer(rshift)
 
     [chording]
 
-    [capslock:C]
+    [navigation:C]
     # just to be very clear about what keys we definitely want C-[key] to work for
     c = C-c
     d = C-d
@@ -33,7 +34,22 @@
     k = up
     l = right
 
+    1 = f1
+    2 = f2
+    3 = f3
+    4 = f4
+    5 = f5
+    6 = f6
+    7 = f7
+    8 = f8
+    9 = f9
+    0 = f10
+    minus = f11
+    equals = f12
+
     e = oneshot(meta)
     n = toggle(chording)
+    rightshift = toggle(navigation)
+
   '';
 }
