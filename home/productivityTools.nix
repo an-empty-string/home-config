@@ -3,7 +3,7 @@
     enable = true;
     config = {
       news.version = "2.6.0";
-      default.command = "act +today";
+      default.command = "act";
       calendar.holidays = "full";
 
       report.act = {
@@ -111,6 +111,7 @@
   systemd.user.services.tris-pomodoro-server = {
     Unit.Description = "Pomodoro server";
     Service.ExecStart = "${pkgs.tris-pomodoro}/bin/pomodoro-server";
+    Service.Restart = "always";
     Install.WantedBy = [ "default.target" ];
   };
 }

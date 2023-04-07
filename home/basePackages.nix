@@ -33,6 +33,7 @@
     picocom
     poppler_utils
     pre-commit
+    progress
     pv
     pwgen
     qsynth
