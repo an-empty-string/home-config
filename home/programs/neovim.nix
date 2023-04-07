@@ -15,6 +15,7 @@
     extraPython3Packages = (ps: with ps; [
       flask
       black
+      isort
     ]);
 
     extraConfig = ''
@@ -82,6 +83,7 @@
 
       " Reasonably autoformat
       autocmd BufWritePre *.py :Black
+      autocmd BufWritePre *.py :Isort
 
       " Two space tabs in YAML and nix files
       autocmd FileType yaml setlocal ts=2 sw=2
@@ -119,6 +121,7 @@
       nvim-tree-lua
 
       tris-vim-black
+      vim-isort
     ];
   };
 }
