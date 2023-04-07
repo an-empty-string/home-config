@@ -10,7 +10,7 @@
     *
 
     [main]
-    capslock = timeout(overload(navigation, esc), 500, toggle(navigation))
+    capslock = overload(navigation, esc)
     rightshift = layer(rshift)
 
     [chording]
