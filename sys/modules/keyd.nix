@@ -11,9 +11,6 @@
 
     [main]
     capslock = overload(navigation, esc)
-    rightshift = layer(rshift)
-
-    [chording]
 
     [navigation:C]
     # just to be very clear about what keys we definitely want C-[key] to work for
@@ -25,6 +22,8 @@
     w = C-w
     ; = S-;
     space = enter
+
+    enter = S-M-enter
 
     u = pagedown
     i = pageup
@@ -45,7 +44,7 @@
     9 = f9
     0 = f10
     minus = f11
-    equals = f12
+    equal = f12
 
     e = oneshot(meta)
     n = toggle(chording)
