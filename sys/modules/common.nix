@@ -59,6 +59,16 @@
     ];
   };
 
+  users.users.alyssa = {
+    uid = 1001;
+    isNormalUser = true;
+    extraGroups = [];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgpVY7X8AL0oHJaZIFy9Lfp9KaNsVqVi7e+X+CIAWd6"
+    ];
+  };
+
   # Kernel firmware
   hardware.enableAllFirmware = true;
 

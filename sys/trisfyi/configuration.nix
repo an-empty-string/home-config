@@ -98,16 +98,6 @@
     overrideDevices = false;
   };
 
-  # Miniflux
-  services.miniflux = {
-    enable = true;
-    config = {
-      LISTEN_ADDR = "127.0.0.1:8190";
-      FETCH_YOUTUBE_WATCH_TIME = "true";
-    };
-    adminCredentialsFile = "/etc/miniflux.secret";
-  };
-
   # Radicale
   services.radicale = {
     enable = true;
@@ -162,27 +152,11 @@
       };
     };
 
-    virtualHosts."miniflux.tris.fyi" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8190";
-      };
-    };
-
     virtualHosts."radicale.tris.fyi" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:5232";
-      };
-    };
-
-    virtualHosts."grocy.tris.fyi" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://[fdee:d21b:6b8b:ef00::2]";
       };
     };
 
@@ -298,6 +272,7 @@
 
   # Firewall configuration
   networking.firewall.allowedTCPPorts = [
+    22    # SSH
     80    # HTTP
     443   # HTTPS
     1965  # Gemini
