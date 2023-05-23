@@ -11,7 +11,7 @@
         columns = "id,project,priority,size,description.count,tags,due.relative";
         labels = "ID,Proj,Pri,Size,Desc,Tags,Due";
         sort = "project+/,priority-,size-,entry+";
-        filter = "status:pending project!=misc -WAITING -BLOCKED -someday -notify_only";
+        filter = "status:pending project!=misc -WAITING -BLOCKED -review -someday -notify_only";
       };
 
       report.booklist = {

@@ -17,6 +17,7 @@
     fzf
     gcc
     gdal
+    geos
     gnumake
     htop
     inetutils
@@ -78,6 +79,8 @@
       requests
       rich
       tox
+
+      shapely
 
       tris-config
     ]))

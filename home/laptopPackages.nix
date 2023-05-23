@@ -24,7 +24,7 @@
     grim
     hack-font
     imv
-    josm
+    unstable.josm
     keepassxc
     lagrange
     libnotify
