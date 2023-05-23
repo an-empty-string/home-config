@@ -19,7 +19,6 @@
     emojione
     font-awesome_5
     freerdp
-    gajim
     gimp-with-plugins
     grim
     hack-font
@@ -45,7 +44,6 @@
     speedcrunch
     spotify
     swayidle
-    thunderbird
     virt-manager
     vlc
     volumeicon

@@ -58,6 +58,7 @@
         as = mkCtx "proj:work.as";
         cat = mkCtx "proj:cat";
         home = { read = "proj:personal or proj:work.as"; };
+        today = { read = "+today"; };
       };
 
       nag = "";

@@ -63,6 +63,7 @@
       arrow
       asyncio-mqtt
       black
+      boto3
       click
       cryptography
       flake8

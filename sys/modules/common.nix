@@ -90,6 +90,7 @@
     usbutils
     vim
     tcpdump
+    ncdu
   ];
 
   programs.mtr.enable = true;
