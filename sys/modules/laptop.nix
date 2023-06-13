@@ -13,11 +13,6 @@
   # Firmware update services
   services.fwupd.enable = true;
 
-  # Keyboard
-  services.udev.packages = with pkgs; [
-    qmk-udev-rules
-  ];
-
   # Android
   programs.adb.enable = true;
 
@@ -45,6 +40,12 @@
       # Battery charge thresholds are in system configurations
     };
   };
+
+  security.doas.extraRules = [{
+    users = [ "tris" ];
+    noPass = true;
+    cmd = "/run/current-system/sw/bin/cpupower";
+  }];
 
   # Graphical environment
   programs.sway.enable = true;

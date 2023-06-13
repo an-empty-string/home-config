@@ -72,6 +72,7 @@
       ipython
       mido
       mypy
+      mysqlclient
       poetry
       pygame
       pytest

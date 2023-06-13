@@ -15,13 +15,13 @@
   '';
 
   nix.settings.substituters = [
-    "http://deepslate.sparrow-frog.ts.net:5000"
+    # "http://deepslate.sparrow-frog.ts.net:5000"
     "https://cache.nixos.org/"
   ];
 
-  nix.settings.trusted-public-keys = [
-    "deepslate.sparrow-frog.ts.net:yTKzIf66q7SNXvr+EQXA/TFODCBlj00cYxC25+rCIAw="
-  ];
+  # nix.settings.trusted-public-keys = [
+  #   "deepslate.sparrow-frog.ts.net:yTKzIf66q7SNXvr+EQXA/TFODCBlj00cYxC25+rCIAw="
+  # ];
 
   # Tailscale / remote access
   services.tailscale.enable = true;
