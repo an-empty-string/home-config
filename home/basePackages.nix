@@ -73,7 +73,7 @@
       mido
       mypy
       mysqlclient
-      poetry
+      # poetry
       pygame
       pytest
       pyyaml

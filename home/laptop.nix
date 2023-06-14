@@ -23,7 +23,7 @@
 
   fonts.fontconfig.enable = true;
   programs.firefox.enable = true;
-  programs.mako.enable = true;
+  services.mako.enable = true;
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 

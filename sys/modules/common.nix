@@ -30,8 +30,10 @@
   services.openssh = {
     enable = true;
     openFirewall = false;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
   };
 
   networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
@@ -45,6 +47,8 @@
   };
 
   # Users
+  programs.zsh.enable = true;
+
   users.users.tris = {
     uid = 1000;
     isNormalUser = true;
