@@ -115,5 +115,8 @@
   # AppVM
   virtualisation.appvm.enable = true;
   virtualisation.appvm.user = "tris";
+
+  # Noisetorch
+  programs.noisetorch.enable = true;
 }
 
