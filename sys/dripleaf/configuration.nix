@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -21,6 +21,8 @@
   services.tlp.settings = {
     START_CHARGE_THRESH_BAT0 = 75;
     STOP_CHARGE_THRESH_BAT0 = 80;
+    CPU_ENERGY_PERF_POLICY_ON_AC = lib.mkForce "performance";
+    CPU_ENERGY_PERF_POLICY_ON_BAT = lib.mkForce "balance_power";
   };
 
   system.stateVersion = "22.05";

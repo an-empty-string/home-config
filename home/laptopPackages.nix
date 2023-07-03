@@ -32,6 +32,7 @@
     networkmanager_dmenu
     noto-fonts-emoji
     obs-studio
+    openvpn
     pamixer
     pavucontrol
     playerctl

@@ -2,7 +2,7 @@
 
 {
   home.packages = (with pkgs; [
-    glauth
+    # glauth
     acpi
     asciinema
     awscli2
@@ -32,6 +32,7 @@
     openssl
     pandoc
     picocom
+    postgresql
     poppler_utils
     pre-commit
     progress
