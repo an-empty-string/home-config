@@ -24,6 +24,7 @@
     iperf3
     jdk
     jq
+    lftp
     mariadb-client
     mosh
     mosquitto
