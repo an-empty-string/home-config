@@ -14,7 +14,6 @@
 
   # GRUB is bootloader - FIXME -> modules/server.nix
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda";
 
   # Networking - static addressing
@@ -59,6 +58,7 @@
     enable = true;
     dataDir = "/data/postgres/15";
     package = pkgs.postgresql_15;
+    enableTCPIP = true;
     ensureDatabases = [ "maps" ];
     ensureUsers = [{
       name = "tris";
@@ -67,6 +67,9 @@
     extraPlugins = [
       pkgs.postgresql_15.pkgs.postgis
     ];
+    authentication = ''
+      host all tris 100.64.0.0/10 md5
+    '';
   };
 
   # Amethyst configuration
