@@ -71,6 +71,7 @@
       flask
       httpx
       ipython
+      lxml
       mido
       mypy
       mysqlclient

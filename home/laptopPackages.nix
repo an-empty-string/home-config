@@ -23,6 +23,7 @@
     grim
     hack-font
     imv
+    inkscape
     unstable.josm
     keepassxc
     lagrange

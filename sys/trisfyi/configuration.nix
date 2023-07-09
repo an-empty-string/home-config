@@ -55,6 +55,20 @@
 
   virtualisation.docker.enable = true;
 
+  services.postgresql = {
+    enable = true;
+    dataDir = "/data/postgres/15";
+    package = pkgs.postgresql_15;
+    ensureDatabases = [ "maps" ];
+    ensureUsers = [{
+      name = "tris";
+      ensureClauses.superuser = true;
+    }];
+    extraPlugins = [
+      pkgs.postgresql_15.pkgs.postgis
+    ];
+  };
+
   # Amethyst configuration
   # services.amethyst = {
   #   enable = true;
