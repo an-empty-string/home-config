@@ -9,10 +9,6 @@
     programs/waybar.nix
   ];
 
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "qtwebkit-5.212.0-alpha4"
-  # ];
-
   systemd.user.services.inhibit-lid-sleep = {
     Unit.Description = "Prevent lid switch from suspending the system";
     Service.ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-lid-switch --who=${config.home.username} --why='Running inhibitor service' --mode=block ${pkgs.coreutils}/bin/sleep infinity";
@@ -24,6 +20,10 @@
   fonts.fontconfig.enable = true;
   programs.firefox.enable = true;
   services.mako.enable = true;
+  services.mako.extraConfig = ''
+    [mode=dnd]
+    invisible=1
+  '';
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 

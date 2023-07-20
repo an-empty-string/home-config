@@ -6,6 +6,7 @@
     acpi
     asciinema
     awscli2
+    backblaze-b2
     bind
     binutils
     binwalk
@@ -39,7 +40,7 @@
     progress
     pv
     pwgen
-    qsynth
+    rclone
     redis
     rmapi
     ruby
@@ -54,6 +55,7 @@
     unzip
     visidata
     weechat
+    wget
     zip
 
     consul

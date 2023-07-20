@@ -40,6 +40,7 @@
     prismlauncher
     unstable.qgis
     qpwgraph
+    qsynth
     rofi-wayland
     signal-desktop
     slurp
