@@ -89,6 +89,14 @@
         vim $note
       }
 
+      an() {
+        if [[ -e /home/tris/work/can/an-cmd/bin/an ]]; then
+          /home/tris/work/can/an-cmd/bin/an $@
+        else
+          echo "no an-cmd"
+        fi
+      }
+
       if [ "$(tty)" = "/dev/tty1" ] && which sway > /dev/null; then
         exec sway
       fi
