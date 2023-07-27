@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+import functools
+import json
+import os
+import shlex
+import subprocess
+import sys
+from typing import List
+
+PATH = os.path.expanduser("~/.clipboard")
+
+
+def run(s: str, inp: str = None) -> str:
+    return subprocess.check_output(shlex.split(s), text=True, input=inp)
+
+
+def notify(subj, message):
+    subprocess.run(["notify-send", subj, message])
+
+
+def read() -> List[str]:
+    with open(PATH) as f:
+        return json.load(f)
+
+
+def write(xs: List[str]):
+    with open(PATH, "w") as f:
+        json.dump(xs, f)
+
+
+def copy():
+    xs = read()
+    xs.insert(0, run("wl-paste").rstrip("\n"))
+    write(xs)
+
+    notify(f"added to buffer, {len(xs)} items now", menuval(xs[0]))
+
+
+def pop(n: int):
+    xs = read()
+    x = xs.pop(n)
+    run("wl-copy", inp=x)
+    write(xs)
+
+    notify(f"popped from buffer, {len(xs)} items now", menuval(x))
+
+
+def clear():
+    write([])
+
+    notify("cleared", "all data cleared from buffer")
+
+
+def pop0():
+    pop(0)
+
+
+def paste(n: int):
+    xs = read()
+    run("wl-copy", inp=xs[n])
+
+    notify(f"pulled from buffer", menuval(xs[n]))
+
+
+def rotate():
+    xs = read()
+    write(xs[1:] + xs[0])
+
+    notify(f"rotated buffer, top is now", menuval(read()[0]))
+
+
+def menuval(x):
+    x = x.replace("\n", " ")
+    return x
+
+
+def dmenu(ispop=False):
+    entries = read()
+
+    ilist = [f"{idx:3}   {menuval(val)}" for idx, val in enumerate(entries)]
+    ilist.extend(["!clear", "!rotate"])
+    ilist.append("!paste" if ispop else "!pop")
+
+    inp = "\n".join(ilist)
+
+    prompt = "pop" if ispop else "paste"
+    result = run(f"rofi -dmenu -p {prompt}", inp=inp)
+
+    result = result.split()
+    if result[0].startswith("!"):
+        {
+            "!clear": clear,
+            "!rotate": rotate,
+            "!pop": functools.partial(dmenu, ispop=True),
+            "!paste": dmenu,
+        }[result[0]]()
+    else:
+        [paste, pop][ispop](int(result[0]))
+
+
+def main():
+    {"copy": copy, "pop": pop, "dmenu": dmenu}[sys.argv[1]]()
+
+
+if __name__ == "__main__":
+    main()
+
+
+# vim: ft=python

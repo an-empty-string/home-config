@@ -27,6 +27,13 @@
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 
+  # clippy
+  home.file.clippy = {
+    source = files/clippy;
+    target = "bin/clippy";
+    executable = true;
+  };
+
   gtk.enable = true;
   gtk.iconTheme = {
     package = pkgs.gnome.adwaita-icon-theme;

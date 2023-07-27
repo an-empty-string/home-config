@@ -57,6 +57,7 @@
     wob
     xdg-desktop-portal-wlr
     zathura
+    zoom-us
 
     unstable.android-tools
   ];

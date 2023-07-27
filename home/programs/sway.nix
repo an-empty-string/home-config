@@ -58,6 +58,8 @@
           "${mod}+Shift+x" = "exec alacritty -e sh -c 'q=`mktemp`; wl-paste > $q; vim $q; wl-copy < $q; shred -u $q'";
           "${mod}+Shift+a" = "exec systemctl stop --user waybar";
           "${mod}+Shift+s" = "exec systemctl start --user waybar";
+          "${mod}+Shift+c" = "exec bin/clippy copy";
+          "${mod}+Shift+v" = "exec bin/clippy dmenu";
       };
 
       floating.criteria = [
