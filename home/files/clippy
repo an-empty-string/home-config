@@ -14,7 +14,7 @@ def run(s: str, inp: str = None) -> str:
     return subprocess.check_output(shlex.split(s), text=True, input=inp)
 
 
-def notify(subj, message):
+def notify(subj, message=""):
     subprocess.run(["notify-send", subj, message])
 
 
@@ -33,7 +33,7 @@ def copy():
     xs.insert(0, run("wl-paste").rstrip("\n"))
     write(xs)
 
-    notify(f"added to buffer, {len(xs)} items now", menuval(xs[0]))
+    notify(f"clippy: copied ({len(xs)} active)", menuval(xs[0]))
 
 
 def pop(n: int):
@@ -42,13 +42,13 @@ def pop(n: int):
     run("wl-copy", inp=x)
     write(xs)
 
-    notify(f"popped from buffer, {len(xs)} items now", menuval(x))
+    notify(f"clippy: popped ({len(xs)} active)", menuval(x))
 
 
 def clear():
     write([])
 
-    notify("cleared", "all data cleared from buffer")
+    notify("clippy: cleared")
 
 
 def pop0():
@@ -59,26 +59,34 @@ def paste(n: int):
     xs = read()
     run("wl-copy", inp=xs[n])
 
-    notify(f"pulled from buffer", menuval(xs[n]))
+    notify(f"clippy: pasted", menuval(xs[n]))
 
 
 def rotate():
     xs = read()
     write(xs[1:] + xs[0])
 
-    notify(f"rotated buffer, top is now", menuval(read()[0]))
+    notify("clippy: rotated", menuval(read()[0]))
 
 
 def menuval(x):
     x = x.replace("\n", " ")
+
+    if len(x) > 83:
+        x = x[:40] + "..." + x[-40:]
+
     return x
 
 
 def dmenu(ispop=False):
     entries = read()
+    if not entries:
+        notify("clippy: nothing in buffer!")
+        return
 
     ilist = [f"{idx:3}   {menuval(val)}" for idx, val in enumerate(entries)]
-    ilist.extend(["!clear", "!rotate"])
+
+    ilist.append("!clear")
     ilist.append("!paste" if ispop else "!pop")
 
     inp = "\n".join(ilist)
@@ -90,7 +98,6 @@ def dmenu(ispop=False):
     if result[0].startswith("!"):
         {
             "!clear": clear,
-            "!rotate": rotate,
             "!pop": functools.partial(dmenu, ispop=True),
             "!paste": dmenu,
         }[result[0]]()
