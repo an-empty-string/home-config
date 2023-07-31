@@ -11,6 +11,10 @@
 
     [main]
     capslock = overload(navigation, esc)
+    rightshift = layer(rs)
+
+    [rs:S]
+    escape = ~
 
     [navigation:C]
     # just to be very clear about what keys we definitely want C-[key] to work for
@@ -48,7 +52,16 @@
 
     e = oneshot(meta)
     n = toggle(chording)
+    q = toggle(functions)
     rightshift = toggle(navigation)
+
+    [functions]
+    w = f13
+    e = C-A-a
+    s = f15
+    f = C-S-i
+
+    rightshift = toggle(functions)
 
   '';
 }
