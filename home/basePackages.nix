@@ -10,7 +10,6 @@
     bind
     binutils
     binwalk
-    catgirl
     direnv
     dos2unix
     ffmpeg
@@ -25,6 +24,7 @@
     iperf3
     jdk
     jq
+    keyd
     lftp
     mariadb-client
     mosh
@@ -45,6 +45,7 @@
     rmapi
     ruby
     rustup
+    semgrep
     silver-searcher
     sipcalc
     sshfs
@@ -86,6 +87,7 @@
       requests
       rich
       tox
+      websocket-client
 
       shapely
 

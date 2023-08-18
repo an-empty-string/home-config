@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -24,6 +24,8 @@
     CPU_ENERGY_PERF_POLICY_ON_AC = lib.mkForce "performance";
     CPU_ENERGY_PERF_POLICY_ON_BAT = lib.mkForce "balance_power";
   };
+
+  hardware.rtl-sdr.enable = true;
 
   system.stateVersion = "22.05";
 }

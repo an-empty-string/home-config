@@ -21,6 +21,7 @@
     freerdp
     gimp-with-plugins
     grim
+    gqrx
     hack-font
     imv
     inkscape
