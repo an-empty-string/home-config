@@ -71,9 +71,20 @@
     Install.WantedBy = [ "sway-session.target" ];
   };
 
+  home.file.wob-volume-config = {
+    text = ''
+      background_color = 262626dd
+      border_color = b8bb26dd
+      bar_color = ebdbb2dd
+      anchor = top right
+    '';
+
+    target = ".config/wob/volume";
+  };
+
   systemd.user.services.wob = {
     Unit.Description = "wob overlay bar display";
-    Service.ExecStart = "/bin/sh -c '${pkgs.mosquitto}/bin/mosquitto_sub -t wob | ${pkgs.wob}/bin/wob --background-color \"#262626dd\" --bar-color \"#ebdbb2dd\" --border-color \"#b8bb26dd\" --anchor top --anchor right'";
+    Service.ExecStart = "/bin/sh -c '${pkgs.mosquitto}/bin/mosquitto_sub -t wob | ${pkgs.wob}/bin/wob -c ~/.config/wob/volume'";
     Service.Restart = "always";
     Install.WantedBy = [ "sway-session.target" ];
   };
