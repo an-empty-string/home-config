@@ -63,8 +63,9 @@
     vault
     nomad
     packer
+    rain
 
-    (python310.withPackages (p: with p; [
+    (python311.withPackages (p: with p; [
       arrow
       asyncio-mqtt
       black
@@ -76,10 +77,8 @@
       httpx
       ipython
       lxml
-      mido
       mypy
       mysqlclient
-      # poetry
       pygame
       pytest
       pyyaml
@@ -87,6 +86,7 @@
       requests
       rich
       tox
+      troposphere
       websocket-client
 
       shapely

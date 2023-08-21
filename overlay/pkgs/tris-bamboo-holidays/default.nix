@@ -1,8 +1,8 @@
 { lib
-, python310 }:
+, python311 }:
 
-python310.pkgs.buildPythonApplication rec {
+python311.pkgs.buildPythonApplication rec {
   name = "tris-bamboo-holidays";
   src = ./.;
-  propagatedBuildInputs = with python310.pkgs; [ tris-config requests ];
+  propagatedBuildInputs = with python311.pkgs; [ tris-config requests ];
 }

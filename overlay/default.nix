@@ -21,12 +21,12 @@ self: super: {
     '';
   });
 
-  python310 = super.python310.override {
+  python311 = super.python311.override {
     packageOverrides = (pself: psuper: {
       tris-config = psuper.buildPythonPackage {
         name = "tris-config";
         src = pkgs/tris-config;
-        propagatedBuildInputs = with super.python310.pkgs; [ click redis ];
+        propagatedBuildInputs = with super.python311.pkgs; [ click redis ];
       };
     });
   };

@@ -94,6 +94,7 @@
     vim
     tcpdump
     ncdu
+    hid-tools
   ];
 
   programs.mtr.enable = true;
