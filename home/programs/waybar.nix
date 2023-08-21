@@ -9,7 +9,7 @@
         position = "bottom";
 
         modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
-        modules-right = [ "custom/pomodoro" "battery" "clock" "tray" ];
+        modules-right = [ "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
 
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
@@ -26,6 +26,14 @@
           format-charging = "{capacity}%+ {time}";
 
           format = "{capacity}%";
+        };
+
+        "custom/ifconfig" = {
+          exec = ''
+            ${pkgs.curl}/bin/curl --connect-timeout 1 -s ifconfig.pro || echo disconnected;
+          '';
+          on-click = "${pkgs.coreutils}/bin/true";
+          interval = 60;
         };
 
         "custom/pomodoro" = {
@@ -81,6 +89,7 @@
       }
 
       #custom-pomodoro,
+      #custom-ifconfig,
       #battery,
       #clock,
       #tray
@@ -105,6 +114,11 @@
 
       #battery.critical {
         background-color: #fb4934;
+      }
+
+      #custom-ifconfig {
+        color: #262626;
+        background-color: #ebdbb2;
       }
 
       #custom-pomodoro {
