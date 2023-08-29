@@ -25,6 +25,14 @@
     CPU_ENERGY_PERF_POLICY_ON_BAT = lib.mkForce "balance_power";
   };
 
+  services.open-fprintd.enable = true;
+  services.python-validity.enable = true;
+  security.pam.services = {
+    doas.fprintAuth = true;
+    login.fprintAuth = true;
+    swaylock.fprintAuth = true;
+  };
+
   hardware.rtl-sdr.enable = true;
 
   system.stateVersion = "22.05";

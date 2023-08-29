@@ -9,7 +9,7 @@
         position = "bottom";
 
         modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
-        modules-right = [ "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
+        modules-right = [ "custom/keyd" "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
 
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
@@ -34,6 +34,10 @@
           '';
           on-click = "${pkgs.coreutils}/bin/true";
           interval = 60;
+        };
+
+        "custom/keyd" = {
+          exec = "${pkgs.mosquitto}/bin/mosquitto_sub -t keyd-layers";
         };
 
         "custom/pomodoro" = {
@@ -88,6 +92,7 @@
         margin-left: 0;
       }
 
+      #custom-keyd,
       #custom-pomodoro,
       #custom-ifconfig,
       #battery,
@@ -124,6 +129,11 @@
       #custom-pomodoro {
         color: #262626;
         background-color: #fabd2f;
+      }
+
+      #custom-keyd {
+        color: #262626;
+        background-color: #d3869b;
       }
 
       #tray {

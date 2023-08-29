@@ -89,6 +89,22 @@
     Install.WantedBy = [ "sway-session.target" ];
   };
 
+  home.file.keyd-to-mqtt = {
+    source = files/keyd-to-mqtt;
+    target = "bin/keyd-to-mqtt";
+    executable = true;
+  };
+
+  systemd.user.services.mqtt-keyd = {
+    Unit.Description = "MQTT to keyd bridge";
+    Service = {
+      ExecStart = "/usr/bin/env python3 /home/tris/bin/keyd-to-mqtt";
+      Restart = "always";
+      RestartSec = "30";
+      StartLimitIntervalSec = "0";
+    };
+  };
+
   systemd.user.services.kanshi.Install.WantedBy = [ "sway-session.target" ];
 
   systemd.user.services.mqtt-bluetooth = {

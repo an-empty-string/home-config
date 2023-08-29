@@ -9,12 +9,21 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-06cb-009a-fingerprint-sensor = {
+      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager }: let
+  outputs = { self, nixpkgs, unstable, home-manager, nixos-06cb-009a-fingerprint-sensor }: let
     mkSystem = mainMod: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ mainMod ];
+      modules = [
+        mainMod
+        nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+        nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+      ];
       specialArgs = {
         unstable = unstable.legacyPackages.x86_64-linux;
       };

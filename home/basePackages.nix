@@ -12,6 +12,7 @@
     binwalk
     direnv
     dos2unix
+    exiftool
     ffmpeg
     file
     fzf
@@ -20,6 +21,7 @@
     geos
     gnumake
     htop
+    imagemagick
     inetutils
     iperf3
     jdk
@@ -68,6 +70,7 @@
     (python311.withPackages (p: with p; [
       arrow
       asyncio-mqtt
+      awacs
       black
       boto3
       click

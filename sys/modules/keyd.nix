@@ -51,9 +51,17 @@
     equal = f12
 
     e = oneshot(meta)
-    n = toggle(chording)
+    n = toggle(premacro)
     q = toggle(functions)
+    m = oneshot(media)
     rightshift = toggle(navigation)
+
+    [media]
+    h = previoussong
+    k = playpause
+    l = nextsong
+
+    rightshift = toggle(media)
 
     [functions]
     w = f13
@@ -62,6 +70,16 @@
     f = C-S-i
 
     rightshift = toggle(functions)
+
+    [premacro]
+    rightshift = overload(macro, toggle(premacro))
+
+    [macro:S]
+    i = macro(import space)
+    s = macro(systemctl space)
+    o = macro(C-S-u 00b0 space)
+
+    rightshift = toggle(macro)
 
   '';
 }

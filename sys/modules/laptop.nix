@@ -112,9 +112,10 @@
     abrmd.enable = true;
   };
 
-  # AppVM
-  virtualisation.appvm.enable = true;
-  virtualisation.appvm.user = "tris";
+  # PowerMate
+  services.udev.extraRules = ''
+    ACTION=="add", ENV{ID_USB_DRIVER}=="powermate", SYMLINK+="input/powermate", TAG+="uaccess"
+  '';
 
   # Noisetorch
   programs.noisetorch.enable = true;
