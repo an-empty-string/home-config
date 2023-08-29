@@ -41,9 +41,12 @@
       }
       RPROMPT="";
 
+      autoload bashcompinit && bashcompinit
+      complete -C aws_completer aws
+
       export EDITOR="vim"
       export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
-      export PATH="$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin"
+      export PATH="$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin:$HOME/bin"
 
       alias -s {csv,tsv}=vd
       alias -s {png,jpg}=imv

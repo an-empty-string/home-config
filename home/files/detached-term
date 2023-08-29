@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/.terms
+if [[ $1 = new ]]; then
+    export DTACH_SOCK_PATH=$HOME/.terms/auto-`date +%Y-%m-%dT%H-%M-%S`
+    alacritty -e dtach -c $DTACH_SOCK_PATH -E zsh --login
+elif [[ $1 = ls ]]; then
+    ls ~/.terms
+elif [[ $1 = at ]]; then
+    dtach -a ~/.terms/$2
+elif [[ $1 = rename ]]; then
+    mv $DTACH_SOCK_PATH ~/.terms/$2
+fi

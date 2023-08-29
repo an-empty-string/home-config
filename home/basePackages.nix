@@ -12,6 +12,7 @@
     binwalk
     direnv
     dos2unix
+    dtach
     exiftool
     ffmpeg
     file

@@ -62,6 +62,14 @@ def paste(n: int):
     notify(f"clippy: pasted", menuval(xs[n]))
 
 
+def send(to: str):
+    run(f"mosquitto_pub -h {to} -q 2 -s -t clippy", inp=run("wl-paste").rstrip("\n"))
+
+
+def recv():
+    run("wl-copy", inp=run("mosquitto_sub -t clippy -C 1").rstrip("\n"))
+
+
 def rotate():
     xs = read()
     write(xs[1:] + xs[0])
@@ -100,6 +108,8 @@ def dmenu(ispop=False):
             "!clear": clear,
             "!pop": functools.partial(dmenu, ispop=True),
             "!paste": dmenu,
+            "!send": functools.partial(send, result[1]),
+            "!recv": recv,
         }[result[0]]()
     else:
         [paste, pop][ispop](int(result[0]))

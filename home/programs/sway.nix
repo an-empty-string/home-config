@@ -21,7 +21,7 @@
 
       fonts = useFonts;
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "$HOME/bin/dterm new";
 
       window.hideEdgeBorders = "smart";
 

@@ -34,6 +34,12 @@
     executable = true;
   };
 
+  home.file.detached-term = {
+    source = files/detached-term;
+    target = "bin/dterm";
+    executable = true;
+  };
+
   gtk.enable = true;
   gtk.iconTheme = {
     package = pkgs.gnome.adwaita-icon-theme;
