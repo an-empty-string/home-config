@@ -104,7 +104,7 @@
   systemd.user.services.mqtt-keyd = {
     Unit.Description = "MQTT to keyd bridge";
     Service = {
-      ExecStart = "/usr/bin/env python3 /home/tris/bin/keyd-to-mqtt";
+      ExecStart = "/home/tris/.nix-profile/bin/python3 /home/tris/bin/keyd-to-mqtt";
       Restart = "always";
       RestartSec = "30";
       StartLimitIntervalSec = "0";
