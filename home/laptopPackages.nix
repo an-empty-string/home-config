@@ -39,6 +39,7 @@
     pavucontrol
     playerctl
     prismlauncher
+    slack
     unstable.qgis
     qpwgraph
     qsynth

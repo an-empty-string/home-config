@@ -16,6 +16,7 @@
     sessionVariables = {
       EDITOR = "vim";
       MOZ_ENABLE_WAYLAND = "1";
+      NIXOS_OZONE_WL = "1";
       _JAVA_AWT_WM_NONREPARENTING = "1";
       SDL_VIDEODRIVER = "wayland";
       TPM2TOOLS_TCTI = "tabrmd:bus_type=system";
