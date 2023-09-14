@@ -73,9 +73,6 @@
     };
   };
 
-  # Steam
-  programs.steam.enable = true;
-
   # Audio and Bluetooth
   hardware.bluetooth.enable = true;
 
@@ -94,23 +91,21 @@
     tpm2-tools
   ];
 
-  programs.wshowkeys.enable = true;
-
   # Container management
   virtualisation.docker.rootless.enable = true;
 
   # TPM support
-  security.tpm2 = {
-    enable = true;
-    pkcs11.enable = true;
-    pkcs11.package = pkgs.tpm2-pkcs11.overrideAttrs (f: p: {
-      configureFlags = [ "--disable-fapi" ];
-      patches = p.patches ++ [
-        ./0002-remove-fapi-message.patch
-      ];
-    });
-    abrmd.enable = true;
-  };
+  # security.tpm2 = {
+  #   enable = true;
+  #   pkcs11.enable = true;
+  #   pkcs11.package = pkgs.tpm2-pkcs11.overrideAttrs (f: p: {
+  #     configureFlags = [ "--disable-fapi" ];
+  #     patches = p.patches ++ [
+  #       ./0002-remove-fapi-message.patch
+  #     ];
+  #   });
+  #   abrmd.enable = true;
+  # };
 
   # PowerMate
   services.udev.extraRules = ''

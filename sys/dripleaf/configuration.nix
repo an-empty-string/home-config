@@ -11,12 +11,14 @@
   networking.hostName = "dripleaf";
   time.timeZone = "America/New_York";
 
+  programs.steam.enable = true;
+
   services.hardware.bolt.enable = true;
 
-  services.instanced-tailscale.lessbroken = {
-    port = 41642;
-    interfaceName = "ts-lessbroken";
-  };
+  # services.instanced-tailscale.lessbroken = {
+  #   port = 41642;
+  #   interfaceName = "ts-lessbroken";
+  # };
 
   services.tlp.settings = {
     START_CHARGE_THRESH_BAT0 = 75;
@@ -25,13 +27,13 @@
     CPU_ENERGY_PERF_POLICY_ON_BAT = lib.mkForce "balance_power";
   };
 
-  services.open-fprintd.enable = true;
-  services.python-validity.enable = true;
-  security.pam.services = {
-    doas.fprintAuth = true;
-    login.fprintAuth = true;
-    swaylock.fprintAuth = true;
-  };
+  # services.open-fprintd.enable = true;
+  # services.python-validity.enable = true;
+  # security.pam.services = {
+  #   doas.fprintAuth = true;
+  #   login.fprintAuth = true;
+  #   swaylock.fprintAuth = true;
+  # };
 
   hardware.rtl-sdr.enable = true;
 
