@@ -6,7 +6,7 @@
     ../modules/common.nix
   ];
 
-  boot.loader.grub.devices = "nodev";
+  boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
