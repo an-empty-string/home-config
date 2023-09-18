@@ -6,6 +6,8 @@
     ../modules/common.nix
   ];
 
+  boot.loader.systemd-boot.enable = true;
+
   networking.hostName = "beacon";
   time.timeZone = "American/New_York";
 
