@@ -6,9 +6,6 @@
     ../modules/common.nix
   ];
 
-  # FIXME
-  boot.initrd.luks.devices.cryptlvm.device = "/dev/sdaX";
-
   networking.hostName = "beacon";
   time.timeZone = "American/New_York";
 
