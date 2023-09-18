@@ -16,13 +16,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, nixos-06cb-009a-fingerprint-sensor }: let
+  outputs = { self, nixpkgs, unstable, home-manager }: let
     mkSystem = mainMod: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         mainMod
-        nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-        nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
       ];
       specialArgs = {
         unstable = unstable.legacyPackages.x86_64-linux;
@@ -33,6 +31,7 @@
       deepslate = mkSystem ./sys/deepslate/configuration.nix;
       dripleaf = mkSystem ./sys/dripleaf/configuration.nix;
       trisfyi = mkSystem ./sys/trisfyi/configuration.nix;
+      beacon = mkSystem ./sys/beacon/configuration.nix;
       hsv1 = mkSystem ./sys/hsv1/configuration.nix;
       hsv2 = mkSystem ./sys/hsv2/configuration.nix;
     };
