@@ -12,6 +12,11 @@
   networking.hostName = "trisfyi";
   time.timeZone = "Etc/UTC";
 
+  environment.systemPackages = with pkgs; [
+    mosquitto
+    jq
+  ];
+
   # GRUB is bootloader - FIXME -> modules/server.nix
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
@@ -69,63 +74,32 @@
     ];
     authentication = ''
       host all tris 100.64.0.0/10 md5
+      host all ally 100.64.0.0/10 md5
     '';
   };
 
   # Amethyst configuration
-  # services.amethyst = {
-  #   enable = true;
-  #   hosts = [
-  #     {
-  #       name = "gemini.tris.fyi";
-  #       paths."/" = {
-  #         type = "redirect";
-  #         to = "gemini://tris.fyi";
-  #       };
-  #     }
-  #     {
-  #       name = "tris.fyi";
-  #       paths = {
-  #         "/" = {
-  #           root = "/var/gemini";
-  #           autoindex = true;
-  #           cgi = false;
-  #         };
-  #         "/cgi-bin/" = {
-  #           root = "/var/gemini/cgi-bin";
-  #           autoindex = false;
-  #           cgi = true;
-  #         };
-  #         "/pydoc/".type = "pydoc";
-  #       };
-  #     }
-  #   ];
+  services.amethyst = {
+    enable = true;
+    hosts = [
+      {
+        name = "tris.fyi";
+        tls = "auto";
+        paths = {
+          "/" = {
+            root = "/var/gemini";
+            cgi = true;
+          };
+        };
+      }
+    ];
   # };
 
-  # systemd.services.amethyst.path = [
-  #   (pkgs.python39.withPackages (p: with p; [
-  #     requests
-  #   ]))
-  # ];
-
-  # Syncthing - as system (on server)
-  services.syncthing = {
-    enable = true;
-    overrideFolders = false;
-    overrideDevices = false;
-  };
-
-  # Radicale
-  services.radicale = {
-    enable = true;
-    settings = {
-      auth = {
-        type = "htpasswd";
-        htpasswd_filename = "/etc/radicale.passwd";
-        htpasswd_encryption = "md5";
-      };
-    };
-  };
+  systemd.services.amethyst.path = [
+    (pkgs.python311.withPackages (p: with p; [
+      requests
+    ]))
+  ];
 
   # Web server configuration
   security.acme.acceptTerms = true;
@@ -138,12 +112,57 @@
     recommendedTlsSettings = true;
     recommendedProxySettings = true;
 
+    virtualHosts."maps.swaynefor55.com" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        root = "/var/www/d55-map";
+      };
+
+      locations."/districts/" = {
+        proxyPass = "http://127.0.0.1:8089/v1/";
+        extraConfig = ''
+          if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Max-Age' 1728000;
+            return 204;
+         }
+
+        add_header X-Clacks-Overhead "GNU Kathryn Jeannette Wilson";
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        '';
+      };
+
+    };
+
     virtualHosts."tris.fyi" = {
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "www.tris.fyi" ];
+      extraConfig = ''
+        add_header X-Clacks-Overhead "GNU Kathryn Jeannette Wilson";
+      '';
       locations."/" = {
         root = "/var/www";
+      };
+
+      locations."/districts/" = {
+        proxyPass = "http://127.0.0.1:8089/v1/";
+        extraConfig = ''
+          if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Max-Age' 1728000;
+            return 204;
+         }
+
+        add_header X-Clacks-Overhead "GNU Kathryn Jeannette Wilson";
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        '';
       };
 
       locations."/content" = {
@@ -169,11 +188,31 @@
       };
     };
 
-    virtualHosts."radicale.tris.fyi" = {
+    virtualHosts."districts.socialism.gay" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:5232";
+        proxyPass = "http://127.0.0.1:8089";
+        extraConfig = ''
+          if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Max-Age' 1728000;
+            return 204;
+         }
+
+        add_header X-Clacks-Overhead "GNU Kathryn Jeannette Wilson";
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        '';
+      };
+    };
+
+    virtualHosts."walk.tris.fyi" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "https://127.0.0.1:3030";
       };
     };
 
@@ -183,13 +222,10 @@
       locations."/" = {
         proxyPass = "http://[fdee:d21b:6b8b:ef01::2]:4567";
       };
-    };
-
-    virtualHosts."wordgame.ircpuzzles.org" = {
-      forceSSL = false;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8082";
+      locations."/FieldNotes/LegalName" = {
+        extraConfig = ''
+          return 302 https://tris.fyi/legal_name.html;
+        '';
       };
     };
 
@@ -217,6 +253,15 @@
     credentialsFile = "/var/lib/secrets/route53";
 
     group = "prosody";
+  };
+
+  security.acme.certs.mqtt = {
+    domain = "mqtt.tris.fyi";
+
+    dnsProvider = "route53";
+    credentialsFile = "/var/lib/secrets/route53";
+
+    group = "mosquitto";
   };
 
   services.prosody = let
@@ -293,9 +338,25 @@
     80    # HTTP
     443   # HTTPS
     1965  # Gemini
+    8883  # MQTT
     53589 # taskd
 
     5000 5222 5269 5280 5281 # XMPP services
+  ];
+
+  # MQTT service
+  services.mosquitto.listeners = [
+    {
+      port = 8883;
+      settings = {
+        certfile = "/var/lib/acme/mqtt/fullchain.pem";
+        keyfile = "/var/lib/acme/mqtt/key.pem";
+      };
+      users.tris = {
+        hashedPassword = "$7$101$/jCzIEtktLk/BM4Z$uZDPCk1Uh8U5w5F3mJPzboC/CrQoWY63PpfF6O4kBPtklsv8/U3R4itREKAFjEc+t/vwdrh8J5eQnAV1IBKcRA==";
+        acl = [ "readwrite #" ];
+      };
+    }
   ];
 
   system.stateVersion = "21.11";
