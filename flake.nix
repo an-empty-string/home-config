@@ -28,6 +28,7 @@
       };
     }; in {
     nixosConfigurations = {
+      shulkerbox = mkSystem ./sys/shulkerbox/configuration.nix;
       terracotta = mkSystem ./sys/terracotta/configuration.nix;
       deepslate = mkSystem ./sys/deepslate/configuration.nix;
       dripleaf = mkSystem ./sys/dripleaf/configuration.nix;
