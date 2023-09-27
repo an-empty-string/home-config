@@ -15,6 +15,20 @@
 
   services.hardware.bolt.enable = true;
 
+  services.amethyst = {
+    enable = true;
+    hosts = [
+      {
+        name = "localhost";
+        tls.auto = true;
+        paths."/" = {
+          root = "/var/gemini";
+          cgi = true;
+        };
+      }
+    ];
+  };
+
   # services.instanced-tailscale.lessbroken = {
   #   port = 41642;
   #   interfaceName = "ts-lessbroken";

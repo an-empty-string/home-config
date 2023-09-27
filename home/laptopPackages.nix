@@ -27,10 +27,10 @@
     inkscape
     unstable.josm
     keepassxc
-    lagrange
+    kristall
     libnotify
     libreoffice
-    unstable.musescore
+    # unstable.musescore
     networkmanager_dmenu
     noto-fonts-emoji
     obs-studio
@@ -40,7 +40,7 @@
     playerctl
     prismlauncher
     slack
-    unstable.qgis
+    qgis
     qpwgraph
     qsynth
     rofi-wayland
@@ -59,7 +59,6 @@
     wob
     xdg-desktop-portal-wlr
     zathura
-    zoom-us
 
     unstable.android-tools
   ];
