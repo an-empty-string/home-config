@@ -109,6 +109,15 @@
           hash = "sha256-QJpUCWd3A9J8x36k5iEcqSm4kKIJghOi9K7ICDjiaE0=";
         };
       };
+      vim-varnish = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        name = "vim-varnish";
+        src = pkgs.fetchFromGitHub {
+          owner = "varnishcache-friends";
+          repo = "vim-varnish";
+          rev = "5f6050c3c215968ac84dc4a48a4968a054390fd1";
+          hash = "sha256-nW0dLP2JlbVfIW4WPU8qPVnOdZlc1QoYhyQYFhMPVGQ=";
+        };
+      };
     in [
       gruvbox
       vim-unimpaired
@@ -116,6 +125,8 @@
       vim-airline-themes
       vim-python-pep8-indent
       vim-nix
+      vim-terraform
+      vim-varnish
 
       vimwiki
       nvim-tree-lua
