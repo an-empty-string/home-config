@@ -3,6 +3,7 @@ import functools
 import json
 import os
 import shlex
+import re
 import subprocess
 import sys
 from typing import List
@@ -43,6 +44,28 @@ def pop(n: int):
     write(xs)
 
     notify(f"clippy: popped ({len(xs)} active)", menuval(x))
+
+
+def popfirstout():
+    xs = read()
+    x = xs.pop(0)
+    write(xs)
+
+    print(x)
+
+
+def dump():
+    xs = read()
+    print("\n".join(xs))
+
+
+def split():
+    xs = read()
+    x = xs.pop()
+    xs.extend((r := re.split(r"[\t\n]", x)))
+    write(xs)
+
+    notify(f"clippy: split into {len(r)} pieces")
 
 
 def clear():
@@ -108,7 +131,6 @@ def dmenu(ispop=False):
             "!clear": clear,
             "!pop": functools.partial(dmenu, ispop=True),
             "!paste": dmenu,
-            "!send": functools.partial(send, result[1]),
             "!recv": recv,
         }[result[0]]()
     else:
@@ -116,7 +138,15 @@ def dmenu(ispop=False):
 
 
 def main():
-    {"copy": copy, "pop": pop, "dmenu": dmenu}[sys.argv[1]]()
+    {
+        "copy": copy,
+        "pop": pop,
+        "dmenu": dmenu,
+        "clear": clear,
+        "split": split,
+        "popfirstout": popfirstout,
+        "dump": dump,
+    }[sys.argv[1]]()
 
 
 if __name__ == "__main__":
