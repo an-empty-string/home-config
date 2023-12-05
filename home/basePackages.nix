@@ -42,6 +42,7 @@
     progress
     pv
     pwgen
+    nodePackages_latest.pyright
     rclone
     redis
     rmapi

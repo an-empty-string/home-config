@@ -8,6 +8,8 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    extraPackages = [pkgs.nodePackages_latest.pyright];
+
     extraPython3Packages = (ps: with ps; [
       flask
       black
@@ -98,6 +100,8 @@
             enable = true,
           },
         }
+
+        require'lspconfig'.pyright.setup {}
       EOF
     '';
 
@@ -136,6 +140,7 @@
       tris-vim-black
       vim-isort
 
+      nvim-lspconfig
       (nvim-treesitter.withPlugins (p: with p; [
         nix
         python
