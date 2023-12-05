@@ -131,7 +131,7 @@ def dmenu(ispop=False):
             "!clear": clear,
             "!pop": functools.partial(dmenu, ispop=True),
             "!paste": dmenu,
-            "!recv": recv,
+            "!split": split,
         }[result[0]]()
     else:
         [paste, pop][ispop](int(result[0]))

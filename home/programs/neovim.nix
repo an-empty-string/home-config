@@ -8,10 +8,6 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = with pkgs; [
-      solargraph
-    ];
-
     extraPython3Packages = (ps: with ps; [
       flask
       black
@@ -91,16 +87,22 @@
 
       " Maps
       nmap <silent> <Leader>h :set nohlsearch<CR>
-      nmap <silent> <Leader>tf :Pytest file<CR>
       nmap <silent> <Leader>af :Black<CR>
 
       colorscheme gruvbox
 
-      " lua require("nvim-tree").setup()
+      lua << EOF
+        require'nvim-treesitter.configs'.setup {
+          auto_install = false,
+          highlight = {
+            enable = true,
+          },
+        }
+      EOF
     '';
 
     plugins = with pkgs.vimPlugins; let
-      tris-vim-black = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      tris-vim-black = pkgs.vimUtils.buildVimPlugin {
         name = "vim-black";
         src = pkgs.fetchFromGitHub {
           owner = "psf";
@@ -133,6 +135,13 @@
 
       tris-vim-black
       vim-isort
+
+      (nvim-treesitter.withPlugins (p: with p; [
+        nix
+        python
+        ruby
+        html
+      ]))
     ];
   };
 }

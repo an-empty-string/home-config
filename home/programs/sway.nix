@@ -6,7 +6,7 @@
     wrapperFeatures.gtk = true;
 
     extraOptions = [ "--unsupported-gpu" ];
-    systemdIntegration = true;
+    systemd.enable = true;
 
     config =
       let useFonts = {

@@ -15,7 +15,7 @@
   };
 
   programs.password-store.enable = true;
-  services.syncthing.enable = true;
+  # services.syncthing.enable = true;
 
   fonts.fontconfig.enable = true;
   programs.firefox.enable = true;

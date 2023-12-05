@@ -10,16 +10,18 @@
     audacity
     authy
     brightnessctl
-    calibre
+    chirp
     chromium
     comic-mono
     darktable
     discord
     docker-compose
     emojione
+    unstable.fldigi
     font-awesome_5
     freerdp
     gimp-with-plugins
+    gridtracker
     grim
     gqrx
     hack-font
@@ -27,10 +29,7 @@
     inkscape
     unstable.josm
     keepassxc
-    kristall
     libnotify
-    libreoffice
-    # unstable.musescore
     networkmanager_dmenu
     noto-fonts-emoji
     obs-studio
@@ -49,7 +48,6 @@
     speedcrunch
     spotify
     swayidle
-    virt-manager
     vlc
     volumeicon
     wdisplays
@@ -57,6 +55,7 @@
     wireshark
     wl-clipboard
     wob
+    wsjtx
     xdg-desktop-portal-wlr
     zathura
 

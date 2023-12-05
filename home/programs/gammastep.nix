@@ -3,9 +3,9 @@
 {
   services.gammastep = {
     enable = true;
-    latitude = 34.7;
-    longitude = -86.6;
+    latitude = 42.4;
+    longitude = -71.1;
     temperature.day = 5500;
-    temperature.night = 3700;
+    temperature.night = 3100;
   };
 }

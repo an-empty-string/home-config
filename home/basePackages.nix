@@ -2,8 +2,8 @@
 
 {
   home.packages = (with pkgs; [
-    # glauth
     acpi
+    alsa-utils
     asciinema
     awscli2
     backblaze-b2
@@ -12,7 +12,6 @@
     binwalk
     direnv
     dos2unix
-    dtach
     exiftool
     ffmpeg
     file
@@ -47,10 +46,9 @@
     redis
     rmapi
     ruby
-    rustup
-    semgrep
     silver-searcher
     sipcalc
+    soupault
     sshfs
     sshpass
     sshuttle
@@ -62,8 +60,6 @@
     wget
     zip
 
-    consul
-    vault
     nomad
     packer
     rain

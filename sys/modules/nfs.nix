@@ -5,28 +5,28 @@
     services.rpcbind.enable = true;
   }
 
-  (let expose = (host: (lib.mkMerge [
+  (let expose = (host: path: (lib.mkMerge [
     (lib.mkIf (config.networking.hostName != host) {
       systemd.mounts = [{
         type = "nfs";
         mountConfig.Options = "noatime";
-        what = "${host}:/net/${host}";
-        where = "/net/${host}";
+        what = "${host}:${path}";
+        where = "/net/${host}${path}";
       }];
 
       systemd.automounts = [{
         wantedBy = [ "multi-user.target"];
         automountConfig.TimeoutIdleSec = "600";
-        where = "/net/${host}";
+        where = "/net/${host}${path}";
       }];
     })
 
     (lib.mkIf (config.networking.hostName == host) {
       services.nfs.server.exports = ''
-        /net/${host}          100.64.0.0/10(rw,fsid=0,no_subtree_check)
+        ${path} 100.64.0.0/10(rw,fsid=0,no_subtree_check)
       '';
     })
   ])); in lib.mkMerge [
-    (expose "hsv1")
+    (expose "beacon" "/data/pictures")
   ])
 ]

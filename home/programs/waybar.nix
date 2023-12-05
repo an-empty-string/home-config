@@ -30,10 +30,10 @@
 
         "custom/ifconfig" = {
           exec = ''
-            ${pkgs.curl}/bin/curl --connect-timeout 1 -s ifconfig.pro || echo disconnected;
+            ${pkgs.curl}/bin/curl --connect-timeout 1 -s https://wtfismyip.com/text || echo disconnected;
           '';
           on-click = "${pkgs.coreutils}/bin/true";
-          interval = 60;
+          interval = 120;
         };
 
         "custom/keyd" = {
