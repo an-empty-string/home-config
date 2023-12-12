@@ -7,9 +7,14 @@
 
   environment.etc."keyd/default.conf".text = ''
     [ids]
+    046d:4051
     *
 
+    [global]
+    layer_indicator = 1
+
     [main]
+    mouse1 = layer(navigation)
     capslock = overload(navigation, esc)
     rightshift = layer(rs)
 
@@ -25,7 +30,7 @@
     t = C-t
     w = C-w
     ; = S-;
-    space = enter
+    space = oneshot(spaces)
 
     enter = S-M-enter
 
@@ -51,10 +56,14 @@
     equal = f12
 
     e = oneshot(meta)
-    n = toggle(premacro)
+    n = toggle(macros_enabled)
     q = toggle(functions)
     m = oneshot(media)
     rightshift = toggle(navigation)
+
+    [spaces]
+    h = S-home
+    space = enter
 
     [media]
     h = previoussong
@@ -71,15 +80,12 @@
 
     rightshift = toggle(functions)
 
-    [premacro]
-    rightshift = overload(macro, toggle(premacro))
+    [macros_enabled]
+    rightshift = overload(macro, toggle(macros_enabled))
 
     [macro:S]
     i = macro(import space)
     s = macro(systemctl space)
     o = macro(C-S-u 00b0 space)
-
-    rightshift = toggle(macro)
-
   '';
 }

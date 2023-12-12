@@ -38,7 +38,7 @@ async def main():
                 new_layers["premacro"] = 0
 
             await mqtt.publish(
-                "keyd-layers", " ".join(sorted([x for x, v in new_layers.items() if v > 0])) or "normal"
+                "keyd-layers", " ".join(sorted([x for x, v in new_layers.items() if v > 0])) or "none"
             )
 
 

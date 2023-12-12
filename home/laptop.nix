@@ -103,12 +103,13 @@
 
   systemd.user.services.mqtt-keyd = {
     Unit.Description = "MQTT to keyd bridge";
+    Unit.StartLimitIntervalSec = "0";
     Service = {
       ExecStart = "/home/tris/.nix-profile/bin/python3 /home/tris/bin/keyd-to-mqtt";
       Restart = "always";
-      RestartSec = "30";
-      StartLimitIntervalSec = "0";
+      RestartSec = "10";
     };
+    Install.WantedBy = [ "sway-session.target" ];
   };
 
   systemd.user.services.kanshi.Install.WantedBy = [ "sway-session.target" ];
