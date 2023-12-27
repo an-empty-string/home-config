@@ -4,6 +4,7 @@
   imports = [
     ./generated.nix
     ../modules/common.nix
+    ../modules/server.nix
 
     # FIXME - make amethyst work as flake and bring back in
     # "${amethyst}/module.nix"
@@ -11,11 +12,6 @@
 
   networking.hostName = "trisfyi";
   time.timeZone = "Etc/UTC";
-
-  environment.systemPackages = with pkgs; [
-    mosquitto
-    jq
-  ];
 
   # GRUB is bootloader - FIXME -> modules/server.nix
   boot.loader.grub.enable = true;

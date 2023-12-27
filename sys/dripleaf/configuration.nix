@@ -29,10 +29,10 @@
     ];
   };
 
-  # services.instanced-tailscale.lessbroken = {
-  #   port = 41642;
-  #   interfaceName = "ts-lessbroken";
-  # };
+  services.instanced-tailscale.lessbroken = {
+    port = 41642;
+    interfaceName = "ts-lessbroken";
+  };
 
   services.tlp.settings = {
     START_CHARGE_THRESH_BAT0 = 75;
@@ -52,6 +52,5 @@
     ];
 
   system.stateVersion = "22.05";
-  networking.firewall.enable = false;
   networking.firewall.allowedTCPPorts = [ 8001 ];
 }

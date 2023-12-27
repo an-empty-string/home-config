@@ -2,16 +2,13 @@
   systemd.services.keyd = {
     description = "key remapping daemon";
     serviceConfig.ExecStart = "${pkgs.keyd}/bin/keyd";
+    serviceConfig.Nice = "-15";
     wantedBy = ["multi-user.target"];
   };
 
   environment.etc."keyd/default.conf".text = ''
     [ids]
-    046d:4051
     *
-
-    [global]
-    layer_indicator = 1
 
     [main]
     mouse1 = layer(navigation)

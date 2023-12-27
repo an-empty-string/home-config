@@ -10,11 +10,16 @@ async def main():
         "/home/tris/.nix-profile/bin/keyd", "listen", stdout=asyncio.subprocess.PIPE
     )
 
+    assert proc.stdout is not None
+
     layers = collections.Counter()
 
     async with Client("localhost") as mqtt:
         while True:
             line = await proc.stdout.readline()
+            if not line:
+                return
+
             line = line.decode().strip()
 
             if not line:
