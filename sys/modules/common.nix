@@ -71,6 +71,7 @@
 
   # Other useful tools
   environment.systemPackages = with pkgs; [
+    cryptsetup
     git
     hid-tools
     home-manager

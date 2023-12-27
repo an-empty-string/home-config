@@ -10,6 +10,14 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.zigbee2mqtt = {
+    enable = true;
+    settings = {
+      serial.port = "/dev/ttyACM0";
+      permit_join = true;
+    };
+  };
+
   networking.hostName = "beacon";
   time.timeZone = "American/New_York";
 
