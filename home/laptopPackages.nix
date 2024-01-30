@@ -33,6 +33,8 @@
     networkmanager_dmenu
     noto-fonts-emoji
     obs-studio
+    openttd
+    openttd-nml
     openvpn
     pamixer
     pavucontrol

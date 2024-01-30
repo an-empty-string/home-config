@@ -10,6 +10,9 @@
     [ids]
     *
 
+    [global]
+    macro_sequence_timeout = 1000
+
     [main]
     mouse1 = layer(navigation)
     capslock = overload(navigation, esc)
@@ -61,6 +64,7 @@
     [spaces]
     h = S-home
     space = enter
+    l = macro(let space me space know space if space you space need space anything space else)
 
     [media]
     h = previoussong

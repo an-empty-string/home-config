@@ -27,7 +27,12 @@
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 
-  # clippy
+  home.file.update-co2 = {
+    source = files/update-co2;
+    target = "bin/update-co2";
+    executable = true;
+  };
+
   home.file.clippy = {
     source = files/clippy;
     target = "bin/clippy";
@@ -122,6 +127,16 @@
       RestartSec = "30";
       StartLimitIntervalSec = "0";
       Environment = "PATH=${pkgs.bluez}/bin";
+    };
+  };
+
+  systemd.user.services.update-co2 = {
+    Unit.Description = "Update CO2 topic";
+    Service = {
+      ExecStart = "/home/tris/bin/update-co2";
+      Restart = "always";
+      RestartSec = "30";
+      StartLimitIntervalSec = "0";
     };
   };
 

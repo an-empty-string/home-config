@@ -66,6 +66,7 @@
     rain
 
     (python311.withPackages (p: with p; [
+      aranet4
       arrow
       asyncio-mqtt
       awacs
@@ -88,7 +89,7 @@
       rich
       tox
       troposphere
-      websocket-client
+      websockets
 
       shapely
 
