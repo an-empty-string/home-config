@@ -121,22 +121,22 @@
 
   systemd.user.services.mqtt-bluetooth = {
     Unit.Description = "MQTT to bluetoothctl bridge";
+    Unit.StartLimitIntervalSec = "0";
     Service = {
       ExecStart = "${pkgs.tris-mqtt-bluetooth}/bin/mqtt-bluetooth";
       Restart = "always";
       RestartSec = "30";
-      StartLimitIntervalSec = "0";
       Environment = "PATH=${pkgs.bluez}/bin";
     };
   };
 
   systemd.user.services.update-co2 = {
     Unit.Description = "Update CO2 topic";
+    Unit.StartLimitIntervalSec = "0";
     Service = {
       ExecStart = "/home/tris/bin/update-co2";
       Restart = "always";
       RestartSec = "30";
-      StartLimitIntervalSec = "0";
     };
   };
 

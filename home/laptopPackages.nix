@@ -7,8 +7,8 @@
   ];
 
   home.packages = with pkgs; [
+    arduino
     audacity
-    authy
     brightnessctl
     chirp
     chromium
@@ -25,8 +25,10 @@
     grim
     gqrx
     hack-font
+    hugin
     imv
     inkscape
+    jd-gui
     unstable.josm
     keepassxc
     libnotify
@@ -50,6 +52,7 @@
     speedcrunch
     spotify
     swayidle
+    tqsl
     vlc
     volumeicon
     wdisplays
@@ -62,5 +65,6 @@
     zathura
 
     unstable.android-tools
+    unstable.kdenlive
   ];
 }

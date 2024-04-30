@@ -3,6 +3,7 @@
 {
   home.packages = (with pkgs; [
     acpi
+    act
     alsa-utils
     asciinema
     awscli2
@@ -20,6 +21,7 @@
     gdal
     geos
     gnumake
+    graphqurl
     htop
     imagemagick
     inetutils
@@ -35,6 +37,7 @@
     nodejs
     openssl
     pandoc
+    pat
     picocom
     postgresql
     poppler_utils
@@ -56,7 +59,7 @@
     step-cli
     sqlite-interactive
     unzip
-    visidata
+    unstable.visidata
     weechat
     wget
     zip
@@ -70,6 +73,7 @@
       arrow
       asyncio-mqtt
       awacs
+      beancount
       black
       boto3
       click
@@ -82,6 +86,7 @@
       mypy
       mysqlclient
       pygame
+      pyserial
       pytest
       pyyaml
       redis

@@ -52,6 +52,8 @@
       alias -s {png,jpg}=imv
       alias -s {txt,py,rb}=nvim
 
+      alias weather='firefox "https://forecast.weather.gov/MapClick.php?lat=42.38&lon=-71.1&lg=english&&FcstType=digital&menu=1"'
+
       jr() {
         date "+%Y-%m-%d %H:%M:%S" >> ~/journal.txt
         if [[ $# -gt 0 ]]; then

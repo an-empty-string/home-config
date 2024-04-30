@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./basePackages.nix
+    programs/atuin.nix
     programs/neovim.nix
     programs/zsh.nix
     programs/ssh.nix

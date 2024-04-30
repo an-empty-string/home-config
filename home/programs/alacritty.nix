@@ -9,7 +9,7 @@
       };
       font = {
         normal.family = "Comic Mono";
-        size = 14;
+        size = 15;
       };
       colors = {
         primary.background = "0x282828";

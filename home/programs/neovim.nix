@@ -129,6 +129,7 @@
       vim-unimpaired
       vim-airline
       vim-airline-themes
+      vim-beancount
       vim-python-pep8-indent
       vim-nix
       vim-terraform
@@ -139,6 +140,8 @@
 
       tris-vim-black
       vim-isort
+
+      rainbow
 
       nvim-lspconfig
       (nvim-treesitter.withPlugins (p: with p; [

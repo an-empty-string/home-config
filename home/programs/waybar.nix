@@ -9,7 +9,7 @@
         position = "bottom";
 
         modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
-        modules-right = [ "custom/keyd" "custom/co2" "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
+        modules-right = [ "custom/keyd" "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
 
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
@@ -34,10 +34,6 @@
           '';
           on-click = "${pkgs.coreutils}/bin/true";
           interval = 120;
-        };
-
-        "custom/co2" = {
-          exec = "${pkgs.mosquitto}/bin/mosquitto_sub -t co2";
         };
 
         "custom/keyd" = {

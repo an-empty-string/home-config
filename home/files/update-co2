@@ -1,5 +1,8 @@
 #!/bin/sh
 while true; do
-    /home/tris/.nix-profile/bin/mosquitto_pub -t co2 -m `/home/tris/.nix-profile/bin/python -c "print(str(__import__('aranet4').client.get_current_readings('C9:CC:53:C5:8F:AE').co2) + 'ppm')"` -r
-    /run/current-system/sw/bin/sleep 600
+    data=`/home/tris/.nix-profile/bin/python -c "print(str(__import__('aranet4').client.get_current_readings('C9:CC:53:C5:8F:AE').co2) + 'ppm')"`
+    if [ "$?" = "0" ]; then
+        /home/tris/.nix-profile/bin/mosquitto_pub -t co2 -m $data
+        /run/current-system/sw/bin/sleep 300
+    fi
 done
