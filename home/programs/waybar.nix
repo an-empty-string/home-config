@@ -9,7 +9,7 @@
         position = "bottom";
 
         modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
-        modules-right = [ "custom/keyd" "custom/pomodoro" "custom/ifconfig" "battery" "clock" "tray" ];
+        modules-right = [ "custom/keyd" "battery" "clock" "tray" ];
 
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
@@ -26,14 +26,6 @@
           format-charging = "{capacity}%+ {time}";
 
           format = "{capacity}%";
-        };
-
-        "custom/ifconfig" = {
-          exec = ''
-            ${pkgs.curl}/bin/curl --connect-timeout 1 -s https://wtfismyip.com/text || echo disconnected;
-          '';
-          on-click = "${pkgs.coreutils}/bin/true";
-          interval = 120;
         };
 
         "custom/keyd" = {
@@ -94,7 +86,6 @@
 
       #custom-keyd,
       #custom-pomodoro,
-      #custom-ifconfig,
       #custom-co2,
       #battery,
       #clock,
@@ -120,11 +111,6 @@
 
       #battery.critical {
         background-color: #fb4934;
-      }
-
-      #custom-ifconfig {
-        color: #262626;
-        background-color: #ebdbb2;
       }
 
       #custom-co2 {
