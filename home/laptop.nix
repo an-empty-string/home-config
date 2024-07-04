@@ -27,12 +27,6 @@
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 
-  home.file.update-co2 = {
-    source = files/update-co2;
-    target = "bin/update-co2";
-    executable = true;
-  };
-
   home.file.clippy = {
     source = files/clippy;
     target = "bin/clippy";
@@ -130,16 +124,6 @@
     };
   };
 
-  systemd.user.services.update-co2 = {
-    Unit.Description = "Update CO2 topic";
-    Unit.StartLimitIntervalSec = "0";
-    Service = {
-      ExecStart = "/home/tris/bin/update-co2";
-      Restart = "always";
-      RestartSec = "30";
-    };
-  };
-
   home.file.electron-flags = {
     text = ''
       --enable-features=UseOzonePlatform
@@ -170,18 +154,26 @@
           status = "enable";
         }];
       };
+
       docked = {
         outputs = [{
           criteria = "eDP-1";
           status = "disable";
         } {
-          criteria = "DP-7";
+          criteria = "DP-4";
           status = "enable";
+          mode = "2560x1440";
+          position = "0,0";
+          transform = "270";
         } {
-          criteria = "DP-8";
+          criteria = "DP-5";
           status = "enable";
+          mode = "2560x1440";
+          position = "1440,560";
+          transform = "normal";
         }];
       };
+
       docked2 = {
         outputs = [{
           criteria = "eDP-1";
@@ -189,21 +181,15 @@
         } {
           criteria = "DP-6";
           status = "enable";
+          mode = "2560x1440";
+          position = "0,0";
+          transform = "270";
         } {
           criteria = "DP-7";
           status = "enable";
-        }];
-      };
-      docked3 = {
-        outputs = [{
-          criteria = "eDP-1";
-          status = "disable";
-        } {
-          criteria = "DP-5";
-          status = "enable";
-        } {
-          criteria = "DP-6";
-          status = "enable";
+          mode = "2560x1440";
+          position = "1440,560";
+          transform = "normal";
         }];
       };
     };

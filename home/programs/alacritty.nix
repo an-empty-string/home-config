@@ -4,7 +4,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      dynamic_title = true;
       window = {
       };
       font = {
@@ -51,7 +50,7 @@
         style.shape = "block";
         vi_mode_style.shape = "underline";
       };
-      key_bindings = [
+      keyboard.bindings = [
         { key = "V"; mods = "Shift|Control"; action = "Paste"; }
         { key = "C"; mods = "Shift|Control"; action = "Copy"; }
         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }

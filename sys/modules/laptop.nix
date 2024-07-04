@@ -75,6 +75,8 @@
 
   # Audio and Bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -110,6 +112,7 @@
   # PowerMate
   services.udev.extraRules = ''
     ACTION=="add", ENV{ID_USB_DRIVER}=="powermate", SYMLINK+="input/powermate", TAG+="uaccess"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0161", MODE="0660", GROUP="input", TAG+="uaccess", TAG+="udev-acl"
   '';
 
   # Noisetorch

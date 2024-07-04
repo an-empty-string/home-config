@@ -69,7 +69,6 @@
     rain
 
     (python311.withPackages (p: with p; [
-      aranet4
       arrow
       asyncio-mqtt
       awacs
@@ -85,6 +84,7 @@
       lxml
       mypy
       mysqlclient
+      psycopg2
       pygame
       pyserial
       pytest
@@ -96,6 +96,7 @@
       troposphere
       websockets
 
+      pyproj
       shapely
 
       tris-config

@@ -7,7 +7,8 @@
   ];
 
   # Nix/nixpkgs configuration
-  nix.package = pkgs.nixUnstable;
+  nix.package = pkgs.nixVersions.latest;
+
   nixpkgs.overlays = [ (import ../../overlay) ];
   nixpkgs.config.allowUnfree = true;
   nix.extraOptions = ''
@@ -65,6 +66,7 @@
 
   security.sudo.enable = false;
   security.doas.enable = true;
+  programs.firejail.enable = true;
 
   # RTL-SDR support
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];

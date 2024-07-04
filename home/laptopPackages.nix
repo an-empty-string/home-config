@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, unstable, dsd-fme, ... }:
 
 {
   # qgis
@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     arduino
     audacity
+    bat
     brightnessctl
     chirp
     chromium
@@ -29,7 +30,6 @@
     imv
     inkscape
     jd-gui
-    unstable.josm
     keepassxc
     libnotify
     networkmanager_dmenu
@@ -63,8 +63,10 @@
     wsjtx
     xdg-desktop-portal-wlr
     zathura
+    zoom-us
 
     unstable.android-tools
+    unstable.josm
     unstable.kdenlive
   ];
 }

@@ -134,6 +134,7 @@
       vim-nix
       vim-terraform
       vim-varnish
+      vim-fugitive
 
       vimwiki
       nvim-tree-lua
