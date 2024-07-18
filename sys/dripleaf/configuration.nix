@@ -7,26 +7,6 @@
   ];
 
   boot.initrd.luks.devices.cryptlvm.device = "/dev/nvme0n1p1";
-  # boot.kernelPatches = [{
-  #   name = "ax25-config";
-  #   patch = null;
-  #   extraConfig = ''
-  #     HAMRADIO y
-  #     AX25 m
-  #     AX25_DAMA_SLAVE y
-  #     NETROM m
-  #     ROSE m
-  #     MKISS m
-  #     6PACK m
-  #     BPQETHER m
-  #     BAYCOM_SER_FDX m
-  #     BAYCOM_SER_HDX m
-  #     YAM m
-  #   '';
-  # }];
-
-  # boot.kernelModules = [ "ax25" "mkiss" ];
-
   networking.hostName = "dripleaf";
   time.timeZone = "America/New_York";
 
@@ -60,13 +40,6 @@
 
   environment.systemPackages =
     with pkgs; [
-      ax25-tools
-      ax25-apps
-      libax25
-      (direwolf.override {
-        alsa-lib = unstable.alsa-lib;
-      })
-
       tomb
       pinentry
       pinentry-curses
