@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{ unstable, ... }: {
   systemd.services.keyd = {
     description = "key remapping daemon";
-    serviceConfig.ExecStart = "${pkgs.keyd}/bin/keyd";
+    serviceConfig.ExecStart = "${unstable.keyd}/bin/keyd";
     serviceConfig.Nice = "-15";
     wantedBy = ["multi-user.target"];
   };
@@ -65,6 +65,7 @@
     h = S-home
     space = enter
     l = macro(let space me space know space if space you space need space anything space else)
+    e = toggle(elayer)
 
     [media]
     h = previoussong
@@ -88,5 +89,33 @@
     i = macro(import space)
     s = macro(systemctl space)
     o = macro(C-S-u 00b0 space)
+
+    [elayer]
+    q = e
+    w = e
+    r = e
+    t = e
+    y = e
+    u = e
+    i = e
+    o = e
+    p = e
+    a = e
+    s = e
+    d = e
+    f = e
+    g = e
+    h = e
+    j = e
+    k = e
+    l = e
+    z = e
+    x = e
+    c = e
+    v = e
+    b = e
+    n = e
+    m = e
+    rightshift = toggle(elayer)
   '';
 }

@@ -1,9 +1,9 @@
 { pkgs, unstable, dsd-fme, ... }:
 
 {
-  # qgis
   nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
+    "qtwebkit-5.212.0-alpha4" # qgis
+    "electron-27.3.11" # logseq
   ];
 
   home.packages = with pkgs; [
@@ -15,7 +15,6 @@
     chromium
     comic-mono
     darktable
-    discord
     docker-compose
     emojione
     unstable.fldigi
@@ -29,9 +28,9 @@
     hugin
     imv
     inkscape
-    jd-gui
     keepassxc
     libnotify
+    logseq
     networkmanager_dmenu
     noto-fonts-emoji
     obs-studio

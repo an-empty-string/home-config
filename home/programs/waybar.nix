@@ -12,7 +12,14 @@
         modules-right = [ "custom/keyd" "battery" "clock" "tray" ];
 
         clock = {
-          format = "{:%Y-%m-%d %H:%M}";
+          format = "{:%a %Y-%m-%d %H:%M}";
+          tooltip-format = "{calendar}";
+          calendar = {
+            mode = "year";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+          };
         };
 
         battery = {

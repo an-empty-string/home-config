@@ -43,6 +43,7 @@
       tomb
       pinentry
       pinentry-curses
+      direwolf
     ];
 
   system.stateVersion = "22.05";

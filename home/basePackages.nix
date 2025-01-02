@@ -21,6 +21,7 @@
     gdal
     geos
     gnumake
+    google-cloud-sdk
     graphqurl
     htop
     imagemagick
@@ -37,6 +38,7 @@
     nodejs
     openssl
     pandoc
+    parallel
     pat
     picocom
     postgresql
