@@ -60,6 +60,8 @@
           "${mod}+Shift+s" = "exec systemctl start --user waybar";
           "${mod}+Shift+c" = "exec bin/clippy copy";
           "${mod}+Shift+v" = "exec bin/clippy dmenu";
+
+          "Ctrl+Alt+Shift+Mod4+L" = "exec xdg-open https://linkedin.com";
       };
 
       floating.criteria = [
