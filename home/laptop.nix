@@ -41,7 +41,7 @@
 
   gtk.enable = true;
   gtk.iconTheme = {
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
   };
 
@@ -147,51 +147,58 @@
 
   services.kanshi = {
     enable = true;
-    profiles = {
-      undocked = {
-        outputs = [{
-          criteria = "eDP-1";
-          status = "enable";
-        }];
-      };
-
-      docked = {
-        outputs = [{
-          criteria = "eDP-1";
-          status = "disable";
-        } {
-          criteria = "DP-4";
-          status = "enable";
-          mode = "2560x1440";
-          position = "0,0";
-          transform = "270";
-        } {
-          criteria = "DP-5";
-          status = "enable";
-          mode = "2560x1440";
-          position = "1440,560";
-          transform = "normal";
-        }];
-      };
-
-      docked2 = {
-        outputs = [{
-          criteria = "eDP-1";
-          status = "disable";
-        } {
-          criteria = "DP-6";
-          status = "enable";
-          mode = "2560x1440";
-          position = "0,0";
-          transform = "270";
-        } {
-          criteria = "DP-7";
-          status = "enable";
-          mode = "2560x1440";
-          position = "1440,560";
-          transform = "normal";
-        }];
-      };
-    };
+    settings = [
+      {
+        profile = {
+          name = "undocked";
+          outputs = [{
+            criteria = "eDP-1";
+            status = "enable";
+          }];
+        };
+      }
+      {
+        profile = {
+          name = "docked";
+          outputs = [{
+            criteria = "eDP-1";
+            status = "disable";
+          } {
+            criteria = "DP-4";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            transform = "270";
+          } {
+            criteria = "DP-5";
+            status = "enable";
+            mode = "2560x1440";
+            position = "1440,560";
+            transform = "normal";
+          }];
+        };
+      }
+      {
+        profile = {
+          name = "docked2";
+          outputs = [{
+            criteria = "eDP-1";
+            status = "disable";
+          } {
+            criteria = "DP-6";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            transform = "270";
+          } {
+            criteria = "DP-7";
+            status = "enable";
+            mode = "2560x1440";
+            position = "1440,560";
+            transform = "normal";
+          }];
+        };
+      }
+    ];
   };
 }

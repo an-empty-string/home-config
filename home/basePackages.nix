@@ -11,6 +11,7 @@
     bind
     binutils
     binwalk
+    diffoscope
     direnv
     dos2unix
     exiftool
@@ -23,13 +24,14 @@
     gnumake
     google-cloud-sdk
     graphqurl
+    html-tidy
     htop
     imagemagick
     inetutils
     iperf3
     jdk
     jq
-    keyd
+    unstable.keyd
     lftp
     mariadb-client
     mosh
@@ -47,7 +49,7 @@
     progress
     pv
     pwgen
-    nodePackages_latest.pyright
+    pyright
     rclone
     redis
     rmapi
@@ -64,17 +66,17 @@
     unstable.visidata
     weechat
     wget
+    xmlstarlet
     zip
 
     nomad
     packer
     rain
 
-    (python311.withPackages (p: with p; [
+    (python312.withPackages (p: with p; [
+      aiomqtt
       arrow
-      asyncio-mqtt
       awacs
-      beancount
       black
       boto3
       click
@@ -84,7 +86,6 @@
       httpx
       ipython
       lxml
-      mypy
       mysqlclient
       psycopg2
       pygame

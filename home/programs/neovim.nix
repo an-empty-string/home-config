@@ -8,7 +8,7 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = [pkgs.nodePackages_latest.pyright];
+    extraPackages = [pkgs.pyright];
 
     extraPython3Packages = (ps: with ps; [
       flask
@@ -99,6 +99,9 @@
           highlight = {
             enable = true,
           },
+          indent = {
+            enable = true,
+          },
         }
 
         require'lspconfig'.pyright.setup {}
@@ -129,7 +132,6 @@
       vim-unimpaired
       vim-airline
       vim-airline-themes
-      vim-beancount
       vim-python-pep8-indent
       vim-nix
       vim-terraform

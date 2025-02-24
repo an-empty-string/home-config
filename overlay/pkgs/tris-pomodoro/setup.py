@@ -15,6 +15,6 @@ setup(
         ],
     },
     install_requires=[
-        "asyncio_mqtt",
+        "aiomqtt",
     ],
 )

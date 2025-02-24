@@ -11,21 +11,22 @@
     audacity
     bat
     brightnessctl
+    calibre
     chirp
     chromium
     comic-mono
     darktable
     docker-compose
     emojione
-    unstable.fldigi
+    # unstable.fldigi
     font-awesome_5
     freerdp
     gimp-with-plugins
-    gridtracker
+    # gridtracker
     grim
-    gqrx
+    # gqrx
     hack-font
-    hugin
+    # hugin
     imv
     inkscape
     keepassxc
@@ -51,7 +52,7 @@
     speedcrunch
     spotify
     swayidle
-    tqsl
+    # tqsl
     vlc
     volumeicon
     wdisplays
@@ -59,7 +60,7 @@
     wireshark
     wl-clipboard
     wob
-    wsjtx
+    # wsjtx
     xdg-desktop-portal-wlr
     zathura
     zoom-us

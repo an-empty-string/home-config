@@ -1,11 +1,12 @@
-from asyncio_mqtt import Client
-import json
 import asyncio
+import json
 from collections import namedtuple
-from pathlib import Path
 from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
 from typing import NamedTuple
+
+from aiomqtt import Client
 
 
 def seconds_to_hms(s: int):
@@ -19,7 +20,7 @@ def seconds_to_hms(s: int):
 
 
 @dataclass
-class Config():
+class Config:
     work_time: int
     break_time: int
     wait_for_break: bool
@@ -48,11 +49,11 @@ STATE_TRIGGER_MAP = {
     States.WORKING_PAUSED: States.WORKING,
     States.WAITING_FOR_BREAK: States.BREAK,
     States.BREAK: States.BREAK_PAUSED,
-    States.BREAK_PAUSED: States.BREAK
+    States.BREAK_PAUSED: States.BREAK,
 }
 
 
-class App():
+class App:
     def __init__(self):
         self.load_config()
         self.mqtt = None
@@ -75,16 +76,25 @@ class App():
         )
 
     async def announce(self):
-        await self.mqtt.publish("pomodoro/state", self.state.value.long_desc.encode(), retain=True)
+        await self.mqtt.publish(
+            "pomodoro/state", self.state.value.long_desc.encode(), retain=True
+        )
         await self.announce_time()
 
     async def announce_time(self):
-        await self.mqtt.publish("pomodoro/time-remaining", str(self.time_remaining).encode(), retain=True)
-        await self.mqtt.publish("pomodoro/statusline",
-                                ((f"{self.state.value.emoji} " if self.config.use_emoji else "") + 
-                                 (f"{self.state.value.short_desc} ({seconds_to_hms(self.time_remaining)})")
-                                ).encode(),
-                                 retain=True)
+        await self.mqtt.publish(
+            "pomodoro/time-remaining", str(self.time_remaining).encode(), retain=True
+        )
+        await self.mqtt.publish(
+            "pomodoro/statusline",
+            (
+                (f"{self.state.value.emoji} " if self.config.use_emoji else "")
+                + (
+                    f"{self.state.value.short_desc} ({seconds_to_hms(self.time_remaining)})"
+                )
+            ).encode(),
+            retain=True,
+        )
 
     async def transition(self, new_state):
         self.state = new_state
@@ -155,8 +165,12 @@ class App():
             tick_task = None
 
             if self.state in {States.WORKING, States.BREAK}:
-                tick_task = tick_task or asyncio.create_task(self.tick_time(), name="sleep")
-                done, _ = await asyncio.wait([tick_task, command_task], return_when=asyncio.FIRST_COMPLETED)
+                tick_task = tick_task or asyncio.create_task(
+                    self.tick_time(), name="sleep"
+                )
+                done, _ = await asyncio.wait(
+                    [tick_task, command_task], return_when=asyncio.FIRST_COMPLETED
+                )
 
             else:
                 done, _ = await asyncio.wait([command_task])
@@ -175,7 +189,6 @@ class App():
 
             else:
                 command_task.cancel()
-
 
     async def handle_messages(self):
         self.commands = asyncio.Queue()

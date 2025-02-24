@@ -38,4 +38,6 @@
 
   programs.home-manager.enable = true;
   services.lorri.enable = true;
+
+  programs.gh.enable = true;  # GitHub CLI
 }
