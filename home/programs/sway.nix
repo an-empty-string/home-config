@@ -1,9 +1,10 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, sway-tris, ... }:
 
 {
   wayland.windowManager.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    # wrapperFeatures.gtk = true;
+    package = sway-tris;
 
     extraOptions = [ "--unsupported-gpu" ];
     systemd.enable = true;
@@ -60,6 +61,10 @@
           "${mod}+Shift+s" = "exec systemctl start --user waybar";
           "${mod}+Shift+c" = "exec bin/clippy copy";
           "${mod}+Shift+v" = "exec bin/clippy dmenu";
+
+          "${mod}+Shift+g" = "set $grayscale 1";
+          "${mod}+Shift+f" = "set $grayscale 0";
+          "${mod}+Shift+d" = "set $grayscale 0.75";
 
           "Ctrl+Alt+Shift+Mod4+L" = "exec xdg-open https://linkedin.com";
       };

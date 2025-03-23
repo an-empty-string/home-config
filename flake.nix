@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    sway-tris = {
+      url = "github:an-empty-string/sway-hacks/tris-patches";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     amethyst = {
       url = "github:an-empty-string/amethyst";
@@ -16,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, amethyst }: let
+  outputs = { self, nixpkgs, unstable, sway-tris, home-manager, amethyst }: let
     mkSystem = mainMod: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -42,6 +46,7 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       extraSpecialArgs = {
         unstable = unstable.legacyPackages.x86_64-linux;
+        sway-tris = sway-tris.packages.x86_64-linux.default;
       };
     in {
       base = home-manager.lib.homeManagerConfiguration {
