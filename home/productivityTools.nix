@@ -2,6 +2,7 @@
   programs.taskwarrior = {
     enable = true;
     package = pkgs.taskwarrior3;
+    colorTheme = "light-256";
     config = {
       news.version = "2.6.0";
       default.command = "act";
@@ -20,15 +21,6 @@
 
       alias.inbox = "add +inbox";
       alias.inboxed = "act +inbox";
-
-      color = {
-        blocking = "";
-
-        tag = {
-          today = "rgb140";  # brightish green
-          tomorrow = "rgb120";  # a little darker green
-        };
-      };
 
       uda.priority.values = "N,H,M,,L,S";
 

@@ -43,8 +43,10 @@
       tomb
       pinentry
       pinentry-curses
-      direwolf
+      redir
     ];
+
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "22.05";
   networking.firewall.allowedTCPPorts = [ 8001 ];

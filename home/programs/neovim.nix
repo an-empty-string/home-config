@@ -44,9 +44,6 @@
       " Don't security bad
       set secure
 
-      " F2 to :set paste!
-      set pastetoggle=<F2>
-
       " Split down and to the right
       set splitbelow
       set splitright
@@ -91,6 +88,11 @@
       nmap <silent> <Leader>h :set nohlsearch<CR>
       nmap <silent> <Leader>af :Black<CR>
 
+      let g:gruvbox_italic = '1'
+      let g:gruvbox_contrast_dark = 'hard'
+      let g:gruvbox_contrast_light = 'hard'
+      set bg=light
+
       colorscheme gruvbox
 
       lua << EOF
@@ -100,11 +102,12 @@
             enable = true,
           },
           indent = {
-            enable = true,
+            enable = false,
           },
         }
 
-        require'lspconfig'.pyright.setup {}
+        local lspconfig = require('lspconfig')
+        lspconfig.pyright.setup {}
       EOF
     '';
 
@@ -140,6 +143,7 @@
 
       vimwiki
       nvim-tree-lua
+      markdown-preview-nvim
 
       tris-vim-black
       vim-isort

@@ -20,10 +20,11 @@
   fonts.fontconfig.enable = true;
   programs.firefox.enable = true;
   services.mako.enable = true;
-  services.mako.extraConfig = ''
-    [mode=dnd]
-    invisible=1
-  '';
+  services.mako.settings = {
+    "mode=dnd" = {
+      invisible = 1;
+    };
+  };
   services.mpris-proxy.enable = true;
   services.pass-secret-service.enable = true;
 

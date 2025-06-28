@@ -78,7 +78,7 @@
       }
 
       #workspaces button.focused {
-        background-color: #d3869b;
+        background-color: #eeeeee;
         color: #262626;
       }
 
@@ -104,25 +104,21 @@
 
       #clock {
         color: #262626;
-        background-color: #83a598;
+        background-color: #eeeeee;
       }
 
       #battery {
         color: #262626;
-        background-color: #b8bb26;
+        background-color: #dddddd;
       }
 
       #battery.warning {
-        background-color: #fabd2f;
+        background-color: #cccccc;
       }
 
       #battery.critical {
-        background-color: #fb4934;
-      }
-
-      #custom-co2 {
-        color: #262626;
-        background-color: #8ec07c;
+        background-color: #000000;
+        color: #ffffff;
       }
 
       #custom-pomodoro {

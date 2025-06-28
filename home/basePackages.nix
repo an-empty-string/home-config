@@ -4,6 +4,7 @@
   home.packages = (with pkgs; [
     acpi
     act
+    age
     alsa-utils
     asciinema
     awscli2
@@ -11,6 +12,8 @@
     bind
     binutils
     binwalk
+    cmake
+    delta
     diffoscope
     direnv
     dos2unix
@@ -34,8 +37,10 @@
     unstable.keyd
     lftp
     mariadb-client
+    meson
     mosh
     mosquitto
+    ninja
     nmap
     nodejs
     openssl
@@ -43,6 +48,7 @@
     parallel
     pat
     picocom
+    pkg-config
     postgresql
     poppler_utils
     pre-commit
@@ -79,6 +85,7 @@
       awacs
       black
       boto3
+      boto3-stubs
       click
       cryptography
       flake8

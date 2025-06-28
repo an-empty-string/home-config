@@ -94,7 +94,8 @@
   ];
 
   # Container management
-  virtualisation.docker.rootless.enable = true;
+  #virtualisation.docker.rootless.enable = true;
+  virtualisation.docker.enable = true;
 
   # TPM support
   security.tpm2 = {
