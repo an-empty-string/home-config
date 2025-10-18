@@ -3,8 +3,8 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    # wrapperFeatures.gtk = true;
-    package = sway-tris;
+    wrapperFeatures.gtk = true;
+    # package = sway-tris;
 
     extraOptions = [ "--unsupported-gpu" ];
     systemd.enable = true;

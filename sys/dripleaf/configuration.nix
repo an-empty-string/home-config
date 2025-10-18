@@ -50,4 +50,6 @@
 
   system.stateVersion = "22.05";
   networking.firewall.allowedTCPPorts = [ 8001 ];
+
+  services.kolide-launcher.enable = true;
 }

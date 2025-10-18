@@ -6,6 +6,7 @@
 
     sessionVariables = {
       TERM = "xterm-256color";
+      XDG_CURRENT_DESKTOP = "sway";
     };
 
     initExtraFirst = ''

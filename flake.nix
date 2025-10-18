@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kolide-launcher = {
+      url = "github:/kolide/nix-agent/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     amethyst = {
       url = "github:an-empty-string/amethyst";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,12 +25,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, sway-tris, home-manager, amethyst }: let
+  outputs = { self, nixpkgs, unstable, sway-tris, home-manager, amethyst, kolide-launcher }: let
     mkSystem = mainMod: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         mainMod
         amethyst.nixosModules.default
+        kolide-launcher.nixosModules.kolide-launcher
       ];
       specialArgs = {
         unstable = unstable.legacyPackages.x86_64-linux;

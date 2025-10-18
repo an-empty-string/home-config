@@ -77,6 +77,21 @@
     Install.WantedBy = [ "sway-session.target" ];
   };
 
+  xdg.portal = {
+    enable = true;
+
+    config = {
+      sway = {
+        default = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      };
+    };
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+  };
+
   home.file.wob-volume-config = {
     text = ''
       background_color = 262626dd
@@ -155,6 +170,7 @@
           outputs = [{
             criteria = "eDP-1";
             status = "enable";
+            scale = 1.2;
           }];
         };
       }
@@ -170,12 +186,14 @@
             mode = "2560x1440";
             position = "0,0";
             transform = "270";
+            scale = 1.2;
           } {
             criteria = "DP-5";
             status = "enable";
             mode = "2560x1440";
-            position = "1440,560";
+            position = "1201,440";
             transform = "normal";
+            scale = 1.2;
           }];
         };
       }
@@ -191,12 +209,14 @@
             mode = "2560x1440";
             position = "0,0";
             transform = "270";
+            scale = 1.2;
           } {
             criteria = "DP-7";
             status = "enable";
             mode = "2560x1440";
-            position = "1440,560";
+            position = "1201,440";
             transform = "normal";
+            scale = 1.2;
           }];
         };
       }

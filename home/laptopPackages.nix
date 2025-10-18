@@ -17,6 +17,7 @@
     comic-mono
     darktable
     docker-compose
+    element-desktop
     emojione
     font-awesome_5
     freerdp
@@ -43,8 +44,8 @@
     speedcrunch
     spotify
     swayidle
+    virt-manager
     vlc
-    volumeicon
     wdisplays
     wego
     wireshark

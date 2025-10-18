@@ -72,6 +72,7 @@
     unstable.visidata
     weechat
     wget
+    xmlsec
     xmlstarlet
     zip
 
