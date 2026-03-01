@@ -27,6 +27,9 @@
       set shiftwidth=4
       set tabstop=4
 
+      " Use the system clipboard
+      " set clipboard=unnamedplus
+
       set nocompatible
 
       " Set window title
@@ -35,8 +38,9 @@
       " Tab to cycle through menu options
       set wildmenu
 
-      " Don't wrap
+      " Wrapping behavior
       set nowrap
+      set lbr
 
       " Show matching bracket when closing bracket typed
       set showmatch
@@ -106,8 +110,10 @@
           },
         }
 
-        local lspconfig = require('lspconfig')
-        lspconfig.pyright.setup {}
+        vim.lsp.enable('pyright')
+
+        vim.diagnostic.enable = true
+        vim.diagnostic.config({ virtual_lines = true })
       EOF
     '';
 
@@ -150,7 +156,8 @@
 
       rainbow
 
-      nvim-lspconfig
+      ctrlp-vim
+
       (nvim-treesitter.withPlugins (p: with p; [
         nix
         python

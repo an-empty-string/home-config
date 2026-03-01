@@ -36,7 +36,8 @@
     jq
     unstable.keyd
     lftp
-    mariadb-client
+    libspatialite
+    mariadb.client
     meson
     mosh
     mosquitto
@@ -50,7 +51,7 @@
     picocom
     pkg-config
     postgresql
-    poppler_utils
+    poppler-utils
     pre-commit
     progress
     pv
@@ -84,6 +85,7 @@
       aiomqtt
       arrow
       awacs
+      beautifulsoup4
       black
       boto3
       boto3-stubs
@@ -96,6 +98,7 @@
       lxml
       mysqlclient
       psycopg2
+      pydantic
       pygame
       pyserial
       pytest

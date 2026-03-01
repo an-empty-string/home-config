@@ -66,6 +66,7 @@
     space = enter
     l = macro(let space me space know space if space you space need space anything space else)
     e = toggle(elayer)
+    c = toggle(copypaste)
 
     [media]
     h = previoussong
@@ -81,6 +82,15 @@
     f = C-S-i
 
     rightshift = toggle(functions)
+
+    [copypaste]
+    c = C-S-c
+    v = C-S-v
+
+    x = enter
+    space = enter
+
+    rightshift = toggle(copypaste)
 
     [macros_enabled]
     rightshift = overload(macro, toggle(macros_enabled))

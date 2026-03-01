@@ -17,11 +17,11 @@
   programs.adb.enable = true;
 
   # Power management
-  services.logind.lidSwitch = "suspend-then-hibernate";
-  services.logind.extraConfig = ''
-    HibernateDelaySec=1800
-    HandlePowerKey=suspend
-  '';
+  services.logind.settings.Login = {
+    HibernateDelaySec = 1800;
+    HandlePowerKey = "suspend";
+    HandleLidSwitch = "suspend-then-hibernate";
+  };
 
   boot.kernelModules = [ "intel_pstate" ];
 
@@ -67,7 +67,7 @@
       settings = {
         screencast = {
           chooser_type = "dmenu";
-          chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi -dmenu";
+          chooser_cmd = "${pkgs.rofi}/bin/rofi -dmenu";
         };
       };
     };

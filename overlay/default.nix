@@ -27,6 +27,9 @@ self: super: {
         name = "tris-config";
         src = pkgs/tris-config;
         propagatedBuildInputs = with super.python312.pkgs; [ click redis ];
+
+        pyproject = true;
+        build-system = [ super.python312.pkgs.setuptools ];
       };
     });
   };

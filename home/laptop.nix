@@ -17,6 +17,18 @@
   programs.password-store.enable = true;
   # services.syncthing.enable = true;
 
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+    gtk.enable = true;
+    sway.enable = true;
+  };
+
   fonts.fontconfig.enable = true;
   programs.firefox.enable = true;
   services.mako.enable = true;
@@ -215,6 +227,45 @@
             status = "enable";
             mode = "2560x1440";
             position = "1201,440";
+            transform = "normal";
+            scale = 1.2;
+          }];
+        };
+      }
+      {
+        profile = {
+          name = "docked3";
+          outputs = [{
+            criteria = "eDP-1";
+            status = "disable";
+          } {
+            criteria = "DP-5";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            transform = "270";
+            scale = 1.2;
+          } {
+            criteria = "DP-6";
+            status = "enable";
+            mode = "2560x1440";
+            position = "1201,440";
+            transform = "normal";
+            scale = 1.2;
+          }];
+        };
+      }
+      {
+        profile = {
+          name = "dockedB1";
+          outputs = [{
+            criteria = "eDP-1";
+            status = "disable";
+          } {
+            criteria = "DP-3";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
             transform = "normal";
             scale = 1.2;
           }];

@@ -13,6 +13,7 @@
   programs.steam.enable = true;
   virtualisation.libvirtd.enable = true;
 
+  hardware.sane.enable = true;
   services.hardware.bolt.enable = true;
 
   systemd.services.bluetooth.serviceConfig.ExecStart = lib.mkForce [
@@ -41,7 +42,6 @@
   environment.systemPackages =
     with pkgs; [
       tomb
-      pinentry
       pinentry-curses
       redir
     ];

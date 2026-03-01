@@ -7,6 +7,7 @@
   ];
 
   home.packages = with pkgs; [
+    anki
     audacity
     bat
     brightnessctl
@@ -18,9 +19,9 @@
     darktable
     docker-compose
     element-desktop
-    emojione
     font-awesome_5
     freerdp
+    gam
     gimp-with-plugins
     grim
     hack-font
@@ -30,7 +31,6 @@
     libnotify
     logseq
     networkmanager_dmenu
-    noto-fonts-emoji
     obs-studio
     pamixer
     pavucontrol
@@ -38,12 +38,13 @@
     prismlauncher
     slack
     qgis
-    rofi-wayland
+    rofi
     signal-desktop
     slurp
     speedcrunch
     spotify
     swayidle
+    thunderbird
     virt-manager
     vlc
     wdisplays

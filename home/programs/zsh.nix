@@ -17,7 +17,7 @@
       if [ -n "$SSH_CLIENT" ]; then
         promptColor="yellow"
         location=": $(hostname)"
-      else
+      elif [ -z "$UNICORN_PAM_SHELL" ]; then
         authSockCandidate="/run/user/$UID/gnupg/S.gpg-agent.ssh"
         if [ -e $authSockCandidate ]; then
           export SSH_AUTH_SOCK=$authSockCandidate

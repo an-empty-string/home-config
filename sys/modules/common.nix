@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../modules/nfs.nix
+    # ../modules/nfs.nix
     ../modules/tailscale.nix
   ];
 
