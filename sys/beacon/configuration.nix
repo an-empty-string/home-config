@@ -4,11 +4,10 @@
   imports = [
     ./generated.nix
     ../modules/common.nix
+    ../modules/efiBoot.nix
   ];
 
   boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   services.zigbee2mqtt = {
     enable = true;
