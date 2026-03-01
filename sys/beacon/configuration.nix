@@ -4,6 +4,7 @@
   imports = [
     ./generated.nix
     ../modules/common.nix
+    ../modules/graphical.nix
     ../modules/keyd.nix
     ../modules/efiBoot.nix
   ];
