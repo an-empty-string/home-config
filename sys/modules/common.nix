@@ -67,6 +67,12 @@
     ];
   };
 
+  users.users."tris.sandbox" = {
+    uid = 4001;
+    isNormalUser = true;
+    shell = pkgs.zsh;
+  };
+
   users.groups.keyd = {};
 
   # Kernel firmware

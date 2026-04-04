@@ -98,7 +98,6 @@
       lxml
       mysqlclient
       psycopg2
-      pydantic
       pygame
       pyserial
       pytest

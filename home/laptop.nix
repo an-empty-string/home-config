@@ -141,17 +141,6 @@
 
   systemd.user.services.kanshi.Install.WantedBy = [ "sway-session.target" ];
 
-  systemd.user.services.mqtt-bluetooth = {
-    Unit.Description = "MQTT to bluetoothctl bridge";
-    Unit.StartLimitIntervalSec = "0";
-    Service = {
-      ExecStart = "${pkgs.tris-mqtt-bluetooth}/bin/mqtt-bluetooth";
-      Restart = "always";
-      RestartSec = "30";
-      Environment = "PATH=${pkgs.bluez}/bin";
-    };
-  };
-
   home.file.electron-flags = {
     text = ''
       --enable-features=UseOzonePlatform
@@ -171,6 +160,17 @@
     '';
 
     target = ".config/networkmanager-dmenu/config.ini";
+  };
+
+  services.mopidy = {
+    enable = true;
+    extensionPackages = with pkgs.mopidyPackages; [
+      mopidy-spotify
+      mopidy-iris
+    ];
+    extraConfigFiles = [
+      "/home/tris/.config/mopidy/extra.conf"
+    ];
   };
 
   services.kanshi = {

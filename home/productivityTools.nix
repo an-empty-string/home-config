@@ -47,8 +47,6 @@
 
   home.packages = with pkgs; [
     timewarrior
-    tris-pomodoro
-    tris-bamboo-holidays
   ];
 
   home.activation.writeMutableTaskrc = ''
@@ -63,23 +61,5 @@
     source = files/taskwarrior-on-exit-mqtt;
     target = ".local/share/task/hooks/on-exit.mqtt";
     executable = true;
-  };
-
-  systemd.user.services.bamboo-holidays-update = {
-    Unit.Description = "Update holiday data from BambooHR";
-    Service.ExecStart = "${pkgs.tris-bamboo-holidays}/bin/bamboo-holidays-update";
-  };
-
-  systemd.user.timers.bamboo-holidays-update = {
-    Unit.Description = "Periodically update holiday data from BambooHR";
-    Timer.OnCalendar = "0/4:0";
-    Install.WantedBy = [ "default.target" ];
-  };
-
-  systemd.user.services.tris-pomodoro-server = {
-    Unit.Description = "Pomodoro server";
-    Service.ExecStart = "${pkgs.tris-pomodoro}/bin/pomodoro-server";
-    Service.Restart = "always";
-    Install.WantedBy = [ "default.target" ];
   };
 }

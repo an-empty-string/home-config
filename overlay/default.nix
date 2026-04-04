@@ -1,11 +1,6 @@
 self: super: {
   glauth = super.callPackage ./pkgs/glauth {};
 
-  tris-upload-utils = super.callPackage ./pkgs/tris-upload-utils {};
-  tris-pomodoro = super.callPackage ./pkgs/tris-pomodoro {};
-  tris-mqtt-bluetooth = super.callPackage ./pkgs/tris-mqtt-bluetooth {};
-  tris-bamboo-holidays = super.callPackage ./pkgs/tris-bamboo-holidays {};
-
   keyd = super.keyd.overrideAttrs (old: {
     src = super.fetchFromGitHub {
       owner = "rvaiya";

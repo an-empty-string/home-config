@@ -45,6 +45,7 @@
     spotify
     swayidle
     thunderbird
+    tigervnc
     virt-manager
     vlc
     wdisplays
