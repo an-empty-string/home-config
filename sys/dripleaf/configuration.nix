@@ -52,4 +52,7 @@
   networking.firewall.allowedTCPPorts = [ 8001 ];
 
   services.kolide-launcher.enable = true;
+
+  services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
 }

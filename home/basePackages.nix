@@ -71,7 +71,6 @@
     sqlite-interactive
     unzip
     unstable.visidata
-    weechat
     wget
     xmlsec
     xmlstarlet
@@ -81,8 +80,10 @@
     packer
     rain
 
+    weechat
+
     (python312.withPackages (p: with p; [
-      aiomqtt
+      # aiomqtt
       arrow
       awacs
       beautifulsoup4

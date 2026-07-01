@@ -100,16 +100,6 @@
       colorscheme gruvbox
 
       lua << EOF
-        require'nvim-treesitter.configs'.setup {
-          auto_install = false,
-          highlight = {
-            enable = true,
-          },
-          indent = {
-            enable = false,
-          },
-        }
-
         vim.lsp.config('pyright', {})
         vim.lsp.enable('pyright')
 

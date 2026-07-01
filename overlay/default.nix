@@ -28,4 +28,12 @@ self: super: {
       };
     });
   };
+
+  weechat = super.weechat.override {
+    configure = { availablePlugins, ...}: {
+      plugins = with availablePlugins; [
+        (python.withPackages (ps: with ps; [ websocket-client ]))
+      ];
+    };
+  };
 }

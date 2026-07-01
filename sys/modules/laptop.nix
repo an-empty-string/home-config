@@ -14,9 +14,6 @@
   # Firmware update services
   services.fwupd.enable = true;
 
-  # Android
-  programs.adb.enable = true;
-
   # Power management
   services.logind.settings.Login = {
     HibernateDelaySec = 1800;

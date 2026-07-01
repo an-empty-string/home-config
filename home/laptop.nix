@@ -173,6 +173,8 @@
     ];
   };
 
+  services.syncthing.enable = true;
+
   services.kanshi = {
     enable = true;
     settings = [

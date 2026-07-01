@@ -3,7 +3,7 @@
 {
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4" # qgis
-    "electron-27.3.11" # logseq
+    "electron-39.8.10" # logseq
   ];
 
   home.packages = with pkgs; [
@@ -15,6 +15,7 @@
     cairo
     chirp
     chromium
+    claude-code
     comic-mono
     darktable
     docker-compose
@@ -32,6 +33,7 @@
     logseq
     networkmanager_dmenu
     obs-studio
+    opencode
     pamixer
     pavucontrol
     playerctl
